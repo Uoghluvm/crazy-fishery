@@ -2,15 +2,12 @@
 import json
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-
-URL = Path(__file__).with_name('mvp.html').as_uri()
-SAVE_KEY = 'crazy-fishery.save.v1'
-CODEX_KEY = 'crazy-fishery.codex.v1'
+from ui_helpers import *
 
 
 def start(page, query=''):
-    page.goto(URL + query)
-    page.get_by_role('button', name='开始五日冒险', exact=True).click()
+    seed = int(query.split('=')[1]) if query else None
+    start_adventure(page, seed)
 
 
 def check_map_structure(page):
