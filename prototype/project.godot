@@ -1,0 +1,23 @@
+; 《疯狂渔场》木筏构筑原型 —— Godot 4.4+ 工程配置
+; 用 Godot 编辑器打开本文件夹（导入项目）即可运行
+
+config_version=5
+
+[application]
+
+config/name="疯狂渔场 - 木筏构筑原型"
+config/description="3×3 格盘 + 建筑放置 + 位置效果实时结算。用于验证摆放组合玩法。"
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.4", "GL Compatibility")
+
+[display]
+
+window/size/viewport_width=1152
+window/size/viewport_height=680
+window/stretch/mode="canvas_items"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.043, 0.078, 0.106, 1)

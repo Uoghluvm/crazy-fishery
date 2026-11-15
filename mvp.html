@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>疯狂渔场 · 木筏构筑验证 MVP</title>
+<style>
+:root{--ink:#fff2d4;--dim:#afcecb;--gold:#ffdc89;--cyan:#86eadb;--cell:112px}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}body{font-family:"Microsoft YaHei",sans-serif;color:var(--ink);overflow:hidden;background:#125660}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid var(--gold);outline-offset:4px}button:disabled{opacity:.5;cursor:default}
+.app,main{height:100%;position:relative}.waves{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 74% 8%,#fff1c9c9,transparent 27%),radial-gradient(ellipse at 25% 42%,#31949066,transparent 48%),linear-gradient(#b7c9bc 0%,#e0d7b6 12%,#8ab3ac 13%,#498e8f 18%,#236c77 42%,#104755 76%,#082f42);overflow:hidden}.waves:before,.waves:after{content:"";position:absolute;inset:15% -15% -15%;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22740%22%20height%3D%22280%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23b6e5d5%22%3E%3Cpath%20d%3D%22M0%200q3.6%20-3%207.2%200t4.8%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M137%2071q9.3%20-3%2018.6%200t12.4%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M274%20142q15.0%20-3%2030.0%200t20.0%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M411%20213q20.7%20-3%2041.4%200t27.6%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M548%204q26.4%20-3%2052.8%200t35.2%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M685%2075q5.1%20-3%2010.2%200t6.8%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M82%20146q10.8%20-3%2021.6%200t14.4%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M219%20217q16.5%20-3%2033.0%200t22.0%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M356%208q22.2%20-3%2044.4%200t29.6%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M493%2079q27.9%20-3%2055.8%200t37.2%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M630%20150q6.6%20-3%2013.2%200t8.8%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M27%20221q12.3%20-3%2024.6%200t16.4%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M164%2012q18.0%20-3%2036.0%200t24.0%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M301%2083q23.7%20-3%2047.4%200t31.6%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M438%20154q29.4%20-3%2058.8%200t39.2%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M575%20225q8.1%20-3%2016.2%200t10.8%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M712%2016q13.8%20-3%2027.6%200t18.4%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M109%2087q19.5%20-3%2039.0%200t26.0%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M246%20158q25.2%20-3%2050.4%200t33.6%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M383%20229q3.9%20-3%207.8%200t5.2%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M520%2020q9.6%20-3%2019.2%200t12.8%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M657%2091q15.3%20-3%2030.6%200t20.4%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M54%20162q21.0%20-3%2042.0%200t28.0%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M191%20233q26.7%20-3%2053.4%200t35.6%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M328%2024q5.4%20-3%2010.8%200t7.2%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M465%2095q11.1%20-3%2022.2%200t14.8%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M602%20166q16.8%20-3%2033.6%200t22.4%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M739%20237q22.5%20-3%2045.0%200t30.0%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M136%2028q28.2%20-3%2056.4%200t37.6%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M273%2099q6.9%20-3%2013.8%200t9.2%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M410%20170q12.6%20-3%2025.2%200t16.8%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M547%20241q18.3%20-3%2036.6%200t24.4%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M684%2032q24.0%20-3%2048.0%200t32.0%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M81%20103q29.7%20-3%2059.4%200t39.6%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M218%20174q8.4%20-3%2016.8%200t11.2%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M355%20245q14.1%20-3%2028.2%200t18.8%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M492%2036q19.8%20-3%2039.6%200t26.4%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M629%20107q25.5%20-3%2051.0%200t34.0%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M26%20178q4.2%20-3%208.4%200t5.6%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M163%20249q9.9%20-3%2019.8%200t13.2%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M300%2040q15.6%20-3%2031.2%200t20.8%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M437%20111q21.3%20-3%2042.6%200t28.4%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M574%20182q27.0%20-3%2054.0%200t36.0%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M711%20253q5.7%20-3%2011.4%200t7.6%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M108%2044q11.4%20-3%2022.8%200t15.2%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M245%20115q17.1%20-3%2034.2%200t22.8%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M382%20186q22.8%20-3%2045.6%200t30.4%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M519%20257q28.5%20-3%2057.0%200t38.0%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M656%2048q7.2%20-3%2014.4%200t9.6%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M53%20119q12.9%20-3%2025.8%200t17.2%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M190%20190q18.6%20-3%2037.2%200t24.8%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M327%20261q24.3%20-3%2048.6%200t32.4%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M464%2052q30.0%20-3%2060.0%200t40.0%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M601%20123q8.7%20-3%2017.4%200t11.6%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M738%20194q14.4%20-3%2028.8%200t19.2%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M135%20265q20.1%20-3%2040.2%200t26.8%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M272%2056q25.8%20-3%2051.6%200t34.4%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M409%20127q4.5%20-3%209.0%200t6.0%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M546%20198q10.2%20-3%2020.4%200t13.6%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M683%20269q15.9%20-3%2031.8%200t21.2%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M80%2060q21.6%20-3%2043.2%200t28.8%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M217%20131q27.3%20-3%2054.6%200t36.4%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.115%22/%3E%3C/g%3E%3C/svg%3E");background-size:740px 280px;animation:water 40s linear infinite}.waves:after{inset:40% -15% -20%;background-size:1040px 430px;opacity:.55;animation:water 16s linear infinite reverse}@keyframes water{to{transform:translate(100px,20px)}}
+.title{position:absolute;left:30px;top:25px;font-size:23px;letter-spacing:5px;color:#163f46}.title small{display:block;font-size:10px;letter-spacing:3px;margin-top:7px}.topbar{position:absolute;right:24px;top:25px;z-index:6}.stats{display:flex;gap:18px}.stat{font-size:10px;color:#17424a;display:flex;gap:5px;align-items:center}.stat b{font-size:15px}.sea{overflow:hidden;position:absolute;inset:16% 0 12%;display:flex;align-items:center;justify-content:center}.raft{position:relative;animation:roll 7.1s ease-in-out infinite alternate;transform-origin:center 70%}.raft:before{content:'';position:absolute;inset:30% 0 -10%;border-radius:50%;background:#062e3990;filter:blur(17px);transform:translate(24px,32px);pointer-events:none}.raft:after{content:"";position:absolute;inset:30% -10% -17%;border-radius:50%;pointer-events:none;border:1px solid #b9e6d328;border-top-color:transparent;box-shadow:0 14px 0 -12px #bdeddf4d,0 27px 0 -24px #a9dccc40;animation:ripple 5.3s ease-in-out infinite alternate}@keyframes roll{from{transform:rotate(-1.5deg) translateY(-3px)}to{transform:rotate(1.5deg) translateY(3px)}}@keyframes pitch{from{transform:rotateX(-1deg)}to{transform:rotateX(1deg)}}@keyframes ripple{to{transform:scale(1.04,.98);opacity:.4}}
+.grid{position:relative;animation:pitch 5.3s ease-in-out infinite alternate;perspective:1000px}.cell{pointer-events:none;position:absolute;width:var(--cell);height:calc(var(--cell)*.64);background:none;border:0;color:var(--ink);overflow:visible}.cell:before,.cell:after{content:'';position:absolute;inset:0;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);pointer-events:none}.cell:before{background:#64412c;transform:translateY(13px);filter:drop-shadow(0 4px 2px #162f35)}.cell:after{pointer-events:auto;clip-path:polygon(50% 3%,96.5% 50%,50% 97%,3.5% 50%);background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22180%22%20height%3D%22110%22%3E%3Cg%20transform%3D%22rotate%2832%2090%2055%29%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M-80%20-80q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-75q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-70q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-65q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-60q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-55q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-50q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-45q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-40q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-35q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-30q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-25q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-20q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-15q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-10q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-5q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%200q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%205q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2010q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2015q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2020q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2025q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2030q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2035q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2040q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2045q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2050q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2055q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2060q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2065q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2070q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2075q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2080q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2085q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2090q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2095q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20100q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20105q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20110q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20115q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20120q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20125q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20130q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20135q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20140q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20145q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20150q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20155q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20160q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20165q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20170q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20175q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20180q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20185q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cellipse%20cx%3D%2285%22%20cy%3D%2245%22%20rx%3D%2212%22%20ry%3D%222%22%20stroke%3D%22%23644020%22%20opacity%3D%22.3%22/%3E%3Cellipse%20cx%3D%2285%22%20cy%3D%2245%22%20rx%3D%225%22%20ry%3D%221%22%20stroke%3D%22%23644020%22%20opacity%3D%22.25%22/%3E%3C/g%3E%3C/svg%3E"),repeating-linear-gradient(32deg,transparent 0 17px,#654728 18px 19px,#e3bc80 20px 21px),linear-gradient(135deg,#dcb377,#b17d48 65%,#967041);background-size:180px 110px,auto,auto;filter:brightness(var(--wood-tone,1)) drop-shadow(0 0 2px #3a2411);box-shadow:inset 0 0 20px #76532e33}.cell.empty:after{filter:brightness(calc(var(--wood-tone,1)*.86)) drop-shadow(0 0 2px #33200f)}.cell.focus:after,.cell:focus-visible:after{filter:brightness(1.25) drop-shadow(0 0 3px #ffe4a0)}.cell.link:after{filter:sepia(.2) hue-rotate(40deg) saturate(.8) brightness(1.14)}.cell .ic{position:absolute;z-index:2;width:64%;height:112%;left:18%;bottom:28%;pointer-events:none;filter:drop-shadow(11px 9px 3px #273b3655)}.cell .ic svg{width:100%;height:100%;overflow:visible;animation:idle 3.7s ease-in-out infinite alternate;animation-delay:var(--delay)}@keyframes idle{to{transform:translateY(-2px)}}.cell.focus .ic{filter:drop-shadow(0 0 3px #ffdc89) drop-shadow(12px 10px 3px #273b3655)}.cell.ghost .ic{opacity:.55}.cell .idx,.cell .nm,.cell .mod{display:none}.cell .val{display:none}.labels{position:absolute;inset:0;z-index:100;pointer-events:none}.value{position:absolute;transform:translate(-50%,-100%);font-weight:700;font-size:var(--label-size,25px);text-shadow:0 2px 3px #153c40,1px 0 #153c40,-1px 0 #153c40;white-space:nowrap}.value small{display:block;font-size:var(--label-small,9px);text-align:center;letter-spacing:1px;color:#fff2d4}.links{position:absolute;inset:0;overflow:visible;z-index:90;pointer-events:none}.links line{stroke:#a5ffe5;stroke-width:2;stroke-dasharray:5 5;opacity:.8}
+.dock{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:200;display:flex;gap:8px;align-items:center;white-space:nowrap}.ghost,.dock button{color:#234b4e;background:#eddfbd;border:1px solid #acbb9b;border-radius:5px;padding:10px 15px;font-size:12px;box-shadow:0 3px 0 #173e4930}.dock .primary{background:#ffdc89}.instruction{position:fixed;bottom:79px;width:100%;text-align:center;font-size:11px;letter-spacing:1px;color:#b9d8d5;pointer-events:none}.announcement{position:fixed;top:56px;left:50%;transform:translateX(-50%);font-size:12px;color:#f2f6e4;pointer-events:none;background:#0d3a44b8;padding:6px 14px;border-radius:20px;border:1px solid #9fd4c733;backdrop-filter:blur(6px);max-width:min(560px,86vw);text-align:center;line-height:1.5}
+aside#drawer{position:fixed;max-height:62vh;overflow:auto;bottom:78px;left:50%;transform:translateX(-50%);z-index:210;width:min(680px,94vw);padding:16px;background:#efe4c8;color:#244b4c;border-radius:8px;box-shadow:0 18px 60px #0c30394d}aside[hidden]{display:none}.brand,.legend,.spacer,.tip,aside>.row2,aside>.sec-title{display:none}.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.tool{display:flex;gap:8px;align-items:center;padding:9px;background:#f8efd9;border:1px solid #c7cbb1;border-radius:5px;color:#244b4c;text-align:left}.tool[aria-pressed=true]{outline:2px solid #267c78}.tool .ic{width:24px;height:24px;color:var(--c)}.tool svg{width:24px;height:24px}.tool b,.tool i{display:block;font-size:11px}.tool i{font-size:10px;font-style:normal;opacity:.7}.tool .dot{display:none}.status{position:fixed;z-index:220;pointer-events:none;width:260px;padding:12px 15px;background:#f3e9cf;color:#264b4b;border-radius:6px;box-shadow:0 8px 30px #062f3940;font-size:12px;line-height:1.7}.status[hidden]{display:none}.status .desc,.status .who{display:block;font-size:11px}.status .k{font-weight:700}.status .res{font-weight:bold}.hintbar{display:none}.float{position:absolute;z-index:150;pointer-events:none;font-size:22px;color:#ffe1a0;font-weight:bold;text-shadow:0 2px 3px #123f49;animation:float .85s ease-out forwards}@keyframes float{to{transform:translateY(-65px);opacity:0}}@keyframes land{0%{transform:translateY(-35px);opacity:.3}70%{transform:translateY(4px)}100%{transform:translateY(0)}}@keyframes sink{50%{transform:translateY(3px)}}
+@media(max-width:600px){.title{left:18px;top:20px;font-size:18px}.title small{font-size:8px}.topbar{top:80px;left:18px;right:auto}.stats{gap:12px}.tools{grid-template-columns:repeat(2,1fr)}.dock{gap:4px;bottom:20px}.dock button{font-size:10px;padding:10px 8px}.instruction{font-size:9px}.value{font-size:var(--label-size,21px)}.sea{inset:23% 0 17%}}
+.particle{position:absolute;z-index:120;pointer-events:none;width:5px;height:5px;background:#e7bb78;animation:scatter .5s ease-out forwards}.particle.water{background:#b7e9e3;border-radius:50%}@keyframes scatter{to{translate:var(--dx) var(--dy);rotate:130deg;opacity:0}}.removed{position:absolute;z-index:130;pointer-events:none;animation:remove .22s ease-out forwards}.removed svg{width:100%;height:100%}@keyframes remove{to{transform:translateY(-25px) rotate(12deg);opacity:0}}#removeBtn[aria-pressed=true]{background:#d88e68;color:#2c302b}body.removing .cell:after{cursor:crosshair}.drawer-options{display:flex;justify-content:space-between;margin-bottom:12px;align-items:center;font-size:12px}.drawer-options button{background:transparent;border:0;color:#244b4c;padding:5px}.dock{max-width:calc(100vw - 12px)}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
+.voyage-hud{position:fixed;left:30px;top:88px;z-index:8;display:flex;gap:12px;align-items:center;font-size:12px;color:#234b4e}.voyage-hud[hidden]{display:none}.voyage-hud progress{width:80px;height:8px;accent-color:#d8db98}.voyage-actions{position:fixed;right:26px;bottom:25px;display:flex;gap:8px;z-index:205}.voyage-actions button,.dialog-actions button{padding:12px 18px;border:0;border-radius:5px;background:#ffdc89;color:#234b4e}.voyage-actions #helpBtn{background:#d7e5cc}.voyage-actions button[hidden]{display:none}
+dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:auto;border:1px solid #d5caa7;border-radius:12px;padding:28px;background:#f3e8cd;color:#234b4e;box-shadow:0 30px 100px #062a45aa}dialog::backdrop{background:#06394499;backdrop-filter:blur(4px)}dialog h2{font-size:25px;margin:8px 0 15px}dialog p{font-size:14px;line-height:1.8;margin:10px 0}dialog small{color:#637d77;font-size:11px}.dialog-actions{position:sticky;bottom:0;z-index:5;background:#f3e8cd;padding:12px 0 4px;display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;box-shadow:0 -14px 18px -12px #a08f62aa}.dialog-actions button{background:#226e71;color:#fff1cc;flex:1;min-width:120px}.dialog-actions button.secondary{background:#e0d5b6;color:#345857}.sea-mark{font-size:42px;letter-spacing:10px}.combat-summary{padding:12px;background:#e5dcc1;border-left:3px solid #498a7e}.combat-summary>b:first-child{display:block;margin-bottom:6px;font-size:14px}.combat-summary .danger{color:#b03a24}.foes{list-style:none;margin:7px 0;padding:0;display:grid;gap:4px}.foes li{display:grid;grid-template-columns:1fr auto;gap:1px 8px;padding:5px 8px;background:#d8cfaf88;border-radius:4px;font-size:11px;line-height:1.45}.foes li b{font-size:11px;color:#1f4a4c}.foes li span{color:#5c7671;font-size:10px;text-align:right}.foes li em{grid-column:1/-1;font-style:normal;color:#8a5a1e;font-size:10px}.route-options{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}.combat-summary{min-width:0}.combat-summary .sum-line{display:block;font-size:11px;line-height:1.6;color:#3c5c58}.combat-summary .sum-line b{font-size:13px;color:#8a4a1e}.combat-summary .danger{display:inline-block;margin-top:4px;padding:2px 6px;background:#e2b3a2;border-radius:3px;font-size:11px!important;color:#7d2a17}.combat-summary.risk{border-left-color:#b1663f;background:#e7d3b3}.powers{font-size:12px;margin:6px 0}.powers b{color:#8a4a1e}.loot-title{margin:14px 0 8px;font-size:13px;font-weight:bold;color:#245a56}.loot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.loot-card{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 6px;background:#e7dfc4;border:2px solid #b8b89a;border-radius:8px;color:#234b4e;cursor:pointer;transition:transform .12s ease-out,box-shadow .12s ease-out}.loot-card:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 8px 16px #7a6a3c33}.loot-card:disabled{cursor:default}.loot-card svg{width:60px;height:60px;border-radius:50%;background:radial-gradient(circle at 50% 58%,#ffffff88,#ffffff00 72%)}.loot-card b{font-size:12px;line-height:1.3;text-align:center}.loot-card small{font-size:10px;line-height:1.4;color:#5c7671;text-align:center}.loot-card.relic{background:#f4e6b8;border-color:#c9a44e}.loot-card.relic svg{background:radial-gradient(circle at 50% 58%,#fff6d8cc,#fff6d800 72%)}.loot-card.relic b{color:#7d5416}.loot-card.build{background:#dde6cd;border-color:#9fb08c}.loot-card.picked{border-color:#2f8f6e;box-shadow:inset 0 0 0 2px #2f8f6e66;background:#dcefdc}.loot-card.dim{opacity:.55}.dialog-actions button.waiting{background:#cfc5a8;color:#6b7a73}.relic-chip{display:inline-block;margin-left:5px;padding:1px 7px;border-radius:9px;background:#2a6a6f;color:#ffe6b3;font-size:10px;white-space:nowrap}.relic-bar{display:inline-flex;flex-wrap:wrap;gap:3px;vertical-align:middle}@media(max-width:600px){.route-options{grid-template-columns:1fr}.loot-grid{grid-template-columns:repeat(3,1fr);gap:6px}.loot-card{padding:8px 3px}.loot-card svg{width:44px;height:44px}.loot-card b{font-size:11px}.loot-card small{font-size:9px}}.voyage-hud strong{color:#874920}.adventure .dock [data-preset],.adventure #resetBtn{display:none}
+@media(max-width:1200px){.voyage-actions{right:14px;bottom:82px}.voyage-actions button{padding:9px 12px}.adventure .instruction{bottom:125px}.voyage-hud strong{color:#ffdc89}.voyage-hud{color:#e8f0d4;top:112px;left:18px;font-size:11px;gap:8px}.announcement{top:56px;font-size:11px;width:auto;text-align:center}}
+
+#battleView{position:fixed;inset:0;z-index:190;pointer-events:none}#battleView[hidden]{display:none}.enemy{position:absolute;left:76%;top:27%;width:170px;transform:translateX(-50%);text-align:center}.enemy svg{width:158px;height:130px;filter:drop-shadow(12px 16px 5px #072f4266);animation:prowl 2.3s ease-in-out infinite alternate}.enemy.boss svg{scale:1.18;filter:drop-shadow(0 0 12px #c67f7255)}.enemy b{display:block;font-size:13px;color:#ffdfb3}.enemy progress{width:145px;height:10px;accent-color:#df997b}.enemy span{display:block;font-size:11px;color:#f7e9d0}.enemy em{display:block;margin-top:7px;font-style:normal;font-size:10px;line-height:1.5;color:#a5e2d3;max-width:100%;margin-inline:auto;text-shadow:0 1px 3px #062a3688}.enemy em span{display:block;text-align:center}.enemy small{display:block;margin-top:5px;font-size:10px;line-height:1.4;color:#93cfc4}.battle-status{position:absolute;top:150px;width:100%;text-align:center;color:#fff0c6;font-size:14px;text-shadow:0 2px 5px #123e48}.battle-status small{display:block;margin-top:7px;font-size:11px;color:#c5e0d4}#skipBattle{pointer-events:auto;position:absolute;right:24px;bottom:85px;padding:11px 18px;border:1px solid #c5cba8;border-radius:5px;background:#eadcb9;color:#234b4e}.projectile{position:fixed;z-index:195;pointer-events:none;width:22px;height:5px;background:#ffe5a1;border-radius:50%;box-shadow:0 0 9px #ffda8d;transform-origin:center}.projectile.hostile{width:15px;height:15px;background:#7ce6de;box-shadow:0 0 15px #a8f5dc}.shield-ring{position:fixed;z-index:194;pointer-events:none;border:3px solid #9bf7e3;border-radius:50%;box-shadow:0 0 25px #8be4de77;opacity:0}.battle-number{position:fixed;z-index:198;pointer-events:none;color:#ffdb99;font-size:25px;font-weight:bold;text-shadow:0 2px 4px #183946}.battle-number.hurt{color:#ffb39a}@keyframes prowl{to{translate:0 -8px;rotate:3deg}}.battling .instruction,.battling .announcement,.battling .voyage-actions,.battling .dock{visibility:hidden}
+@media(max-width:600px){.enemy{left:78%;top:23%;width:118px}.enemy svg{width:98px;height:88px}.enemy progress{width:104px}.enemy b{font-size:11px}.enemy span{font-size:10px}.enemy em,.enemy small{font-size:9px}.battle-status{top:165px;font-size:12px}.battle-status small{font-size:10px}.battling .sea{inset:35% 0 14%}#skipBattle{bottom:85px;right:15px}}
+
+.chart{position:relative;max-width:420px;margin:9px auto 0;border-radius:10px;overflow:hidden;background:radial-gradient(ellipse at 18% 86%,#3f8d85 0 12%,#1d5d69 48%,#113a4a 100%);box-shadow:inset 0 0 0 1px #8fc4bd2e,inset 0 -26px 46px #06222e77}
+.chart svg{display:block;width:100%;height:auto}
+.chart .contour ellipse{fill:none;stroke:#9fd8c6;stroke-opacity:.14;stroke-width:1}
+.chart .edge{stroke-width:1.6;stroke-dasharray:4 5;stroke-linecap:round;stroke-opacity:.1;transition:stroke-opacity .16s,stroke-width .16s}
+.chart .edge.fight{stroke:#8fd3bf}
+.chart .edge.elite{stroke:#e9a878}
+.chart .edge.supply{stroke:#d6cd7c}
+.chart .edge.boss{stroke:#e58e78}
+.chart .edge.ahead{stroke-opacity:.42;stroke-width:1.9}
+.chart .edge.open{stroke-opacity:.95;stroke-width:2.4;stroke-dasharray:none}
+.chart .edge.lit{stroke:#ffe6b3;stroke-opacity:1;stroke-width:2.8;stroke-dasharray:none}
+.chart .trail{fill:none;stroke:#ffdc89;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.chart .node{stroke:#9ec9c0;stroke-width:1.5;transition:opacity .16s,stroke-width .16s}
+.chart .node.fight{fill:#2f8078}
+.chart .node.elite{fill:#8d5a41}
+.chart .node.supply{fill:#a8873f}
+.chart .node.boss{fill:#6d2f2a;stroke-width:2.6}
+.chart .node.open{stroke:#ffdc89;stroke-width:2.6;animation:node-beat 1.7s ease-in-out infinite}
+.chart .node.taken{fill:#b99a5e;stroke:#e8d9ac;opacity:.95}
+.chart .node.here{fill:#ffdc89;stroke:#fff4d4;stroke-width:2.4}
+.chart .node.passed{opacity:.4}
+.chart .node.dead{opacity:.16}
+.chart .node.lock{opacity:.3}
+.chart .node.lit{stroke:#fff;stroke-width:3;opacity:1}
+.chart .crown{fill:#ffdc89;font-size:11px;text-anchor:middle;paint-order:stroke;stroke:#12323a;stroke-width:.9}
+.chart .start{fill:#0f3a48;stroke:#9ec9c0;stroke-width:1.4}
+.chart .boat{filter:drop-shadow(0 2px 4px #06202aaa)}
+.chart .axis{fill:#9ec9c0;font-size:8px;font-weight:bold;text-anchor:end;letter-spacing:.6px}
+.chart .axis.now{fill:#ffe6b3}
+.chart .north{fill:#7fb0a8;font-size:8px;text-anchor:end}
+@keyframes node-beat{0%,100%{stroke-opacity:1}50%{stroke-opacity:.3}}
+.chart-legend{font-size:10px;color:#8a6f3c;text-align:center;letter-spacing:.4px;margin:6px 0 0}
+.sail-list{display:flex;flex-direction:column;gap:7px;margin:10px 0 0}
+.sail-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto auto;align-items:center;gap:9px;padding:8px 10px;text-align:left;font:inherit;color:#eef4e0;background:linear-gradient(#266b68,#1b4f58);border:1px solid #7fb8a477;border-radius:8px;cursor:pointer;transition:translate .15s ease-out,border-color .15s,box-shadow .15s}
+.sail-row:hover,.sail-row:focus-visible{translate:0 -2px;border-color:#ffe6b3;box-shadow:0 7px 16px #0a2a3366;outline:none}
+.sail-row.elite{background:linear-gradient(#5f3c34,#38292b);border-color:#d89a6c88}
+.sail-row.elite:hover,.sail-row.elite:focus-visible{border-color:#ffb98c}
+.sail-row.supply{background:linear-gradient(#4e5533,#2f3626);border-color:#cfc47a88}
+.sail-row.boss{background:linear-gradient(#63332c,#3a2224);border-color:#e08a6e99}
+.sail-row.boss:hover,.sail-row.boss:focus-visible{border-color:#ffb98c}
+.sail-row.supply:hover,.sail-row.supply:focus-visible{border-color:#f0e6a8}
+.sail-row .art svg{width:38px;height:auto;max-height:44px;flex:none;filter:drop-shadow(0 2px 4px #00000055)}
+.sail-row .body{display:block;min-width:0}
+.sail-row .body b{display:block;font-size:12.5px;line-height:1.3;color:#fff2d4;letter-spacing:.3px}
+.sail-row .body small{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:9.5px;line-height:1.35;color:#a9cfc6}
+.sail-row .num{text-align:right;min-width:34px}
+.sail-row .num b{display:block;font-size:14px;line-height:1.1;color:#ffe6b3}
+.sail-row .num small{display:block;font-size:8px;color:#a9cfc6;letter-spacing:1px}
+.sail-row .num.gain b{color:#9fe0b8}
+.sail-row .go{font-size:10px;font-weight:bold;color:#ffe6b3;white-space:nowrap;padding:4px 8px;border:1px solid #ffe6b355;border-radius:20px}
+.sail-row .go.wreck{color:#ff8f7a;border-color:#ff8f7a66}
+.recruit-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:14px 0}.recruit-card{padding:9px 3px;text-align:center;background:#dfe6cd;border:1px solid #a2b298;border-radius:5px;animation:reveal .22s ease-out both;animation-delay:var(--delay)}.recruit-card svg{width:50px;height:57px}.recruit-card b,.recruit-card small{display:block;font-size:11px}.recruit-card.rare{background:#d7ddef;border-color:#7e95ba}.recruit-card.legendary{background:#f4dc9d;border-color:#b98e37}.stock{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}.stock span{font-size:11px;background:#e3dbc2;padding:5px 8px;border-radius:4px}.shop-banner{padding:10px 12px;background:#e6d8a9;border-radius:6px;font-size:13px}.shop-items{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:12px}.shop-items button{background:#e6ddc3;color:#244b4c;border:1px solid #b8bba0;border-radius:5px;padding:8px;font-size:12px}@keyframes reveal{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.recruit-grid{grid-template-columns:repeat(2,1fr)}.recruit-grid .recruit-card:last-child:nth-child(odd){grid-column:1 / -1}.dock #shopBtn{font-size:10px;padding:10px 6px}.sail-row{gap:5px;padding:7px 8px}.sail-row .art svg{width:32px}.sail-row .body b{font-size:11.5px}.sail-row .num{min-width:26px}.sail-row .num b{font-size:12px}.sail-row .go{font-size:9px;padding:3px 6px}}
+
+.coach{position:fixed;left:26px;bottom:110px;width:230px;padding:12px 14px;border-left:3px solid #b5dbc1;background:#123f4dce;color:#dce9ce;font-size:12px;line-height:1.7;z-index:10;border-radius:0 7px 7px 0}.coach b{display:block;color:#ffe2a4;font-size:11px;letter-spacing:2px}.coach button{position:absolute;right:5px;top:4px;background:none;border:0;color:#dce9ce;font-size:13px}.coach[hidden],.nav-mini[hidden]{display:none}.nav-mini{position:fixed;right:26px;top:100px;width:135px;padding:9px;border:1px solid #bbd7bc77;border-radius:7px;background:#174b59da;color:#efe6bd;z-index:9;text-align:left;font-size:11px}.nav-mini svg{width:100%;height:50px}.nav-mini small{display:block;font-size:9px;color:#b8dbcc}.save-state{font-size:10px;opacity:.85}.battling .coach,.battling .nav-mini{visibility:hidden}.coastal-islands{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;opacity:.5}.waves{transition:filter 1.2s ease-out}
+@media(max-width:600px){.coach{left:18px;top:157px;bottom:auto;width:214px;padding:7px 12px;font-size:10px;max-height:92px}.coach b{font-size:9px}.nav-mini{right:15px;top:151px;width:120px;font-size:10px}.nav-mini svg{height:42px}.voyage-hud{flex-wrap:wrap;row-gap:1px}.save-state{font-size:9px}.adventure .announcement{top:auto;bottom:165px}.adventure .sea{inset:31% 0 17%}}
+
+.sun-path{position:fixed;left:49%;top:13%;width:47%;height:65%;pointer-events:none;opacity:.25;background:repeating-linear-gradient(0deg,transparent 0 15px,#ffe5a044 16px 17px,transparent 19px 30px),linear-gradient(#ffefbc88,transparent 83%);mask-image:radial-gradient(ellipse at 50% 0,#0009 0%,#0005 35%,transparent 75%)}.sea-haze{position:fixed;inset:12% 0 auto;height:12%;background:linear-gradient(#c8d9c733,transparent);pointer-events:none}.hull-detail{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:75;pointer-events:none}.cell .ic{filter:drop-shadow(15px 13px 2px #302e294d) drop-shadow(3px 4px 1px #1a322d33)}.cell .ic svg{stroke-linejoin:round}.value{font-weight:800;text-shadow:0 2px 2px #123f47,0 0 6px #10384180}.value small{font-weight:500;letter-spacing:1px}.coastal-islands{opacity:.8}.dock{padding:6px;border-radius:10px;background:#123f4a3d;border:1px solid #a2c8b32e;backdrop-filter:blur(8px)}.dock button{background:linear-gradient(#f0e3c4,#dcc89f);border-color:#dfd4b2;box-shadow:0 2px 0 #26433d55}.dock .primary{background:linear-gradient(#ffe2a0,#e2bd70)}.coach{background:linear-gradient(90deg,#153f4bd9,#153f4b88)}.nav-mini{background:linear-gradient(145deg,#32616ae6,#173f4be6)}
+@media(min-width:1000px){.title{font-size:26px;letter-spacing:7px}.title small{font-size:10px;letter-spacing:4px}.sea{inset:18% 0 9%}}
+@media(max-width:600px){.dock{padding:4px;gap:3px}.dock button{padding:10px 6px}.dock #shopBtn{padding:10px 5px}}
+.grid.compact-labels .value{font-size:12px;line-height:12px}.grid.compact-labels .value small{font-size:7px;line-height:9px;letter-spacing:0}
+</style>
+</head>
+<body>
+<div class="waves"></div><div class="sun-path"></div><div class="sea-haze"></div>
+<svg class="coastal-islands" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+<defs><linearGradient id="islandFog" x2="0" y2="1"><stop stop-color="#668d82"/><stop offset="1" stop-color="#3f7975"/></linearGradient><linearGradient id="metal" x2="1" y2="1"><stop stop-color="#d7dfca"/><stop offset=".35" stop-color="#829b96"/><stop offset="1" stop-color="#344e53"/></linearGradient><linearGradient id="oak" x2="1" y2="1"><stop stop-color="#d1a56b"/><stop offset="1" stop-color="#735139"/></linearGradient><linearGradient id="brass" x2="1" y2="1"><stop stop-color="#ffe1a0"/><stop offset="1" stop-color="#a77b3e"/></linearGradient></defs>
+<g fill="#95b3a4" opacity=".5"><path d="M0 141l45-9 36 6 28-11 62 19 72 5H0Z"/><path d="M1080 145l45-22 65 10 34-18 74 26 53-9 89 18Z"/></g>
+<path d="M0 161l31-14 28 3 20-18 22 8 14 20 29-6 37 11 49 6H0Z M1120 165l36-10 28-18 27 6 13-7 27 19 36 2 29-12 31 12 36-6 57 13v12h-320Z" fill="url(#islandFog)"/>
+<path d="M0 171q87-6 220 3M1120 176q155-5 320 2" stroke="#d0c8a1" stroke-width="3" fill="none" opacity=".75"/>
+<g stroke="#3f7168" fill="none" stroke-linecap="round"><path d="M53 155q6-16 2-30m0 0q-12-5-19 4m19-4q13-8 21 0m-21 0q-2-10-11-9m11 9q7-12 15-9" stroke-width="2"/><path d="M1304 157l-2-22m0 0q-11-6-18 1m18-1q10-8 19-2" stroke-width="2"/></g>
+<g stroke="#386c70" stroke-width="1.5" fill="none" opacity=".8"><path d="M230 187q8-6 15 0q8-6 15 0M261 201q6-4 11 0q6-4 11 0M1000 151q7-5 13 0q7-5 13 0"/></g>
+</svg>
+
+<!-- 图标精灵 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="ic-ballista" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+      <path d="M5 19 L19 5"/><path d="M6.5 12.5 A7.5 7.5 0 0 1 11.5 6.5"/><path d="M4 16 L8 20"/>
+    </g>
+    <g id="ic-harpoon" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+      <path d="M12 21 V5"/><path d="M8.5 8.5 L12 4.5 L15.5 8.5"/><path d="M9 14 h6"/>
+    </g>
+    <g id="ic-net" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+      <path d="M3.5 8 h17 M3.5 12 h17 M3.5 16 h17"/><path d="M8 4 v16 M12 4 v16 M16 4 v16"/>
+    </g>
+    <g id="ic-purifier" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3.5c0 0 6 6.8 6 10.6a6 6 0 0 1-12 0C6 10.3 12 3.5 12 3.5z"/>
+      <path d="M9.6 14.4a2.6 2.6 0 0 0 2.4 2.3"/>
+    </g>
+    <g id="ic-ammo" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
+      <rect x="5.5" y="5" width="13" height="5.2" rx="1.2"/>
+      <rect x="5.5" y="13.8" width="13" height="5.2" rx="1.2"/>
+    </g>
+    <g id="ic-beacon" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9.5 20.5 h5 L13.6 11 h-3.2z"/><path d="M12 7.6 V4.5"/>
+      <path d="M6.8 8.6 L4.6 6.4 M17.2 8.6 L19.4 6.4"/><path d="M9 14.6 h6"/>
+    </g>
+    <g id="ic-coral" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 20.5 v-6"/><path d="M12 14.5 L7.8 10.5 V6.2"/><path d="M12 14.5 L16.2 9.6 V4.6"/><path d="M7.8 13.2 L5 11"/>
+    </g>
+    <g id="ic-shield" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
+      <path d="M12 3.2 l7 2.9 v6.1c0 3.9-2.9 6.9-7 8.7-4.1-1.8-7-4.8-7-8.7V6.1z"/>
+      <path d="M9 12.2 l2.2 2.2 L15.2 10"/>
+    </g>
+  </defs>
+</svg>
+
+<div class="app">
+  <aside id="drawer" hidden aria-label="选择建筑">
+    <div class="brand">
+      <h1>疯狂渔场 <em>· 木筏构筑验证</em></h1>
+      <p>只验证一件事：建筑摆在哪，值不值得反复琢磨。无战斗、无资源消耗。</p>
+    </div>
+
+    <div class="sec-title">建筑工具箱</div>
+    <div class="drawer-options"><b>建造工具箱</b><button id="soundBtn" aria-pressed="true">音效：开</button></div><div class="tools" id="tools"></div>
+
+    <div class="sec-title">快速组合</div>
+    <div class="row2">
+      <button class="ghost" data-preset="beacon">灯塔弩炮阵</button>
+      <button class="ghost" data-preset="coral">珊瑚渔场</button>
+    </div>
+
+    <div class="legend">
+      <div class="lg-row"><span class="sw gold"></span>金边：正在查看的格</div>
+      <div class="lg-row"><span class="sw cyan"></span>青边：与它互相影响的格</div>
+      <div class="lg-row"><span class="sw dash"></span>虚线：悬停预览，还没放下</div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="row2">
+      <button class="ghost" id="expandBtn">扩建船体</button>
+      <button class="ghost warn" id="clearBtn">清空木筏</button>
+    </div>
+
+    <div class="tip">
+      <b>操作</b>　点选建筑 → 点格子放置　·　右键拆除<br>
+      <b>看什么</b>　放下时有没有犹豫？有没有想挪的冲动？
+    </div>
+  </aside>
+
+  <main>
+<h1 class="title">疯狂渔场<small>一方木筏 · 无尽之海</small></h1>
+    <div class="topbar">
+      <div class="stats" id="stats">
+        <div class="stat" data-cat="attack"><b>0</b>攻击</div>
+        <div class="stat" data-cat="resource"><b>0</b>资源</div>
+        <div class="stat" data-cat="support"><b>0</b>辅助</div>
+        <div class="stat" data-cat="space"><b>0/9</b>格子</div>
+      </div>
+    </div>
+
+    <div class="sea">
+      <div class="raft">
+        <div class="grid" id="grid" style="--n:3"></div>
+      </div>
+    </div>
+
+    <div class="status" role="tooltip" hidden>
+      <div class="formula" id="formula">从底部选择建筑，点击甲板放置：相邻／范围的加成立刻反映在数字上。</div>
+      <div class="hintbar">结算顺序：(基础 + 固定加成) × 倍率</div>
+    </div>
+  </main>
+</div>
+
+<div class="instruction">选择建筑后点击甲板放置 · 右键 / Delete 拆除 · Esc 取消选择</div>
+<div class="announcement" role="status" id="announcement"></div>
+<nav class="dock" aria-label="建造操作">
+<button id="shopBtn">招募商店</button><button class="primary" id="buildBtn" aria-expanded="false" aria-controls="drawer">＋ 建造</button>
+<button data-preset="beacon">灯塔阵</button><button data-preset="coral">珊瑚场</button>
+<button id="removeBtn" aria-pressed="false">拆除</button><button id="growBtn">扩建</button><button id="resetBtn">清空</button>
+</nav>
+<aside class="coach" id="coach" hidden aria-label="航海提示"><button id="coachClose" aria-label="收起航海提示">×</button><b>下一步</b><span id="coachText"></span></aside>
+<button class="nav-mini" id="miniMap" hidden aria-label="打开航线图"></button>
+<div class="voyage-hud" id="voyageHud" hidden></div>
+<div class="voyage-actions"><button id="repairBtn" hidden>修船 · 10 木材</button><button id="sailBtn" hidden>出航 →</button><button id="helpBtn">怎么玩</button></div>
+<div id="battleView" hidden>
+  <div class="battle-status" role="status" aria-live="polite"><b id="battleRound"></b><small id="battleDetail"></small></div>
+  <div class="enemy" id="enemy">
+    <div id="enemyArt"></div>
+    <b id="enemyName"></b><progress id="enemyHealth" aria-label="敌人血量"></progress><span id="enemyHealthText"></span>
+    <em id="enemySkills"></em><small id="enemyRest"></small>
+  </div>
+  <button id="skipBattle">跳过动画 · 直接结算</button>
+</div>
+<dialog id="journey" aria-labelledby="journeyTitle"><div class="sea-mark" aria-hidden="true">≈ ⛵ ≈</div><small>五日归航 · 试验玩法</small><h2 id="journeyTitle"></h2><div id="journeyBody"></div><div class="dialog-actions" id="journeyActions"></div></dialog>
+<script>
+(() => {
+  'use strict';
+
+  // ---------------- 数据 ----------------
+  const CAT = {
+    attack:   { name:'攻击', color:'#e0624a' },
+    resource: { name:'资源', color:'#3fb37a' },
+    skill:    { name:'技能', color:'#4b8fd6' },
+    special:  { name:'奇妙', color:'#9b7ae0' }
+  };
+
+  // 效果描述：{to, filter, op, v, per?, tag}
+  //   to     : adjacent 上下左右 | range 3×3 | row 整行 | col 整列 | all 全船 | self 自身
+  //   filter : any | attack | resource | skill | special | 具体建筑 id
+  //   op     : add 固定加成 | mult 倍率
+  //   per    : 按该范围内的目标数量叠乘（用于"每有 1 个邻居 +N"）
+  const BUILDINGS = [
+    { id:'ballista', name:'弩炮',   cat:'attack',   base:10, desc:'基础攻击建筑，本身没有位置效果。', effects:[] },
+    { id:'harpoon',  name:'鱼叉',   cat:'attack',   base:6,  desc:'低数值攻击建筑，适合铺边角。', effects:[] },
+    { id:'ratling',  name:'鼠炮台', cat:'attack',   base:4,  desc:'每有 1 个相邻建筑，自身 +3。挤得越密越强。', effects:[{to:'self',per:'adjacent',filter:'any',op:'add',v:3,tag:'每邻+3'}] },
+    { id:'powder',   name:'火药桶', cat:'attack',   base:0,  desc:'相邻攻击建筑 ×1.3，但相邻资源建筑 −2。双刃。', effects:[{to:'adjacent',filter:'attack',op:'mult',v:1.3,tag:'攻×1.3'},{to:'adjacent',filter:'resource',op:'add',v:-2,tag:'资−2'}] },
+    { id:'net',      name:'捕鱼网', cat:'resource', base:5,  desc:'资源产出，本身没有位置效果。', effects:[] },
+    { id:'purifier', name:'净化器', cat:'resource', base:4,  desc:'资源产出，本身没有位置效果。', effects:[] },
+    { id:'trawl',    name:'拖网',   cat:'resource', base:3,  desc:'同一行的其他资源建筑 ×1.5。横着铺才有效。', effects:[{to:'row',filter:'resource',op:'mult',v:1.5,tag:'同行×1.5'}] },
+    { id:'still',    name:'蒸馏塔', cat:'resource', base:6,  desc:'同一列的攻击建筑 +2。竖着铺才有效。', effects:[{to:'col',filter:'attack',op:'add',v:2,tag:'同列+2'}] },
+    { id:'ammo',     name:'弹药架', cat:'skill',    base:0,  desc:'相邻（上下左右）的攻击建筑 +5。', effects:[{to:'adjacent',filter:'attack',op:'add',v:5,tag:'+5'}] },
+    { id:'shield',   name:'护盾塔', cat:'skill',    base:3,  desc:'提供护盾数值，本身没有位置效果。', effects:[] },
+    { id:'frost',    name:'冰雾灯', cat:'skill',    base:0,  desc:'全船护盾塔 +2。护盾流派的核心放大器。', effects:[{to:'all',filter:'shield',op:'add',v:2,tag:'盾+2'}] },
+    { id:'beacon',   name:'灯塔',   cat:'special',  base:0,  desc:'相邻（上下左右）的建筑 ×1.5。', effects:[{to:'adjacent',filter:'any',op:'mult',v:1.5,tag:'×1.5'}] },
+    { id:'coral',    name:'珊瑚礁', cat:'special',  base:3,  desc:'周围 3×3 范围（含斜向）的其他建筑 +2。', effects:[{to:'range',filter:'any',op:'add',v:2,tag:'+2'}] },
+    { id:'tidemark', name:'潮汐钟', cat:'special',  base:0,  desc:'全船其他建筑 +2。占一格不产出，但谁都能吃。', effects:[{to:'all',filter:'any',op:'add',v:2,tag:'全体+2'}] }
+  ];
+
+  // 兼容旧数据：只有 effect 字符串时按此映射成通用效果
+  const LEGACY_EFFECTS = {
+    adjacent_attack_flat:[{to:'adjacent',filter:'attack',op:'add',v:5,tag:'+5'}],
+    adjacent_mult:[{to:'adjacent',filter:'any',op:'mult',v:1.5,tag:'×1.5'}],
+    range_flat:[{to:'range',filter:'any',op:'add',v:2,tag:'+2'}]
+  };
+  function effectsOf(b) {
+    if (!b) return [];
+    if (b.effects) return b.effects;
+    return LEGACY_EFFECTS[b.effect] || [];
+  }
+  // 格子里显示的辅助建筑标记：范围前缀 + 数值
+  const SCOPE_MARK = { adjacent:'', range:'周', row:'横', col:'竖', all:'全', self:'自' };
+  function effectBadge(b) {
+    const e = effectsOf(b)[0];
+    if (!e) return '—';
+    const op = e.op === 'mult' ? '×' + e.v : (e.v > 0 ? '+' + e.v : String(e.v));
+    return (SCOPE_MARK[e.to] || '') + op;
+  }
+  const MAP = Object.fromEntries(BUILDINGS.map(b => [b.id, b]));
+  const ICON = { ballista:'ic-ballista', harpoon:'ic-harpoon', net:'ic-net', purifier:'ic-purifier',
+                 ammo:'ic-ammo', beacon:'ic-beacon', coral:'ic-coral', shield:'ic-shield' };
+
+  const SIZES = [ {n:3, cell:112}, {n:4, cell:92}, {n:5, cell:76} ];
+
+  // ---------------- 状态 ----------------
+  const COST = {ballista:8,harpoon:5,net:6,purifier:5,ammo:8,beacon:14,coral:12,shield:10,ratling:9,powder:11,trawl:7,still:9,frost:12,tidemark:16};
+  const SAVE_KEY='crazy-fishery.save.v1';
+  const REGIONS=['珊瑚浅湾','漂木海峡','雾礁航道','沉船深海','巨兽海沟'];
+  let savedGame=null, lastSaved='', saveMessage='', guideEnabled=true;
+  let stock = {};
+  let pity = 0;
+  let run = null; // null = free-build sandbox; adventure rules are deliberately separate.
+  let sizeIdx = 0;
+  let N = SIZES[sizeIdx].n;
+  const cells = new Map();          // "x,y" -> buildingId
+  let removing = false;
+  let soundEnabled = true;
+  let selected = null;              // buildingId
+  let hover = null;                 // {x,y}
+  let cellEls = new Map();          // "x,y" -> element
+  let noGhostKey = null;            // 刚拆除的格：鼠标未移开前不显示预览，避免"好像没删掉"
+
+  const $ = s => document.querySelector(s);
+  const key = (x, y) => x + ',' + y;
+
+  const gridEl = $('#grid');
+  const formulaEl = $('#formula');
+  const statsEl = $('#stats');
+
+  // ---------------- 查询辅助 ----------------
+  function neighbors(x, y) {
+    const out = [];
+    if (x > 0) out.push([x - 1, y]);
+    if (x < N - 1) out.push([x + 1, y]);
+    if (y > 0) out.push([x, y - 1]);
+    if (y < N - 1) out.push([x, y + 1]);
+    return out;
+  }
+
+  function rangeCells(x, y) {
+    const out = [];
+    for (let dy = -1; dy <= 1; dy++) {
+      for (let dx = -1; dx <= 1; dx++) {
+        const nx = x + dx, ny = y + dy;
+        if (nx < 0 || ny < 0 || nx >= N || ny >= N) continue;
+        out.push([nx, ny]);
+      }
+    }
+    return out;
+  }
+
+  let preview = null;   // {x, y, id}
+
+  function buildingAt(x, y) {
+    if (preview && preview.x === x && preview.y === y) return MAP[preview.id];
+    const id = cells.get(key(x, y));
+    return id ? MAP[id] : null;
+  }
+
+  // ---------------- 结算 ----------------
+  function compute() {
+    const flat = new Map(), mult = new Map(), total = new Map();
+
+    for (let y = 0; y < N; y++) {
+      for (let x = 0; x < N; x++) {
+        flat.set(key(x, y), 0);
+        mult.set(key(x, y), 1);
+      }
+    }
+
+    for (let y = 0; y < N; y++) {
+      for (let x = 0; x < N; x++) {
+        const b = buildingAt(x, y);
+        if (!b) continue;
+
+        for (const eff of effectsOf(b)) {
+          const v = effectValue(eff, x, y);
+          if (v === 0) continue;
+          for (const [tx, ty] of scopeCells(eff.to, x, y)) {
+            if (!matchFilter(buildingAt(tx, ty), eff.filter)) continue;
+            const k = key(tx, ty);
+            if (eff.op === 'mult') mult.set(k, mult.get(k) * v);
+            else flat.set(k, flat.get(k) + v);
+          }
+        }
+      }
+    }
+
+    for (let y = 0; y < N; y++) {
+      for (let x = 0; x < N; x++) {
+        const b = buildingAt(x, y);
+        const k = key(x, y);
+        total.set(k, b ? (b.base + flat.get(k)) * mult.get(k) : 0);
+      }
+    }
+    return { flat, mult, total };
+  }
+
+  function scopeCells(to, x, y) {
+    if (to === 'self') return [[x, y]];
+    if (to === 'adjacent') return neighbors(x, y);
+    if (to === 'range') return rangeCells(x, y).filter(([nx, ny]) => nx !== x || ny !== y);
+    if (to === 'all') {
+      const out = [];
+      for (let yy = 0; yy < N; yy++) for (let xx = 0; xx < N; xx++) if (xx !== x || yy !== y) out.push([xx, yy]);
+      return out;
+    }
+    if (to === 'row' || to === 'col') {
+      const out = [];
+      for (let i = 0; i < N; i++) {
+        const nx = to === 'row' ? i : x, ny = to === 'row' ? y : i;
+        if (nx !== x || ny !== y) out.push([nx, ny]);
+      }
+      return out;
+    }
+    return [];
+  }
+  function matchFilter(b, filter) {
+    if (!b) return false;
+    if (!filter || filter === 'any') return true;
+    return b.cat === filter || b.id === filter;
+  }
+  function effectValue(eff, x, y) {
+    if (!eff.per) return eff.v;
+    const n = scopeCells(eff.per, x, y).filter(([px, py]) => matchFilter(buildingAt(px, py), eff.filter)).length;
+    return eff.v * n;
+  }
+  function effectTargets(x, y) {
+    const b = buildingAt(x, y);
+    if (!b) return [];
+    const out = new Set();
+    for (const eff of effectsOf(b)) {
+      if (effectValue(eff, x, y) === 0) continue;
+      for (const [tx, ty] of scopeCells(eff.to, x, y)) {
+        if (matchFilter(buildingAt(tx, ty), eff.filter)) out.add(key(tx, ty));
+      }
+    }
+    return [...out];
+  }
+
+  function contributors(x, y) {
+    const out = [];
+    const self = buildingAt(x, y);
+    for (let yy = 0; yy < N; yy++) {
+      for (let xx = 0; xx < N; xx++) {
+        if (xx === x && yy === y) continue;
+        const b = buildingAt(xx, yy);
+        if (!b) continue;
+        for (const eff of effectsOf(b)) {
+          const v = effectValue(eff, xx, yy);
+          if (v === 0) continue;
+          if (!scopeCells(eff.to, xx, yy).some(([tx, ty]) => tx === x && ty === y)) continue;
+          if (!matchFilter(self, eff.filter)) continue;
+          out.push(b.name + ' ' + (eff.tag || (eff.op === 'mult' ? '×' + v : (v > 0 ? '+' : '') + v)));
+        }
+      }
+    }
+    return out;
+  }
+
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  let unit = 112;
+  const point = (x,y) => ({x:(x-y+N-1)*unit/2, y:(x+y)*unit*.32});
+  function model(id) {
+    const base = '<ellipse cx="53" cy="86" rx="32" ry="13" fill="#183d3433"/><path d="M18 77L48 62 78 77 48 93Z" fill="#725239"/><path d="M18 77v7l30 16V93M48 100l30-16v-7" fill="#423e32"/>';
+    const shapes = {
+      ballista:'<path d="M27 79l20-12 22 12-22 13Z" fill="url(#metal)"/><ellipse cx="47" cy="77" rx="15" ry="8" fill="#405558"/><path d="M38 76V54l12-7 12 8v23l-13 7Z" fill="url(#oak)"/><path d="M49 53v28l13-4V55Z" fill="#6b503b"/><path d="M25 67L65 31l9 6-40 38Z" fill="#53686a" stroke="#293f44" stroke-width="2"/><path d="M28 64L67 30l4 2-39 35Z" fill="#c3cbb3"/><path d="M22 32Q55 13 79 65" fill="none" stroke="#5b4932" stroke-width="9"/><path d="M22 30Q55 11 79 63" fill="none" stroke="#d0a364" stroke-width="5"/><path d="M22 32L79 65M28 70L72 29" stroke="#eee0b3" stroke-width="1.3"/><path d="M64 28l11-4-3 11" fill="#b4c7c2"/><circle cx="48" cy="55" r="4" fill="url(#brass)"/><path d="M32 81v6m27-6v6" stroke="#374d50" stroke-width="5"/>',
+      harpoon:'<path d="M35 80l9-40 13 1 7 39Z" fill="url(#oak)"/><path d="M40 67L67 17M52 24L69 13 69 33" stroke="#ccd9d0" stroke-width="6" fill="none"/>',
+      net:'<path d="M22 77V30M73 77V30" stroke="#a87c4b" stroke-width="6"/><path d="M24 34Q48 49 71 34L65 69Q48 84 29 69Z" fill="#427e74" stroke="#d4c995" stroke-width="2"/><path d="M32 40l5 31m10-27v31m15-35-7 32M26 49q22 14 43 0M28 60q20 12 39 0" stroke="#b5c5a1" fill="none"/>',
+      purifier:'<path d="M28 33v43c0 17 42 17 42 0V33" fill="#4e9a8b"/><ellipse cx="49" cy="33" rx="21" ry="9" fill="#acd4b6"/><path d="M49 43v39q19 0 21-9V34" fill="#286b67"/><path d="M31 47h12v22H31Z" fill="#c0e6c7"/><path d="M68 48h12v26" stroke="#b3b89a" stroke-width="6" fill="none"/>',
+      ratling:'<path d="M33 73l17-9 17 9-17 10Z" fill="#c89c5e"/><path d="M33 73v12l17 10V83" fill="#7a5734"/><path d="M67 73v12L50 95V83" fill="#5c4128"/><path d="M40 66v-14m8 11v-16m8 19v-13" stroke="#8f9c86" stroke-width="6"/><circle cx="40" cy="51" r="3" fill="#37474a"/><circle cx="48" cy="46" r="3" fill="#37474a"/><circle cx="56" cy="52" r="3" fill="#37474a"/>',
+      powder:'<path d="M36 41q14-6 28 0v33q-14 7-28 0Z" fill="url(#oak)"/><path d="M36 48h28M36 67h28" stroke="#40342a" stroke-width="4"/><path d="M50 41q0-10 8-14" stroke="#b9a37a" stroke-width="3" fill="none"/><circle cx="59" cy="24" r="7" fill="#ffb347" opacity=".45"/><circle cx="59" cy="24" r="4" fill="#ffd06a"/>',
+      trawl:'<path d="M24 76V34M76 76V34" stroke="#a87c4b" stroke-width="6"/><path d="M26 38h48l-6 30q-18 12-36 0Z" fill="#4c8a7d" stroke="#d4c995" stroke-width="2"/><path d="M33 46l4 24m11-22v24m11-26-4 24" stroke="#b5c5a1" fill="none"/>',
+      still:'<path d="M42 79V31h16v48Z" fill="#4e9a8b"/><ellipse cx="50" cy="31" rx="8" ry="4" fill="#acd4b6"/><path d="M58 45h12v13H58" stroke="#b3b89a" stroke-width="5" fill="none"/><path d="M50 24q-6-7 0-12 6-5 0-10" stroke="#cfe7dd" stroke-width="3" fill="none" opacity=".75"/>',
+      frost:'<path d="M42 31h16v10H42Z" fill="#bfe8ff"/><path d="M45 41h10v25H45Z" fill="#7fb6cc" opacity=".8"/><path d="M40 66h20v7H40Z" fill="#8aa9a0"/><path d="M50 23v-7m-8 12-7-6m27 6 7-6m-11 5 5-9m-19 9-5-9" stroke="#dff7ff" stroke-width="2.5"/>',
+      tidemark:'<path d="M35 62q0-24 15-26 15 2 15 26Z" fill="url(#brass)"/><path d="M32 62h36" stroke="#6f5a2f" stroke-width="4"/><circle cx="50" cy="70" r="3.5" fill="#f0d79a"/><path d="M41 77q9 5 18 0" stroke="#6f9a8d" stroke-width="2" fill="none"/>',
+      ammo:'<path d="M22 44l29-13 23 14v34L45 92 22 78Z" fill="url(#oak)"/><path d="M45 58l29-13v34L45 92Z" fill="#654b36"/><path d="M22 44l23 14 29-13-23-14Z" fill="#c89c5e"/><path d="M30 50v31m32-29v31" stroke="#bac0a5" stroke-width="5"/><path d="M35 40V21m13 15V16m12 23V20" stroke="#e0ad66" stroke-width="7"/>',
+      beacon:'<path d="M33 81l8-51h17l9 51-17 9Z" fill="#e4d0a4"/><path d="M50 89V30h8l9 51Z" fill="#9c8465"/><path d="M34 28V13h32v15Z" fill="#ffe098" stroke="#696b5b" stroke-width="4"/><path d="M30 12L50 0 70 12Z" fill="#c8754f"/><path d="M35 48h28M33 65h31" stroke="#b77250" stroke-width="7"/>',
+      coral:'<path d="M47 84V42m0 21L29 46V28m18 20 19-20V13M29 43L17 31m49 0 12-10" fill="none" stroke="#b58dc3" stroke-width="9" stroke-linecap="round"/><circle cx="47" cy="27" r="6" fill="#f0bbe0"/>',
+      shield:'<path d="M31 82l7-25h24l8 25-20 9Z" fill="#6b8e9e"/><path d="M50 15l23 12-4 24-19 19-19-19-4-24Z" fill="#619ed0" stroke="#c2e6de" stroke-width="3"/><path d="M50 21v40l14-13 3-18Z" fill="#346985"/><path d="M39 39l8 8 14-15" fill="none" stroke="#e2f0d4" stroke-width="4"/>'
+    };
+    const details={
+      ballista:'',
+      harpoon:'<path d="M37 75l22-9m-19-3 22 2" stroke="#544331" stroke-width="2"/><circle cx="45" cy="60" r="3" fill="url(#brass)"/>',
+      net:'<path d="M19 32l7-2m44 0 7 3M20 71l7 3m43-1 7-2" stroke="#e2c28b" stroke-width="3"/><path d="M38 61q7-8 13 0l5-4v8l-5-4q-7 7-13 0" fill="#ced6b6" opacity=".7"/>',
+      purifier:'<ellipse cx="49" cy="33" rx="14" ry="5" fill="#376d65"/><path d="M29 42q19 11 40 0M29 72q19 11 40 0" stroke="#c4c49a" stroke-width="3" fill="none"/><circle cx="37" cy="59" r="5" fill="#d9d8b3"/><path d="M37 59l2-3" stroke="#365858"/>',
+      ammo:'<path d="M25 59l18 10m-18-1 18 10m7-7 21-11m-21 21 21-11" stroke="#5e4631" opacity=".5"/><path d="M35 21l2-7 2 7m7-5 2-7 2 7m8 4 2-7 2 7" fill="#afc2b1"/>',
+      beacon:'<path d="M40 14v13m10-13v13m10-13v13M35 29h30" stroke="#655943" stroke-width="2"/><circle cx="50" cy="20" r="5" fill="#fff1a2"/><path d="M46 76v9h8v-9Z" fill="#6b6250"/><path d="M48 40h5v6h-5Z" fill="#49737a"/>',
+      coral:'<g fill="#ffd3c0"><circle cx="29" cy="29" r="3"/><circle cx="66" cy="14" r="3"/><circle cx="18" cy="31" r="2"/><circle cx="77" cy="21" r="3"/></g><path d="M34 81q14-7 27 0" stroke="#d5adc8" stroke-width="3" fill="none"/>',
+      shield:'<ellipse cx="50" cy="80" rx="14" ry="5" fill="#a2d3cb" opacity=".6"/><path d="M36 31l3 17 11 12" stroke="#e7fcdb" opacity=".5" fill="none"/><circle cx="50" cy="82" r="3" fill="#dff9ca"/>',
+      ratling:'',powder:'',trawl:'',still:'',frost:'',tidemark:'',
+    };
+    return '<svg viewBox="0 0 100 105" aria-hidden="true">'+base+shapes[id]+(details[id]||'')+'</svg>';
+  }
+  function announce(message) { $('#announcement').textContent = message; }
+  function drawer(open) { $('#drawer').hidden = !open; $('#buildBtn').setAttribute('aria-expanded', String(open)); }
+  let audio;
+  function sound(remove) {
+    if (!soundEnabled) return;
+    try {
+      audio ||= new (window.AudioContext || window.webkitAudioContext)();
+      audio.resume().catch(()=>{});
+      const osc=audio.createOscillator(), gain=audio.createGain(), now=audio.currentTime;
+      osc.type='triangle'; osc.frequency.setValueAtTime(remove?180:120,now);
+      osc.frequency.exponentialRampToValueAtTime(45,now+.16);
+      gain.gain.setValueAtTime(.09,now); gain.gain.exponentialRampToValueAtTime(.001,now+.18);
+      osc.connect(gain).connect(audio.destination);osc.start(now);osc.stop(now+.18);
+    } catch { /* Audio is optional when unavailable in the host browser. */ }
+  }
+  function editCell(x,y,remove=false) {
+    if (run && run.phase !== "build") return;
+    preview = null;
+    const before = compute().total;
+    const k = key(x,y), previous = cells.get(k);
+    if (!remove && previous === selected) return;
+    const useStock = !remove && selected && (stock[selected] || 0) > 0;
+    if (run && (remove || selected)) {
+      const cost = (remove || useStock ? 0 : COST[selected]) - (previous ? COST[previous] : 0);
+      if (cost > run.wood) { announce('木材不足：需要 '+cost+'，现有 '+run.wood+'。拆除会全额返还。'); return; }
+      run.wood -= cost;
+    }
+    if (useStock) stock[selected]--;
+    if (remove) { cells.delete(k); noGhostKey = k; }
+    else if (selected) { cells.set(k,selected); drawer(false); }
+    else return; // Inspecting an existing building never deletes it.
+    paint();
+    preview = null;
+    const after = compute().total;
+    if (previous === cells.get(k)) return;
+    sound(remove);
+    if (!reducedMotion.matches) {
+      const p=point(x,y);
+      for(let i=0;i<10;i++) {
+        const particle=document.createElement('i'); particle.className='particle'+(i%2?' water':'');
+        particle.style.left=(p.x+unit/2)+'px';particle.style.top=(p.y+unit*.32)+'px';
+        particle.style.setProperty('--dx',((i-4.5)*10)+'px');
+        particle.style.setProperty('--dy',(-18-Math.sin(i)*20)+'px');
+        gridEl.append(particle);setTimeout(()=>particle.remove(),550);
+      }
+      if(remove && previous) {
+        const ghost=document.createElement('span');ghost.className='removed';ghost.innerHTML=model(previous);
+        ghost.style.cssText='left:'+(p.x+unit*.1)+'px;top:'+(p.y-unit*.41)+'px;width:'+unit*.8+'px;height:'+unit*.9+'px';
+        gridEl.append(ghost);setTimeout(()=>ghost.remove(),250);
+      }
+    }
+    for (const [target, value] of after) {
+      const delta = value - before.get(target);
+      if (!delta) continue;
+      const [tx,ty] = target.split(',').map(Number), p = point(tx,ty);
+      const text = document.createElement('span'); text.className='float';
+      text.textContent = (delta>0?'+':'') + Number(delta.toFixed(2));
+      text.style.left=(p.x+unit/2)+'px'; text.style.top=(p.y-15)+'px';
+      gridEl.append(text); setTimeout(()=>text.remove(),900);
+    }
+    if (!reducedMotion.matches) {
+      cellEls.get(k).querySelector('.ic').animate([{transform:'translateY(-35px)',opacity:.3},{transform:'translateY(4px)',offset:.75},{transform:'translateY(0)',opacity:1}],{duration:220,easing:'ease-out'});
+      gridEl.animate([{translate:'0 0'},{translate:'0 3px'},{translate:'0 0'}],{duration:220});
+    }
+    announce(remove ? '已拆除建筑' : '已放置'+MAP[selected].name+' · 继续点击可连续建造');
+  }
+
+  // ---------------- 建格盘 ----------------
+  function hullDetails() {
+    const w=N*unit,h=w*.64;
+    let art='<path d="M0 '+h/2+'L'+w/2+' '+h+' '+w+' '+h/2+'V'+(h/2+19)+'L'+w/2+' '+(h+19)+' 0 '+(h/2+19)+'Z" fill="#594631"/>';
+    for(let side=0;side<2;side++)for(let i=0;i<N;i++) {
+      const t=(i+.5)/N,x=side?w/2+t*w/2:t*w/2,y=side?h-t*h/2:h/2+t*h/2;
+      const r=unit*.26;
+      art+='<g transform="translate('+x+' '+(y+10)+') rotate('+(side?-32:32)+')"><rect x="'+(-r)+'" y="-7" width="'+r*2+'" height="23" rx="7" fill="url(#oak)" stroke="#533e2b"/><ellipse cx="'+r+'" cy="4" rx="5" ry="11" fill="#8d6d46" stroke="#c39b60"/><path d="M'+(-r*.5)+' -7v23m'+r+'-23v23" stroke="#4b5c58" stroke-width="4"/><path d="M'+(-r+5)+' -3h'+(r*2-8)+'" stroke="#d6b980" opacity=".6"/></g>';
+    }
+    art+='<path d="M4 '+(h/2+1)+'L'+w/2+' '+(h+1)+' '+(w-4)+' '+(h/2+1)+'" stroke="#dfc18a" stroke-width="3" fill="none"/><path d="M4 '+(h/2+1)+'L'+w/2+' '+(h+1)+' '+(w-4)+' '+(h/2+1)+'" stroke="#7f603e" stroke-width="1" stroke-dasharray="2 3" fill="none"/>';
+    return '<svg class="hull-detail" viewBox="0 0 '+w+' '+h+'" aria-hidden="true">'+art+'</svg>';
+  }
+  function buildGrid() {
+    gridEl.innerHTML = '';
+    cellEls.clear();
+    gridEl.style.setProperty('--n', N);
+    const byWidth = (innerWidth - 40) / N;
+    const byHeight = (innerHeight - 250) / (N * .64 + .55);
+    unit = Math.max(64, Math.min(144 - sizeIdx * 24, byWidth, byHeight));
+    gridEl.style.setProperty('--cell', unit + 'px');
+    gridEl.classList.toggle('compact-labels', unit < 90);
+    gridEl.style.setProperty('--label-size', Math.max(16, Math.min(25, unit * .2)) + 'px');
+    gridEl.style.setProperty('--label-small', Math.max(8, Math.min(10, unit * .075)) + 'px');
+    $('.raft').style.animationDuration = (7.1+sizeIdx*.4)+'s';
+    gridEl.style.width = N * unit + 'px';
+    gridEl.style.height = N * unit * .64 + 'px';
+    gridEl.innerHTML = hullDetails()+'<svg class="links" aria-hidden="true"></svg><div class="labels" aria-hidden="true"></div>';
+
+    for (let y = 0; y < N; y++) {
+      for (let x = 0; x < N; x++) {
+        const el = document.createElement('button');
+        el.className = 'cell empty';
+        el.type = 'button';
+        const p = point(x,y);
+        el.style.left = p.x+'px'; el.style.top = p.y+'px';
+        el.style.zIndex = x+y+1;
+        el.style.setProperty('--wood-tone', String(.92+((x*3+y*7)%5)*.035));
+        el.style.setProperty('--delay', -(x*1.3+y*.7)+'s');
+        el.innerHTML =
+          '<span class="idx">' + (y * N + x + 1) + '</span>' +
+          '<span class="ic"></span>' +
+          '<span class="nm">空</span>' +
+          '<span class="val"></span>' +
+          '<span class="mod"></span>';
+
+        el.addEventListener('mouseenter', () => { hover = { x, y }; noGhostKey = null; paint(); });
+        el.addEventListener('mouseleave', () => {
+          noGhostKey = null;
+          if (hover && hover.x === x && hover.y === y) { hover = null; paint(); }
+        });
+        el.addEventListener('focus', () => { hover={x,y}; paint(); });
+        el.addEventListener('blur', () => { hover=null; paint(); });
+        el.addEventListener('click', () => editCell(x,y,removing));
+        el.addEventListener('contextmenu', ev => { ev.preventDefault(); editCell(x,y,true); });
+        el.addEventListener('keydown', ev => {
+          if (ev.key==='Delete' || ev.key==='Backspace') { ev.preventDefault(); editCell(x,y,true); }
+        });
+
+        gridEl.appendChild(el);
+        cellEls.set(key(x, y), el);
+      }
+    }
+  }
+
+  // ---------------- 重绘 ----------------
+  function paint() {
+    preview = null;
+    if (selected && hover && !cells.has(key(hover.x, hover.y)) && noGhostKey !== key(hover.x, hover.y)) {
+      preview = { x: hover.x, y: hover.y, id: selected };
+    }
+
+    const res = compute();
+
+    let targetSet = new Set(), sourceSet = new Set();
+    if (hover && buildingAt(hover.x, hover.y)) {
+      effectTargets(hover.x, hover.y).forEach(k => targetSet.add(k));
+      for (let y = 0; y < N; y++) {
+        for (let x = 0; x < N; x++) {
+          if (x === hover.x && y === hover.y) continue;
+          if (effectTargets(x, y).includes(key(hover.x, hover.y))) sourceSet.add(key(x, y));
+        }
+      }
+    }
+
+    for (let y = 0; y < N; y++) {
+      for (let x = 0; x < N; x++) {
+        const k = key(x, y);
+        const el = cellEls.get(k);
+        const b = buildingAt(x, y);
+        const isFocus = hover && hover.x === x && hover.y === y;
+
+        el.classList.toggle('empty', !b);
+        el.classList.toggle('focus', !!isFocus);
+        el.classList.toggle('link', !isFocus && (targetSet.has(k) || sourceSet.has(k)));
+        el.classList.toggle('ghost', !!(preview && preview.x === x && preview.y === y));
+
+        if (!b) {
+          el.style.setProperty('--c', 'transparent');
+          el.querySelector('.ic').innerHTML = '';
+          el.querySelector('.nm').textContent = '';
+          el.setAttribute('aria-label', (y*N+x+1)+'号空甲板');
+          continue;
+        }
+
+        el.style.setProperty('--c', CAT[b.cat].color);
+        if (el.dataset.building !== b.id || !el.querySelector('.ic svg')) el.querySelector('.ic').innerHTML = model(b.id);
+        el.dataset.building = b.id;
+        el.setAttribute('aria-label', (y*N+x+1)+'号甲板 '+b.name+'，数值 '+Number(res.total.get(k).toFixed(2)));
+        el.querySelector('.nm').textContent = b.name;
+
+        const v = res.total.get(k);
+        const valEl = el.querySelector('.val');
+
+        // 纯辅助型（基础值为 0）不显示数值，直接显示效果强度，信息量更高
+        const isSupport = b.base === 0 && effectsOf(b).length > 0;
+        valEl.classList.toggle('eff', isSupport);
+
+        if (isSupport) {
+          valEl.textContent = effectBadge(b);
+          valEl.style.color = '';
+        } else {
+          valEl.textContent = v > 0 ? Math.round(v) : '—';
+          const diff = v - b.base;
+          if (diff > 0.01) valEl.style.color = 'var(--gold)';
+          else if (diff < -0.01) valEl.style.color = '#e2705f';
+          else valEl.style.color = '#eef7fb';
+        }
+
+        const mods = [];
+        const f = res.flat.get(k), m = res.mult.get(k);
+        if (f !== 0) mods.push('+' + Math.round(f));
+        if (m !== 1) mods.push('×' + String(Number(m.toFixed(3))));
+        el.querySelector('.mod').textContent = mods.join(' ');
+      }
+    }
+
+    const labels = gridEl.querySelector('.labels'); labels.innerHTML='';
+    // 各建筑高度不同，标签按体型抬升，避免压在塔尖上
+    const LABEL_H={beacon:.60,ammo:.47,ballista:.39,harpoon:.35,net:.37,purifier:.36,coral:.36,shield:.36};
+    for (const [k, el] of cellEls) {
+      if (el.classList.contains('empty')) continue;
+      const [x,y]=k.split(',').map(Number), p=point(x,y), bld=buildingAt(x,y);
+      const label=document.createElement('span'); label.className='value';
+      label.style.left=(p.x+unit/2)+'px';
+      label.style.top=(p.y-unit*(unit < 90 ? .5 : LABEL_H[bld.id]||.34))+'px';
+      label.style.color=el.querySelector('.val').style.color;
+      label.innerHTML='<small>'+bld.name+'</small>'+el.querySelector('.val').textContent;
+      labels.append(label);
+    }
+    const lines=gridEl.querySelector('.links'); lines.innerHTML='';
+    if (hover) for (const k of new Set([...targetSet,...sourceSet])) {
+      const [x,y]=k.split(',').map(Number), p=point(x,y), h=point(hover.x,hover.y);
+      lines.innerHTML+='<line x1="'+(h.x+unit/2)+'" y1="'+(h.y+unit*.32)+'" x2="'+(p.x+unit/2)+'" y2="'+(p.y+unit*.32)+'"/>';
+    }
+    paintStats(res);
+    paintFormula(res);
+    paintTools();
+    paintJourney();
+  }
+
+  function paintStats(res) {
+    let atk = 0, rsc = 0, sup = 0, used = 0;
+    for (let y = 0; y < N; y++) {
+      for (let x = 0; x < N; x++) {
+        const b = buildingAt(x, y);
+        if (!b) continue;
+        used++;
+        // 用逐格取整后的数求和，保证总和等于玩家看到的数字
+        const v = Math.round(res.total.get(key(x, y)));
+        if (b.cat === 'attack') atk += v;
+        else if (b.cat === 'resource') rsc += v;
+        else sup += v;
+      }
+    }
+    const stat = (cat) => statsEl.querySelector('[data-cat="' + cat + '"] b');
+    // 遗物是整船加成，不属于任何格子，但要算进玩家看到的总数
+    const bonus = run ? relicBonus() : {atk:0, inc:0};
+    stat('attack').textContent = atk + bonus.atk;
+    stat('resource').textContent = rsc + bonus.inc;
+    stat('support').textContent = sup;
+    stat('space').textContent = used + '/' + (N * N);
+  }
+
+  function paintFormula(res) {
+    const tooltip = $('.status'); tooltip.hidden = !hover;
+    if (hover) {
+      const box=cellEls.get(key(hover.x,hover.y)).getBoundingClientRect();
+      tooltip.style.left=Math.max(8,Math.min(innerWidth-268,box.right+12))+'px';
+      tooltip.style.top=Math.max(8,Math.min(innerHeight-200,box.top-80))+'px';
+    }
+    if (!hover) {
+      formulaEl.innerHTML = '从底部选择建筑，点击甲板放置：相邻／范围的加成立刻反映在数字上。';
+      return;
+    }
+
+    const b = buildingAt(hover.x, hover.y);
+    if (!b) {
+      formulaEl.innerHTML = '<span class="k">' + (hover.y * N + hover.x + 1) + ' 号格</span> · 空格　' +
+        '<span class="desc">从底部选择建筑，点击甲板放置：相邻／范围的加成立刻反映在数字上。</span>';
+      return;
+    }
+
+    const k = key(hover.x, hover.y);
+    const f = res.flat.get(k), m = res.mult.get(k), v = res.total.get(k);
+    const isPreview = preview && preview.x === hover.x && preview.y === hover.y;
+
+    let calc = '（基础 ' + b.base;
+    if (f !== 0) calc += ' <span class="op">+' + Math.round(f) + '</span>';
+    calc += '）';
+    if (m !== 1) calc += ' <span class="op">×' + String(Number(m.toFixed(3))) + '</span>';
+    calc += '<span class="eq">=</span><span class="res">' + Math.round(v) + '</span>';
+
+    const who = contributors(hover.x, hover.y);
+    formulaEl.innerHTML =
+      (isPreview ? '<span class="op">【预览】</span>' : '') +
+      '<span class="k">' + (hover.y * N + hover.x + 1) + ' 号格 · ' + b.name + '</span>　' + calc +
+      '<span class="desc">' + b.desc + '</span>' +
+      (who.length ? '<span class="who">受到：' + who.join('，') + '</span>' : '');
+  }
+
+  function paintTools() {
+    document.querySelectorAll('.tool').forEach(el => {
+      el.setAttribute('aria-pressed', el.dataset.id === selected ? 'true' : 'false');
+      const id=el.dataset.id;
+      el.querySelector('i').textContent=(stock[id]?'库存 '+stock[id]+' · 免费放置':run?COST[id]+' 木材':'自由建造');
+    });
+  }
+
+  // ---------------- 工具箱 ----------------
+  function buildTools() {
+    const wrap = $('#tools');
+    wrap.innerHTML = '';
+    BUILDINGS.forEach(b => {
+      const el = document.createElement('button');
+      el.className = 'tool';
+      el.type = 'button';
+      el.dataset.id = b.id;
+      el.style.setProperty('--c', CAT[b.cat].color);
+      el.title = b.desc;
+      el.innerHTML =
+        '<span class="dot"></span>' +
+        '<span class="ic"><svg viewBox="0 0 24 24"><use href="#' + ICON[b.id] + '"/></svg></span>' +
+        '<span class="tx"><b>' + b.name + '</b><i>' +
+          (b.base > 0 ? '基础 ' + b.base : CAT[b.cat].name) + '</i></span>';
+      el.addEventListener('click', () => {
+        setRemoving(false);
+        selected = (selected === b.id) ? null : b.id;
+        paint();
+        drawer(false);
+        announce(selected ? '已选择'+b.name+' · 点击甲板放置' : '已取消选择');
+      });
+      wrap.appendChild(el);
+    });
+  }
+
+  // ---------------- 预设 ----------------
+  const PRESETS = {
+    beacon: [
+      ['4', 'beacon'], ['1', 'ballista'], ['3', 'ballista'], ['5', 'ballista'], ['7', 'harpoon'], ['0', 'ammo']
+    ],
+    coral: [
+      ['4', 'coral'], ['0', 'net'], ['2', 'purifier'], ['6', 'purifier'], ['8', 'net']
+    ]
+  };
+
+  function applyPreset(name) {
+    if (run) return;
+    cells.clear();
+    const n = N;
+    (PRESETS[name] || []).forEach(([idxStr, id]) => {
+      const i = parseInt(idxStr, 10);
+      const x = i % 3, y = Math.floor(i / 3);
+      if (x < n && y < n) cells.set(key(x, y), id);
+    });
+    selected = null;
+    setRemoving(false);
+    paint();
+  }
+
+  // ---------------- 按钮 ----------------
+  $('#clearBtn').addEventListener('click', () => { if (run) return; cells.clear(); selected=null; hover=null; setRemoving(false); paint(); });
+
+  $('#expandBtn').addEventListener('click', () => {
+    if (sizeIdx === SIZES.length-1 || (run && run.phase !== 'build')) return;
+    if (run) {
+      const price = sizeIdx === 0 ? 15 : 25;
+      if (run.wood < price) { announce('扩建需要 '+price+' 木材'); return; }
+      run.wood -= price;
+    }
+    sizeIdx++;
+    N = SIZES[sizeIdx].n;
+    buildGrid();
+    hover = null;
+    paint();
+    $('#growBtn').disabled = sizeIdx === SIZES.length-1;
+    $('#growBtn').textContent = sizeIdx === SIZES.length-1 ? '已达 5×5' : '扩建';
+    announce('船体已扩建为 '+N+'×'+N+'，现有建筑保留');
+  });
+
+  document.querySelectorAll('[data-preset]').forEach(btn => {
+    btn.addEventListener('click', () => applyPreset(btn.dataset.preset));
+  });
+
+  function setRemoving(value) {
+    removing=value;document.body.classList.toggle('removing',value);
+    $('#removeBtn').setAttribute('aria-pressed',String(value));
+  }
+  $('#removeBtn').addEventListener('click',()=>{
+    setRemoving(!removing); selected=null; hover=null; drawer(false);paint();
+    announce(removing?'拆除模式 · 点击建筑拆除 · Esc 退出':'已退出拆除模式');
+  });
+  $('#soundBtn').addEventListener('click',()=>{
+    soundEnabled=!soundEnabled;$('#soundBtn').setAttribute('aria-pressed',String(soundEnabled));
+    $('#soundBtn').textContent='音效：'+(soundEnabled?'开':'关');
+  });
+  $('#buildBtn').addEventListener('click',()=>drawer($('#drawer').hidden));
+  $('#growBtn').addEventListener('click',()=>$('#expandBtn').click());
+  $('#resetBtn').addEventListener('click',()=>{ $('#clearBtn').click(); announce('木筏已清空'); });
+  document.addEventListener('keydown',ev=>{if(ev.key==='Escape'){setRemoving(false);selected=null;hover=null;drawer(false);paint();announce('已取消建造');}});
+  window.addEventListener('resize',()=>{hover=null;buildGrid();paint();});
+
+  // ---------------- Five-day trial run ----------------
+  const journey = $('#journey');
+  function showJourney(title, body, actions) {
+    drawer(false); selected=null; hover=null; preview=null; setRemoving(false); paint();
+    $('#journeyTitle').textContent=title;
+    $('#journeyBody').innerHTML=body;
+    $('#journeyActions').replaceChildren();
+    for (const [label, action, secondary] of actions) {
+      const button=document.createElement('button');button.textContent=label;
+      if(secondary) button.className='secondary';
+      button.addEventListener('click',()=>{journey.close();action();});
+      $('#journeyActions').append(button);
+    }
+    if(!journey.open) journey.showModal();
+    journey.scrollTop=0;
+  }
+  journey.addEventListener('cancel',event=>event.preventDefault());
+  function paintJourney() {
+    document.body.classList.toggle('adventure',!!run);
+    $('#voyageHud').hidden=!run;
+    $('#sailBtn').hidden=!run; $('#repairBtn').hidden=!run;
+    $('#miniMap').hidden=!run; $('#coach').hidden=!run||!guideEnabled||run.phase!=='build';
+    $('.waves').style.filter=run?'hue-rotate('+(run.day-1)*5+'deg) saturate('+(1-(run.day-1)*.045)+')':'';
+    if (!run) return;
+    saveProgress();
+    const relicChips=(run.relics||[]).map(id=>RELICS[id]?'<span class="relic-chip" title="'+RELICS[id].desc+'">'+RELICS[id].name+'</span>':'').join('');
+    $('#voyageHud').innerHTML='第 '+Math.min(run.day,5)+' / 5 天 <span>船体 <strong>'+run.hp+'</strong>/100</span><progress max="100" value="'+run.hp+'" aria-label="船体耐久"></progress><span>木材 <strong>'+run.wood+'</strong></span><span class="save-state">'+saveMessage+'</span>'+(relicChips?'<span class="relic-bar">'+relicChips+'</span>':'');
+    const mini=REGIONS.map((name,i)=>'<circle cx="'+(12+i*22)+'" cy="'+(35-i*5)+'" r="'+(i+1===run.day?5:3)+'" fill="'+(i+1<=run.day?'#ffe0a0':'#799c9a')+'"/>').join('');
+    const miniHtml='<small>航程 '+run.day+'/5 · 点击展开</small><svg viewBox="0 0 120 50" aria-hidden="true"><path d="M12 35L100 15" stroke="#87b2a5" stroke-width="2" fill="none"/>'+mini+'</svg>'+REGIONS[run.day-1];
+    if($('#miniMap').innerHTML!==miniHtml) $('#miniMap').innerHTML=miniHtml;
+    const tip=selected?'已选 '+MAP[selected].name+'：点击甲板放置。'+(stock[selected]?'优先使用仓库库存。':'放在有加成的位置更划算。'):run.hp<50?'船体不足一半。先修船或建护盾塔，再查看出航预报。':!Array.from(cells.values()).some(id=>MAP[id].cat==='attack')?'你还没有攻击建筑，出航会沉没。先建造弩炮。':run.day===1&&cells.size<=4?'点建造，将弩炮放在中心弹药架右侧或下侧，可获得 +5 攻击。':'准备好后点“航线图”，比一比两张船票的船损再出发。';
+    if($('#coachText').textContent!==tip) $('#coachText').textContent=tip;
+    $('#sailBtn').disabled=run.phase!=='build';
+    $('#sailBtn').textContent=run.day===5?'决战航线 →':'航线图 →';
+    $('#repairBtn').disabled=run.phase!=='build'||run.wood<10||run.hp>=100;
+    $('#growBtn').textContent=sizeIdx===2?'已达 5×5':'扩建 · '+(sizeIdx===0?15:25);
+    document.querySelectorAll('.tool').forEach(el=>{
+      const b=MAP[el.dataset.id];el.querySelector('i').textContent=stock[b.id]?'库存 '+stock[b.id]+' · 免费放置':COST[b.id]+' 木材 · '+(b.base?'基础 '+b.base:CAT[b.cat].name);
+    });
+  }
+  function startGame(adventure) {
+    stock={};pity=0;run=null;cells.clear();sizeIdx=0;N=3;hover=null;preview=null;selected=null;noGhostKey=null;setRemoving(false);
+    $('#growBtn').disabled=false;$('#growBtn').textContent='扩建';buildTools();buildGrid();
+    if(adventure) {
+      run={day:1,hp:100,wood:18,phase:'build',route:[]};
+      cells.set('1,0','ballista');cells.set('0,1','ballista');cells.set('1,1','ammo');cells.set('0,0','net');
+      announce('目标：撑过 5 天并击败巨兽。先用 18 木材建造，再选择航线。');
+    } else {applyPreset('beacon');announce('自由构筑：无限建造。点“怎么玩”可开始五日冒险。');}
+    paint();
+  }
+  function welcome() {
+    showJourney('把这艘木筏，带回家。',
+      '<p>你有一艘小木筏、两座弩炮和 18 木材。<b>目标：活过 5 天，击败最终的深海巨兽。</b></p>'+
+      '<p>① 点“建造”，把弩炮放到弹药架旁，提高攻击。<br>② 点“航线图”，在两条航线里挑一条：上面是航程，下面是今天的两张船票。<br>③ 战后获得木材，用来建造、扩建或修船。<br>④ “招募商店”提供无限测试金币，可抽建筑或买物资。</p>'+
+      '<p>捕鱼网每次胜利额外产木材；护盾塔抵挡每轮伤害。拆除全额返还，放心调整位置。</p>'+
+      '<small>冒险自动保存在本浏览器。开始新冒险会覆盖上一局；战斗中刷新恢复到出航前。'+(saveMessage&&saveMessage!=='已自动保存'?saveMessage+'。':'')+'</small>',
+      [...(!run&&savedGame?[['继续上次冒险 · 第 '+savedGame.run.day+' 天',resumeGame]]:[]),['开始五日冒险',()=>startGame(true)],['自由构筑',()=>startGame(false),true],...(run?[['继续当前航程',()=>{},true]]:[])]);
+  }
+  function fleet() {
+    preview=null;
+    const result=compute(); const totals={attack:0,income:0,shield:0};
+    for(const [k,id] of cells) {
+      const value=Math.round(result.total.get(k));
+      if(MAP[id].cat==='attack') totals.attack+=value;
+      if(MAP[id].cat==='resource') totals.income+=value;
+      if(id==='shield') totals.shield+=value;
+    }
+    const bonus=relicBonus();
+    totals.attack+=bonus.atk; totals.income+=bonus.inc;
+    return {...totals, foeHp:bonus.foeHp?1+bonus.foeHp:1, loot:bonus.loot, heal:bonus.heal};
+  }
+  // ---------------- 海怪 ----------------
+  // pierce: 护盾对其攻击的吸收比例。.6 = 常规，.3 = 大部分穿透，0 = 完全无视护盾
+  // hpW/hitW: 在同场多只时的血量/攻击权重（总和会被归一化到当日难度）
+  const MONSTERS = {
+    tentacle: { name:'浅海触手怪', hpW:1,    hitW:1,    pierce:.6,  tag:'缠网 · 每 3 轮齐射 −25%',      skills:[{k:'stun', every:3, pct:.25}] },
+    school:   { name:'银鳞鱼群',   hpW:.5,   hitW:1,    pierce:.3,  tag:'群噬 · 护盾只挡 30%',          skills:[] },
+    shell:    { name:'铁壳蟹',     hpW:1.7,  hitW:.7,   pierce:.6,  tag:'硬壳 · 每次受击 −6',           armor:6, skills:[] },
+    leech:    { name:'吸盘水蛭',   hpW:.8,   hitW:1,    pierce:.6,  tag:'吸髓 · 每轮偷 1 木材',         skills:[{k:'drain', v:1}] },
+    spore:    { name:'爆浆孢子',   hpW:.75,  hitW:1,    pierce:.6,  tag:'爆浆 · 死亡时追加 80% 伤害',   skills:[{k:'burst', mult:.8}] },
+    wraith:   { name:'深潮幽灵',   hpW:.85,  hitW:1,    pierce:0,   tag:'穿影 · 完全无视护盾',          skills:[] },
+    barnacle: { name:'再生藤壶',   hpW:1.1,  hitW:.85,  pierce:.6,  tag:'自愈 · 每轮回 5% 血',          skills:[{k:'regen', pct:.05}] },
+    ambush:   { name:'残骸潜伏者', hpW:1.15, hitW:1.25, pierce:.6,  tag:'伏击 · 每 2 轮 2 倍重击',      skills:[{k:'heavy', every:2, mult:2}] },
+    leviathan:{ name:'深海巨兽',   hpW:1,    hitW:1,    pierce:.45, tag:'涡流 1.6× + 每轮回 3% 血',    skills:[{k:'heavy', every:3, mult:1.6},{k:'regen', pct:.03}] }
+  };
+  const ENCOUNTERS = {
+    1:{ safe:['tentacle'],           risk:['tentacle','school'] },
+    2:{ safe:['school','leech'],     risk:['shell','tentacle'] },
+    3:{ safe:['barnacle'],           risk:['spore','school'] },
+    4:{ safe:['shell','leech'],      risk:['ambush','wraith'] },
+    5:{ safe:['leviathan'],          risk:['leviathan'] }
+  };
+  function encounter(day, elite) {
+    const row=ENCOUNTERS[day]||ENCOUNTERS[1];
+    return (elite?row.risk:row.safe).slice();
+  }
+
+  // ---------------- 战利品 ----------------
+  // 宝藏（遗物）是整局生效的被动强化，和建筑的位置效果互补：
+  // 建筑给的是"摆在哪"，遗物给的是"这艘船整体强一点"。
+  const RELICS = {
+    ram:  { name:'破浪撞角',   desc:'全船攻击 +6',            atk:6 },
+    bait: { name:'诱饵木桶',   desc:'捕鱼收益 +5',            inc:5 },
+    drum: { name:'船头战鼓',   desc:'攻击 +3、捕鱼 +2',       atk:3, inc:2 },
+    lamp: { name:'鲸油探照灯', desc:'敌人总血量 −12%',        foeHp:-.12 },
+    hook: { name:'打捞钩爪',   desc:'每场胜利额外 +8 木材',   loot:8 },
+    salt: { name:'防腐盐罐',   desc:'每场战斗后船体 +6',      heal:6 }
+  };
+  function relicBonus() {
+    const sum={atk:0,inc:0,foeHp:0,loot:0,heal:0};
+    for(const id of (run&&run.relics)||[]) {
+      const r=RELICS[id]; if(!r) continue;
+      sum.atk+=r.atk||0; sum.inc+=r.inc||0; sum.foeHp+=r.foeHp||0;
+      sum.loot+=r.loot||0; sum.heal+=r.heal||0;
+    }
+    sum.foeHp=Math.max(-.5,sum.foeHp);
+    return sum;
+  }
+  function shuffle(list) {
+    const a=list.slice();
+    for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+    return a;
+  }
+  // 三选一：一件宝藏、一件建筑、一份材料，保证每局都能看到不同组合
+  function rewardOptions() {
+    const owned=new Set(run.relics||[]);
+    const relicIds=shuffle(Object.keys(RELICS).filter(id=>!owned.has(id)));
+    const buildIds=shuffle(BUILDINGS.map(b=>b.id));
+    const mats=shuffle(['wood:'+(20+run.day*10),'wood:'+(36+run.day*14),'repair:'+(20+run.day*5)]);
+    const out=[];
+    if(relicIds.length) out.push('relic:'+relicIds[0]);
+    if(buildIds.length) out.push('build:'+buildIds[0]);
+    for(const m of mats) {
+      if(out.length>=3) break;
+      if(m.startsWith('wood')&&out.some(id=>id.startsWith('wood'))) continue;
+      out.push(m);
+    }
+    while(out.length<3) out.push('wood:'+(20+run.day*10));
+    return out.slice(0,3);
+  }
+  function lootArt(id) {
+    const art={
+      wood:'<rect x="14" y="36" width="46" height="13" rx="6" fill="#a9793f"/><rect x="18" y="25" width="42" height="12" rx="6" fill="#c08f4c"/><rect x="22" y="15" width="36" height="11" rx="5" fill="#d8a862"/>',
+      repair:'<path d="M20 62c0-19 14-31 32-31s32 12 32 31" fill="none" stroke="#8fb6a6" stroke-width="7" stroke-linecap="round"/><rect x="26" y="50" width="38" height="15" rx="4" fill="#e2c89a" stroke="#a98a5c" stroke-width="2.5"/><path d="M45 54v8M41 58h8" stroke="#8a6a3a" stroke-width="2.6" stroke-linecap="round"/>',
+      ram:'<path d="M14 64L60 16l12 12-46 46Z" fill="#cfd8c4" stroke="#6f8d84" stroke-width="2.5"/><path d="M60 16l12 12-16 4Z" fill="#8fa89c"/>',
+      bait:'<path d="M22 30h40l-5 44H27Z" fill="#b98a4e" stroke="#7d5a2e" stroke-width="2.5"/><rect x="18" y="21" width="48" height="10" rx="4" fill="#8a6435"/><circle cx="42" cy="52" r="8" fill="#e9d6a8"/>',
+      drum:'<ellipse cx="42" cy="28" rx="22" ry="9" fill="#d9c39a" stroke="#8a6f42" stroke-width="2.5"/><path d="M20 28v32c0 5 10 9 22 9s22-4 22-9V28" fill="#c0a271" stroke="#8a6f42" stroke-width="2.5"/><path d="M20 44c0 5 10 9 22 9s22-4 22-9" fill="none" stroke="#8a6f42" stroke-width="2"/>',
+      lamp:'<rect x="31" y="14" width="22" height="12" rx="3" fill="#9fae8e"/><path d="M24 26h36l-4 32H28Z" fill="#ffe6a3" stroke="#b99a52" stroke-width="2.5"/><circle cx="42" cy="42" r="10" fill="#fff8d6"/>',
+      hook:'<path d="M42 14v28c0 13-9 20-18 20" fill="none" stroke="#cbd6c6" stroke-width="7" stroke-linecap="round"/><path d="M42 14v28c0 13 9 20 18 20" fill="none" stroke="#9fb2ac" stroke-width="7" stroke-linecap="round"/><circle cx="42" cy="12" r="5" fill="#8fa89c"/>',
+      salt:'<path d="M27 32h30l-4 34H31Z" fill="#c6d2b0" stroke="#5f6f52" stroke-width="2.6"/><rect x="23" y="23" width="38" height="10" rx="3" fill="#98a785" stroke="#5f6f52" stroke-width="2"/><circle cx="42" cy="49" r="5" fill="#7f8d6d"/>'
+    };
+    return '<svg viewBox="0 0 84 80" aria-hidden="true">'+(art[id]||art.wood)+'</svg>';
+  }
+  function rewardInfo(id) {
+    const at=id.indexOf(':'), kind=id.slice(0,at), arg=id.slice(at+1);
+    if(kind==='wood') return {title:'木材 ×'+arg, desc:'修船、建造、扩建都要用。', art:lootArt('wood'), tone:'mat'};
+    if(kind==='repair') return {title:'应急补漏 +'+arg, desc:'立刻恢复船体 '+arg+'（上限 100）。', art:lootArt('repair'), tone:'mat'};
+    if(kind==='build') return {title:MAP[arg].name, desc:'放进仓库，之后免费放置。', art:model(arg), tone:'build'};
+    const r=RELICS[arg];
+    return {title:r.name, desc:r.desc, art:lootArt(arg), tone:'relic'};
+  }
+  function applyReward(id) {
+    const at=id.indexOf(':'), kind=id.slice(0,at), arg=id.slice(at+1);
+    if(kind==='wood') run.wood+=Number(arg);
+    else if(kind==='repair') run.hp=Math.min(100,run.hp+Number(arg));
+    else if(kind==='build') { stock[arg]=(stock[arg]||0)+1; paintTools(); }
+    else if(kind==='relic') { run.relics=[...(run.relics||[]),arg]; }
+    saveProgress();
+  }
+  function monsterArt(id) {
+    const art={
+      tentacle:'<ellipse cx="80" cy="111" rx="67" ry="10" fill="#b5e7d3" opacity=".2"/><path d="M57 85C9 45 1 114 33 104M65 91C34 125 13 96 16 84M99 87C146 43 159 111 127 104M91 92C122 127 148 98 143 83" fill="none" stroke="#527d82" stroke-width="12" stroke-linecap="round"/><path d="M43 87C38 52 50 19 81 16C117 19 125 58 116 88L100 107 62 107Z" fill="#49747c" stroke="#91b7a7" stroke-width="3"/><path d="M80 18C110 30 114 70 99 104h15l12-26-11-40Z" fill="#305660"/><path d="M52 59l19 6M107 59l-19 6" stroke="#ffce88" stroke-width="7" stroke-linecap="round"/><path d="M64 83q16 14 32 0" fill="none" stroke="#203d48" stroke-width="5"/><path d="M77 90l3 6 4-6" fill="#e2d8b4"/>',
+      school:'<ellipse cx="80" cy="114" rx="66" ry="10" fill="#b5e7d3" opacity=".22"/><g fill="#4f9d95" stroke="#b6e6d6" stroke-width="2.5" stroke-linejoin="round"><path d="M20 60q30-26 62 0-32 26-62 0Z"/><path d="M20 60l-16-16v32Z"/><path d="M82 30q34-26 68 0-34 26-68 0Z"/><path d="M82 30l-18-17v34Z"/><path d="M58 92q28-22 56 0-28 22-56 0Z"/><path d="M58 92l-16-14v28Z"/></g><circle cx="62" cy="57" r="4" fill="#0f2f38"/><circle cx="128" cy="27" r="4" fill="#0f2f38"/><circle cx="98" cy="89" r="4" fill="#0f2f38"/>',
+      shell:'<ellipse cx="80" cy="114" rx="66" ry="9" fill="#b5e7d3" opacity=".18"/><path d="M26 84q-18 8-20 24M134 84q18 8 20 24M42 96q-14 10-12 22M118 96q14 10 12 22" fill="none" stroke="#587f80" stroke-width="8" stroke-linecap="round"/><path d="M32 72q-18-10-22-28 16 2 24 12M128 72q18-10 22-28-16 2-24 12" fill="#7c5f52" stroke="#b8a08a" stroke-width="3"/><path d="M32 86C26 52 48 26 80 26S134 52 128 86c-8 12-30 18-48 18S40 98 32 86Z" fill="#6d5a52" stroke="#b8a08a" stroke-width="3"/><path d="M46 58q34-20 68 0M40 74q40-14 80 0" fill="none" stroke="#8f7768" stroke-width="4"/><circle cx="64" cy="94" r="5" fill="#ffce88"/><circle cx="96" cy="94" r="5" fill="#ffce88"/>',
+      leech:'<ellipse cx="74" cy="112" rx="58" ry="9" fill="#b5e7d3" opacity=".18"/><path d="M10 50c14-16 36-12 46 2 12 16 34 18 52 12" fill="none" stroke="#6f3547" stroke-width="26" stroke-linecap="round"/><path d="M10 50c14-16 36-12 46 2 12 16 34 18 52 12" fill="none" stroke="#a85a70" stroke-width="13" stroke-linecap="round" stroke-dasharray="9 9"/><ellipse cx="120" cy="70" rx="23" ry="20" fill="#8f4557" stroke="#d79aab" stroke-width="3"/><ellipse cx="120" cy="70" rx="12" ry="10" fill="#2e131c"/><path d="M110 62l5 8-5 8" fill="none" stroke="#f0c7d2" stroke-width="2.5"/><path d="M126 62l5 8-5 8" fill="none" stroke="#f0c7d2" stroke-width="2.5"/><circle cx="112" cy="44" r="7" fill="#ffe3a8"/><circle cx="112" cy="44" r="3" fill="#3a1b25"/>',
+      spore:'<ellipse cx="80" cy="112" rx="58" ry="9" fill="#b5e7d3" opacity=".18"/><g stroke="#c7d98a" stroke-width="6" stroke-linecap="round"><path d="M80 22V8"/><path d="M53 31l-9-12"/><path d="M107 31l9-12"/><path d="M38 60L22 54"/><path d="M122 60l16-6"/><path d="M42 90l-14 8"/><path d="M118 90l14 8"/></g><path d="M80 24C50 24 34 50 36 78c2 26 22 34 44 34s42-8 44-34c2-28-14-54-44-54Z" fill="#93a24d" stroke="#dbe9a0" stroke-width="3"/><ellipse cx="80" cy="74" rx="27" ry="23" fill="#bdcb73" opacity=".6"/><path d="M62 64q18 10 36 0M62 82q18-10 36 0" fill="none" stroke="#7f8f3a" stroke-width="3"/><circle cx="68" cy="94" r="5.5" fill="#fff09a"/><circle cx="94" cy="94" r="5.5" fill="#fff09a"/><path d="M72 104q8 8 16 0" fill="none" stroke="#4f5a20" stroke-width="4"/>',
+      wraith:'<ellipse cx="80" cy="114" rx="50" ry="8" fill="#a9f0e6" opacity=".16"/><path d="M80 18C56 18 44 38 44 62C44 84 36 96 30 110C44 104 52 108 60 112C68 116 74 110 80 110C86 110 92 116 100 112C108 108 116 104 130 110C124 96 116 84 116 62C116 38 104 18 80 18Z" fill="#3c6f80" opacity=".85" stroke="#a9e8de" stroke-width="2.5"/><circle cx="66" cy="60" r="6" fill="#c9fbf3"/><circle cx="94" cy="60" r="6" fill="#c9fbf3"/><path d="M70 82q10 8 20 0" fill="none" stroke="#c9fbf3" stroke-width="3"/><path d="M40 100q-12 10-16 18M120 100q12 10 16 18" stroke="#7fd8cd" stroke-width="3" fill="none" opacity=".7"/>',
+      barnacle:'<ellipse cx="80" cy="112" rx="62" ry="9" fill="#b5e7d3" opacity=".18"/><path d="M26 106L36 74h20l8 32Z" fill="#6b8b62" stroke="#b7d3a8" stroke-width="2"/><ellipse cx="46" cy="74" rx="10" ry="4" fill="#38523a"/><path d="M106 106L98 74h20l10 32Z" fill="#6b8b62" stroke="#b7d3a8" stroke-width="2"/><ellipse cx="108" cy="74" rx="10" ry="4" fill="#38523a"/><path d="M50 106L64 46h32l14 60Z" fill="#7c9c72" stroke="#c6e0b4" stroke-width="3"/><ellipse cx="80" cy="46" rx="16" ry="6" fill="#38523a"/><path d="M80 40q-14-20-26-26M80 40q0-24 4-32M80 40q14-20 26-26" fill="none" stroke="#9be07a" stroke-width="4" stroke-linecap="round"/><circle cx="80" cy="44" r="7" fill="#9be07a"/><path d="M70 66h20M68 80h24M72 92h16" stroke="#5c7a52" stroke-width="3" stroke-linecap="round"/>',
+      ambush:'<ellipse cx="80" cy="114" rx="70" ry="9" fill="#b5e7d3" opacity=".18"/><path d="M14 96L60 44l16 10 12-24 30 40 26 26Z" fill="#4b5f60" stroke="#a7c3b4" stroke-width="3"/><path d="M60 44l16 10 12-24" fill="none" stroke="#24333a" stroke-width="5"/><path d="M48 78l64 0-8 20H58Z" fill="#2d3f45"/><path d="M56 82l6 10 6-10 6 10 6-10 6 10 6-10" fill="none" stroke="#f2e4c0" stroke-width="4" stroke-linejoin="round"/><path d="M64 74l4-8M96 74l-4-8" stroke="#ffce88" stroke-width="6" stroke-linecap="round"/>',
+      leviathan:'<ellipse cx="80" cy="116" rx="74" ry="9" fill="#b5e7d3" opacity=".2"/><path d="M8 70C20 34 58 12 92 18C132 25 156 56 152 82C148 108 116 118 82 114C48 110 14 100 8 70Z" fill="#2f4d5c" stroke="#8fc0b5" stroke-width="3"/><path d="M18 74C44 56 112 54 148 72C144 96 112 110 80 108C48 106 24 94 18 74Z" fill="#12262f"/><path d="M30 74l10 16 8-16 10 16 8-16 10 16 8-16 10 16 8-16 10 16 8-16 10 16 8-16" fill="none" stroke="#f6ecd0" stroke-width="5" stroke-linejoin="round"/><circle cx="52" cy="46" r="9" fill="#ffd27a"/><circle cx="52" cy="46" r="4" fill="#3a1f00"/><circle cx="104" cy="42" r="9" fill="#ffd27a"/><circle cx="104" cy="42" r="4" fill="#3a1f00"/><path d="M126 20l16-14M34 22L18 8" stroke="#8fc0b5" stroke-width="4" stroke-linecap="round"/>'
+    };
+    return '<svg viewBox="0 0 160 130" aria-hidden="true">'+(art[id]||art.tentacle)+'</svg>';
+  }
+
+  // 唯一的战斗结算源：预测、逐轮动画、最终结果都读同一份 log。
+  // 每轮双方同时出手：本轮开打时活着的海怪即使被打死，也照常攻击。
+  const MAX_ROUNDS=40;
+  function simulate(ship, foes, ctx) {
+    // 多只海怪会分散血量、先死的少打几轮，所以要按数量补一点总强度
+    const power=Math.round(ctx.power*(1+.18*Math.max(0,foes.length-1)));
+    const pool=Math.round(power*(ctx.boss?3:2)*(ship.foeHp||1));
+    const totalHit=Math.ceil(power/4);
+    const hpSum=foes.reduce((s,id)=>s+MONSTERS[id].hpW,0);
+    const hitSum=foes.reduce((s,id)=>s+MONSTERS[id].hitW,0);
+    const monsters=[];
+    let hpCum=0, hpGiven=0, hitCum=0, hitGiven=0;
+    foes.forEach((id,i)=>{
+      const m=MONSTERS[id];
+      hpCum+=pool*m.hpW/hpSum; hitCum+=totalHit*m.hitW/hitSum;
+      // 逐只取整后用差值补齐，保证总和精确等于当日难度，不会因为四舍五入变强
+      const maxHp=Math.max(1,Math.round(hpCum)-hpGiven);
+      const hit=Math.max(1,Math.round(hitCum)-hitGiven);
+      hpGiven+=maxHp; hitGiven+=hit;
+      monsters.push({key:i, id, name:m.name, maxHp, hp:maxHp, hit,
+        armor:m.armor||0, pierce:m.pierce==null?.6:m.pierce,
+        skills:(m.skills||[]).map(s=>({...s})), alive:true});
+    });
+    let rounds=0, damage=0, wood=0;
+    const log=[];
+    while(monsters.some(m=>m.alive) && ship.attack>0 && rounds<MAX_ROUNDS) {
+      rounds++;
+      const ev={round:rounds, tags:[], dealt:0, raw:0, absorb:0, taken:0, heal:0, kills:[], stolen:0};
+      const aliveStart=monsters.filter(m=>m.alive);
+      // 玩家齐射
+      let volley=ship.attack;
+      for(const m of aliveStart) for(const s of m.skills)
+        if(s.k==='stun'&&rounds%s.every===0) {
+          volley=Math.max(1,Math.round(volley*(1-s.pct)));
+          ev.tags.push(m.name+' 缠网：齐射 −'+Math.round(s.pct*100)+'%');
+        }
+      let remain=volley;
+      for(const m of monsters) {
+        if(!m.alive||remain<=0) continue;
+        const through=Math.max(1,remain-m.armor);
+        const dealt=Math.min(m.hp,through);
+        m.hp-=dealt; ev.dealt+=dealt;
+        remain=Math.max(0,remain-dealt-m.armor);
+        if(m.hp<=0){m.alive=false;ev.kills.push(m.name);}
+      }
+      // 海怪反击：护盾每轮重置，每只怪按自己的穿透系数吃一份，最多吃完整池
+      let raw=0, budget=ship.shield, absorbed=0;
+      for(const m of aliveStart) {
+        let hit=m.hit;
+        for(const s of m.skills)
+          if(s.k==='heavy'&&rounds%s.every===0) {
+            hit=Math.round(hit*s.mult);
+            ev.tags.push(m.name+' 重击 ×'+s.mult);
+          }
+        raw+=hit;
+        const take=Math.min(budget,hit*m.pierce);
+        absorbed+=take; budget-=take;
+      }
+      const taken=Math.max(1,raw-Math.round(absorbed));
+      damage+=taken;
+      Object.assign(ev,{raw,absorb:Math.round(absorbed),taken});
+      // 死亡时报复
+      for(const m of aliveStart) if(!m.alive) for(const s of m.skills)
+        if(s.k==='burst') {
+          const extra=Math.max(1,Math.round(m.hit*s.mult));
+          damage+=extra; ev.taken+=extra;
+          ev.tags.push(m.name+' 爆浆 +'+extra);
+        }
+      // 自愈与偷木
+      for(const m of monsters) if(m.alive) for(const s of m.skills)
+        if(s.k==='regen') {
+          const heal=Math.max(1,Math.round(m.maxHp*s.pct));
+          m.hp=Math.min(m.maxHp,m.hp+heal); ev.heal+=heal;
+        }
+      for(const m of aliveStart) for(const s of m.skills)
+        if(s.k==='drain'){wood+=s.v;ev.stolen+=s.v;}
+      ev.hpLeft=monsters.reduce((s,m)=>s+(m.alive?m.hp:0),0);
+      ev.alive=monsters.filter(m=>m.alive).map(m=>m.id);
+      ev.front=ev.alive[0]||monsters.find(m=>!m.alive)?.id||null;
+      log.push(ev);
+    }
+    return {rounds, damage, wood, log, monsters, win:monsters.every(m=>!m.alive)};
+  }
+  // Both the forecast and settlement call this function. Each round attacks simultaneously.
+  function forecast(elite) {
+    const f=fleet(), boss=run.day===5;
+    const power=boss?72:12+run.day*8+(elite?14:0);
+    const foes=encounter(run.day,elite);
+    const sim=simulate(f,foes,{power,boss});
+    const enemyHp=sim.monsters.reduce((s,m)=>s+m.maxHp,0);
+    const hit=sim.monsters.reduce((s,m)=>s+m.hit,0);
+    const damage=f.attack?sim.damage:run.hp;
+    // 净损 = 打完这一仗船体实际少多少（盐罐的战后回血要算进去，但不能救沉没）
+    const heal=f.heal||0;
+    const net=damage>=run.hp?run.hp:run.hp-Math.min(100,Math.max(0,run.hp-damage)+heal);
+    return {...f,foes,enemies:sim.monsters,enemyHp,hit,
+      rounds:f.attack?sim.rounds:Infinity,
+      damage,net,heal,reward:Math.max(0,(elite?16:8)+f.income-sim.wood+(f.loot||0)),
+      stolen:sim.wood,log:sim.log,boss};
+  }
+  // ---------------- 海域航图 ----------------
+  // 五层航道网：底部起点，每天一层，节点之间单向相连。
+  // 关键不是"今天二选一"，而是"昨天的选择决定了今天能去哪"——
+  // 想多拿一个遗物就得提前两层绕进险航，代价写在船票的船损上。
+  const COLX=[86,154,222];
+  const START={x:154,y:196};
+  const MAP_NODES=[
+    {id:'1a',day:1,col:1,kind:'fight', links:['2a','2b']},
+    {id:'1b',day:1,col:2,kind:'elite', links:['2b','2c']},
+    {id:'2a',day:2,col:0,kind:'supply',links:['3a']},
+    {id:'2b',day:2,col:1,kind:'fight', links:['3a','3b','3c']},
+    {id:'2c',day:2,col:2,kind:'elite', links:['3b','3c']},
+    {id:'3a',day:3,col:0,kind:'fight', links:['4a']},
+    {id:'3b',day:3,col:1,kind:'elite', links:['4a','4b']},
+    {id:'3c',day:3,col:2,kind:'supply',links:['4b']},
+    {id:'4a',day:4,col:1,kind:'fight', links:['5']},
+    {id:'4b',day:4,col:2,kind:'elite', links:['5']},
+    {id:'5', day:5,col:1,kind:'boss',  links:[]}
+  ];
+  const NODE_MAP={};
+  MAP_NODES.forEach(n=>{NODE_MAP[n.id]=n;});
+  const KIND_NAME={fight:'巡游',elite:'险航',supply:'补给',boss:'终局'};
+  const nodeX=n=>COLX[n.col];
+  const nodeY=n=>24+(5-n.day)*36;
+  // 走过的节点 id 序列；当前位置 = 最后一个
+  function routeNodes(){ return run&&run.route?run.route.map(r=>r.node):[]; }
+  function hereNode(){ const h=routeNodes(); return h.length?NODE_MAP[h[h.length-1]]:null; }
+  function reachableNodes(){
+    if(!run) return [];
+    const here=hereNode();
+    if(!here) return MAP_NODES.filter(n=>n.day===1);
+    return here.links.map(id=>NODE_MAP[id]).filter(Boolean);
+  }
+  // 图只回答"我在哪、能往哪走、走过哪条路"；打谁交给下面的船票。
+  function seaChart() {
+    const hist=routeNodes(), here=hereNode();
+    const open=new Set(reachableNodes().map(n=>n.id));
+    const hereId=here?here.id:null;
+    // 从这里往后还能走到的航点；走不回来的分支只是背景噪声
+    const ahead=new Set();
+    const stack=Array.from(open);
+    while(stack.length) {
+      const id=stack.pop();
+      if(ahead.has(id))continue;
+      ahead.add(id);
+      for(const t of NODE_MAP[id].links) stack.push(t);
+    }
+    let edges='';
+    const pushEdge=(fx,fy,n,isOpen,fromId)=>{
+      edges+='<line class="edge '+n.kind+(isOpen?' open':(ahead.has(n.id)?' ahead':''))+'" data-to="'+n.id+'" data-from="'+fromId+'" x1="'+fx+'" y1="'+fy+'" x2="'+nodeX(n)+'" y2="'+nodeY(n)+'"/>';
+    };
+    for(const n of MAP_NODES) for(const to of n.links) pushEdge(nodeX(n),nodeY(n),NODE_MAP[to],hereId===n.id&&open.has(to),n.id);
+    for(const n of MAP_NODES) if(n.day===1) pushEdge(START.x,START.y,n,!here,'start');
+    let nodes='';
+    let lastDay=0;
+    for(const n of MAP_NODES) {
+      const x=nodeX(n), y=nodeY(n);
+      if(n.day!==lastDay){ lastDay=n.day;
+        if(n.day<=5) nodes+='<text class="axis'+(n.day===run.day?' now':'')+'" x="40" y="'+(y+3)+'">第 '+n.day+' 天</text>';
+      }
+      const cls=['node',n.kind];
+      const onPath=hist.indexOf(n.id)>=0;
+      if(onPath&&n.id===hereId) cls.push('here');
+      else if(onPath) cls.push('taken');
+      else if(open.has(n.id)) cls.push('open');
+      else if(!ahead.has(n.id)) cls.push('dead');
+      else if(n.day<run.day) cls.push('passed');
+      else cls.push('lock');
+      if(n.kind==='supply') nodes+='<rect data-id="'+n.id+'" class="'+cls.join(' ')+'" x="'+(x-6.5)+'" y="'+(y-6.5)+'" width="13" height="13" rx="2.5"/>';
+      else nodes+='<circle data-id="'+n.id+'" class="'+cls.join(' ')+'" cx="'+x+'" cy="'+y+'" r="'+(n.kind==='boss'?11:8)+'"/>';
+      if(n.kind==='boss') nodes+='<text class="crown" x="'+x+'" y="'+(y+4)+'">♛</text>';
+    }
+    const pts=[START.x+','+START.y];
+    for(const id of hist) { const n=NODE_MAP[id]; if(n) pts.push(nodeX(n)+','+nodeY(n)); }
+    const tail=hist.length?hist[hist.length-1]:null;
+    const boatAt=tail?{x:nodeX(NODE_MAP[tail]),y:nodeY(NODE_MAP[tail])}:START;
+    const contours='<g class="contour"><ellipse cx="154" cy="112" rx="126" ry="88"/><ellipse cx="154" cy="112" rx="88" ry="60"/><ellipse cx="154" cy="112" rx="52" ry="34"/></g>';
+    const boat='<g class="boat" transform="translate('+(boatAt.x+15)+','+boatAt.y+')"><path d="M-1 -11 L6 0 L-6 0 Z" fill="#ffe6b3"/><path d="M-8 3 H8 L4 7 H-4 Z" fill="#e8c88a"/></g>';
+    return '<div class="chart" id="chart" role="img" aria-label="五日航线网，当前第 '+run.day+' 天，可前往 '+reachableNodes().length+' 个航点">'+
+      '<svg viewBox="0 0 300 214">'+contours+edges+
+      '<circle class="start" cx="'+START.x+'" cy="'+START.y+'" r="3.2"/>'+
+      '<polyline class="trail" points="'+pts.join(' ')+'"/>'+nodes+boat+
+      '<text x="288" y="208" class="north">N ↑</text></svg></div>';
+  }
+  function supplyArt(){
+    return '<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="22" width="44" height="30" rx="3" fill="#c9a05c"/><rect x="10" y="22" width="44" height="8" rx="3" fill="#e0bd7c"/><path d="M32 22v30M10 35h44" stroke="#7d5a2a" stroke-width="2.5"/><path d="M18 16l14-8 14 8" fill="none" stroke="#e8d9ac" stroke-width="3" stroke-linecap="round"/></svg>';
+  }
+  // 船票：一条航道一行——谁在这条道上、会掉多少血、能拿多少木头。
+  function sailRow(f, node) {
+    const names=f.foes.map(id=>MONSTERS[id].name).join('、');
+    const tags=f.foes.map(id=>MONSTERS[id].tag).join(' · ');
+    const danger=f.damage>=run.hp;
+    return '<button class="sail-row '+node.kind+'" data-node="'+node.id+'" data-day="'+run.day+
+      '" aria-label="第 '+run.day+' 天 '+KIND_NAME[node.kind]+'：'+names+'，预计船损 '+f.net+'">'+
+      '<span class="art">'+monsterArt(f.foes[0])+'</span>'+
+      '<span class="body"><b>'+names+'</b><small>'+tags+'</small></span>'+
+      '<span class="num"><b>'+f.net+'</b><small>船损</small></span>'+
+      '<span class="num gain"><b>+'+f.reward+'</b><small>木材</small></span>'+
+      '<span class="go'+(danger?' wreck':'')+'">'+(danger?'会沉':'出发')+' →</span></button>';
+  }
+  function supplyRow(node) {
+    return '<button class="sail-row supply" data-node="'+node.id+'" data-day="'+run.day+'" aria-label="第 '+run.day+' 天 漂流补给">'+
+      '<span class="art">'+supplyArt()+'</span>'+
+      '<span class="body"><b>漂流补给</b><small>不打架，停靠就搬东西：木材 / 修船 / 一件库存建筑</small></span>'+
+      '<span class="num"><b>—</b><small>船损</small></span>'+
+      '<span class="num gain"><b>三选一</b><small>收获</small></span>'+
+      '<span class="go">停靠 →</span></button>';
+  }
+
+  const POOLS = {common:['ballista','harpoon','net','purifier'],rare:['ammo','shield'],legendary:['beacon','coral']};
+  const RARITY = {common:'普通',rare:'稀有',legendary:'传奇'};
+  function recruit(count) {
+    if(run&&run.phase!=='build')return;
+    const results=[];
+    for(let i=0;i<count;i++) {
+      const roll=Math.random();
+      const rarity=pity>=19||roll>=.95?'legendary':roll>=.70?'rare':'common';
+      const pool=POOLS[rarity],id=pool[Math.floor(Math.random()*pool.length)];
+      pity=rarity==='legendary'?0:pity+1;
+      stock[id]=(stock[id]||0)+1;results.push({id,rarity});
+    }
+    openShop(results);
+  }
+  function openShop(results=[]) {
+    if(run&&run.phase!=='build')return;
+    const cards=results.map((r,i)=>'<div class="recruit-card '+r.rarity+'" style="--delay:'+i*.025+'s">'+model(r.id)+'<small>'+RARITY[r.rarity]+'</small><b>'+MAP[r.id].name+'</b></div>').join('');
+    const inventory=Object.entries(stock).filter(([,n])=>n>0).map(([id,n])=>'<span>'+MAP[id].name+' ×'+n+'</span>').join('')||'<span>还没有库存，试试抽一次。</span>';
+    showJourney(results.length?'打捞完成 · '+results.length+' 件建筑':'漂流商会 · 招募与物资',
+      '<div class="shop-banner">金币 ∞ · 测试模式 · 无真实支付</div>'+
+      '<p>单抽 100 金币 / 十连 1,000 金币。测试金币无限，可反复购买。</p>'+
+      '<small>普通 70% · 稀有 25% · 传奇 5%。连续 19 次未出传奇，第 20 次必出；出传奇后重新计数。距保底最多 '+(20-pity)+' 抽。</small>'+
+      (cards?'<div class="recruit-grid">'+cards+'</div>':'')+
+      '<p><b>仓库</b> · 建造时优先消耗库存，无需木材。</p><div class="stock">'+inventory+'</div>'+
+      '<div class="shop-items">'+BUILDINGS.map(b=>'<button data-buy="'+b.id+'">购买 '+b.name+' · '+COST[b.id]*100+' 金币</button>').join('')+(run?'<button id="buyWood">100 木材 · 500 金币</button>':'')+'</div>',
+      [['单抽',()=>recruit(1)],['十连',()=>recruit(10)],['去建造',()=>{drawer(true);paintTools();},true],['返回海面',()=>{},true]]);
+    document.querySelectorAll('[data-buy]').forEach(button=>button.addEventListener('click',()=>{
+      const id=button.dataset.buy;stock[id]=(stock[id]||0)+1;openShop([{id,rarity:Object.keys(POOLS).find(r=>POOLS[r].includes(id))}]);
+    }));
+    if($('#buyWood')) $('#buyWood').addEventListener('click',()=>{run.wood+=100;openShop();announce('已购买 100 木材 · 测试金币无限');});
+  }
+  $('#shopBtn').addEventListener('click',()=>openShop());
+
+  // 每天列出"从这里真正能到的"航点——昨天的选择已经砍掉了一部分选项。
+  function chooseRoute() {
+    if(!run || run.phase!=='build') return;
+    const opts=reachableNodes();
+    const rows=opts.map(node=>{
+      if(node.kind==='supply') return supplyRow(node);
+      return sailRow(forecast(node.kind==='elite'),node);
+    }).join('');
+    const stat=forecast(opts.some(n=>n.kind==='elite'));
+    const types=opts.map(n=>KIND_NAME[n.kind]).join(' / ');
+    showJourney(run.day===5?'第五天 · 迎战深海巨兽':'第 '+run.day+' 天 · 选一条航道',
+      seaChart()+
+      '<p class="chart-legend">金线＝走过的航路 · 金圈＝今天能去 · 方块＝补给 · 红＝险航</p>'+
+      '<p class="powers">攻击 <b>'+stat.attack+'</b> · 每轮护盾 <b>'+stat.shield+'</b> · 捕鱼 <b>'+stat.income+'</b>'+
+      ' · 今天有 '+opts.length+' 条航道（'+types+'）</p>'+
+      '<div class="sail-list">'+rows+'</div>'+
+      '<small>航线是单向的：走上一条道，明天就只能去它连着的地方。鼠标停在船票上，图上会同时亮出这条道的来处和去向。</small>',
+      [['返回整备',()=>{},true]]);
+    const chartEl=document.querySelector('#chart');
+    const light=id=>{
+      if(!chartEl) return;
+      chartEl.querySelectorAll('.edge').forEach(e=>{
+        e.classList.toggle('lit', e.dataset.to===id || e.dataset.from===id);
+      });
+      chartEl.querySelectorAll('.node').forEach(n=>n.classList.toggle('lit', n.dataset.id===id));
+    };
+    const dim=()=>{
+      if(!chartEl) return;
+      chartEl.querySelectorAll('.lit').forEach(e=>e.classList.remove('lit'));
+    };
+    document.querySelectorAll('.sail-row').forEach(row=>{
+      const id=row.dataset.node;
+      row.addEventListener('mouseenter',()=>light(id));
+      row.addEventListener('focus',()=>light(id));
+      row.addEventListener('mouseleave',dim);
+      row.addEventListener('blur',dim);
+      row.addEventListener('click',()=>{
+        const node=NODE_MAP[id];
+        if(!run || run.phase!=='build' || !node) return;
+        journey.close();
+        if(node.kind==='supply') enterSupply(node); else resolveBattle(node);
+      });
+    });
+  }
+  function nextDay() {
+    run.day++; run.phase='build'; delete run.result; paint();
+    announce('第 '+run.day+' 天：可建造、修船，准备好再出航。');
+  }
+  // 补给点：不上战场，停靠就搬东西。三选一，选完立刻起航。
+  function enterSupply(node) {
+    if(!run || run.phase!=='build') return;
+    const day=run.day, wood=26+day*12, heal=16+day*5;
+    const pool=Object.keys(MAP).filter(id=>MAP[id].cat);
+    const gift=pool[Math.floor(Math.random()*pool.length)];
+    run.route.push({day:day,node:node.id});
+    run.phase='result';
+    run.result={node:node.id,kind:'supply'};
+    const crate='<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="26" width="40" height="26" rx="3" fill="#c9a05c"/><path d="M12 34h40M32 26v26" stroke="#7d5a2a" stroke-width="2.5"/><path d="M22 26q0-10 10-10t10 10" fill="none" stroke="#e8d9ac" stroke-width="3"/></svg>';
+    const hammer='<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="16" y="30" width="26" height="8" rx="2" transform="rotate(-38 29 34)" fill="#c9a05c"/><path d="M34 26l10 10 8-8-10-10z" fill="#9fb08c"/><path d="M20 44l8 8" stroke="#7d5a2a" stroke-width="4" stroke-linecap="round"/></svg>';
+    const opts=[
+      {id:'wood',   title:'漂流木材', desc:'+'+wood+' 木材，直接堆上甲板', art:crate,   apply:()=>{run.wood+=wood;}},
+      {id:'repair', title:'补漏水舱', desc:'船体 +'+heal+'（上限 100）',   art:hammer,  apply:()=>{run.hp=Math.min(100,run.hp+heal);}},
+      {id:'build',  title:'漂来的残骸', desc:MAP[gift].name+' ×1 进仓库，建造时免木材', art:model(gift), apply:()=>{stock[gift]=(stock[gift]||0)+1;}}
+    ];
+    showJourney('第 '+day+' 天 · 漂流补给',
+      '<p>这条航道上没有海怪，只有一截翻着白肚的货舱。你能带走的东西有限。</p>'+
+      '<p class="loot-title">三选一</p>'+
+      '<div class="loot-grid">'+opts.map(o=>'<button class="loot-card build" data-supply="'+o.id+'">'+o.art+'<b>'+o.title+'</b><small>'+o.desc+'</small></button>').join('')+'</div>',
+      [['继续航行',()=>nextDay()]]);
+    const next=document.querySelector('#journeyActions button');
+    if(next){ next.disabled=true; next.textContent='先拿一样东西'; next.classList.add('waiting'); }
+    document.querySelectorAll('[data-supply]').forEach(card=>card.addEventListener('click',()=>{
+      const got=opts.find(o=>o.id===card.dataset.supply);
+      got.apply();
+      document.querySelectorAll('[data-supply]').forEach(c=>{
+        c.disabled=true;
+        c.classList.toggle('picked',c.dataset.supply===got.id);
+        c.classList.toggle('dim',c.dataset.supply!==got.id);
+      });
+      const titleEl=document.querySelector('.loot-title');
+      if(titleEl) titleEl.textContent='已装船：'+got.title;
+      if(next){ next.disabled=false; next.textContent='继续航行'; next.classList.remove('waiting'); next.focus(); }
+      paint();
+    }));
+  }
+  let battle = null;
+  function resolveBattle(node) {
+    if(!run || run.phase!=='build') return;
+    const elite=node.kind==='elite';
+    saveProgress();
+    const f=forecast(elite), before=run.hp;
+    run.route.push({day:run.day,node:node.id});
+    run.phase='battle';
+    battle={f,before,elite:elite,node:node.id,round:0,enemyHp:f.enemyHp,art:null,timer:null};
+    drawer(false);hover=null;selected=null;preview=null;paint();
+    document.body.classList.add('battling');
+    $('.dock').inert=true;$('.voyage-actions').inert=true;
+    $('#battleView').hidden=false;
+    $('#enemy').classList.toggle('boss',f.boss);
+    $('#enemyHealth').max=f.enemyHp;
+    showFrontFoe(f.foes[0]);
+    $('#enemyRest').textContent=f.foes.length>1?'还有 '+f.foes.slice(1).map(id=>MONSTERS[id].name).join('、'):'';
+    updateBattleHealth();
+    $('#skipBattle').focus();
+    if(reducedMotion.matches||!f.log.length) finishBattle();
+    else battleMove(true);
+  }
+  function setEnemyArt(id) {
+    if(!id||!battle||battle.art===id) return;
+    battle.art=id; $('#enemyArt').innerHTML=monsterArt(id);
+  }
+  // 血条是全场合计，名字与技能只针对当前正在交战的那一只
+  function showFrontFoe(id) {
+    if(!id) return;
+    setEnemyArt(id);
+    $('#enemyName').textContent=MONSTERS[id].name;
+    $('#enemySkills').innerHTML='<span>'+MONSTERS[id].tag+'</span>';
+  }
+  function updateBattleHealth() {
+    if(!battle)return;
+    $('#enemyHealth').value=battle.enemyHp;
+    $('#enemyHealthText').textContent=battle.enemyHp+' / '+battle.f.enemyHp;
+    $('#battleRound').textContent='第 '+Math.max(1,battle.round)+' 轮 · 双方同时交锋';
+    $('#battleDetail').textContent='齐射 '+battle.f.attack+' · 护盾 '+battle.f.shield+' · 船体 '+run.hp+'/100';
+  }
+  function effectElement(className, x,y,text='') {
+    const el=document.createElement('span');el.className=className;el.textContent=text;
+    el.style.left=x+'px';el.style.top=y+'px';el.dataset.combat='';document.body.append(el);
+    return el;
+  }
+  function projectile(from,to,hostile=false) {
+    const shot=effectElement('projectile'+(hostile?' hostile':''),from.x,from.y);
+    const angle=Math.atan2(to.y-from.y,to.x-from.x)*180/Math.PI;
+    const animation=shot.animate([{transform:'rotate('+angle+'deg)'},{transform:'translate('+(to.x-from.x)+'px,'+(to.y-from.y)+'px) rotate('+angle+'deg)'}],{duration:350,easing:'ease-in'});
+    animation.onfinish=()=>shot.remove();
+  }
+  function battleNumber(box,value,hurt=false) {
+    const el=effectElement('battle-number'+(hurt?' hurt':''),box.left+box.width/2,box.top,String(value));
+    el.animate([{translate:'0 0',opacity:1},{translate:'0 -45px',opacity:0}],{duration:650,easing:'ease-out'}).onfinish=()=>el.remove();
+  }
+  function battleMove(entering=false) {
+    if(!battle)return;
+    const enemy=$('#enemy');
+    const from=entering?'130px -25px':enemy.style.translate||'0px 0px';
+    const small=innerWidth<=600;
+    const next=(battle.round%2 ? (small?-55:-125) : (small?-8:-35))+'px '+(battle.round%2?30:0)+'px';
+    enemy.style.translate=next;
+    enemy.animate([{translate:from,opacity:entering?0:1},{translate:next,opacity:1}],{duration:500,easing:'ease-in-out'});
+    $('#battleRound').textContent=entering?'海怪正在接近木筏…':'海怪游向侧翼…';
+    battle.timer=setTimeout(battleVolley,520);
+  }
+  function battleVolley() {
+    if(!battle)return;
+    battle.round++;
+    const ev=battle.f.log[battle.round-1];
+    if(!ev){finishBattle();return;}
+    const enemy=$('#enemy svg').getBoundingClientRect(), target={x:enemy.left+enemy.width/2,y:enemy.top+enemy.height/2};
+    const raft=$('.raft').getBoundingClientRect(), home={x:raft.left+raft.width/2,y:raft.top+raft.height/2};
+    for(const [k,id] of cells) if(MAP[id].cat==='attack') {
+      const icon=cellEls.get(k).querySelector('.ic'), box=icon.getBoundingClientRect();
+      projectile({x:box.left+box.width/2,y:box.top+box.height/2},target);
+      icon.animate([{translate:'0 0'},{translate:'-3px 4px'},{translate:'0 0'}],{duration:200});
+    }
+    projectile(target,home,true);sound(false);
+    $('#battleRound').textContent='第 '+ev.round+' 轮'+(ev.tags.length?' · '+ev.tags.join(' · '):' · 双方同时交锋');
+    $('#battleDetail').textContent='我方 −'+ev.dealt+'　受击 '+ev.raw+(ev.absorb?'（护盾挡 '+ev.absorb+'）':'')+'　船体 −'+ev.taken+(ev.heal?'　海怪回血 '+ev.heal:'');
+    battle.timer=setTimeout(()=>{
+      if(!battle)return;
+      const f=battle.f;
+      run.hp=Math.max(0,run.hp-ev.taken);
+      battle.enemyHp=ev.hpLeft;
+      if(ev.dealt) battleNumber(enemy,'−'+ev.dealt);
+      battleNumber(raft,'−'+ev.taken,true);
+      if(f.shield) {
+        const ring=effectElement('shield-ring',raft.left-10,raft.top+raft.height*.15);
+        ring.style.width=(raft.width+20)+'px';ring.style.height=raft.height*.8+'px';
+        ring.animate([{opacity:0,scale:.9},{opacity:.9,offset:.35},{opacity:0,scale:1.1}],{duration:500}).onfinish=()=>ring.remove();
+      }
+      const front=ev.alive[0]||ev.front;
+      showFrontFoe(front);
+      $('#enemyName').textContent=ev.alive.length?MONSTERS[front].name:'已清除';
+      $('#enemyRest').textContent=ev.alive.length>1?'还有 '+ev.alive.slice(1).map(id=>MONSTERS[id].name).join('、'):'';
+      $('.raft').animate([{translate:'0 0'},{translate:'-4px 2px'},{translate:'4px -1px'},{translate:'0 0'}],{duration:220});
+      $('#enemy svg').animate([{opacity:1},{opacity:.35},{opacity:1}],{duration:220});
+      paintJourney();updateBattleHealth();
+      battle.timer=setTimeout(()=>{
+        if(!battle)return;
+        if(run.hp<=0||!ev.alive.length) finishBattle();else battleMove();
+      },650);
+    },370);
+  }
+  function finishBattle() {
+    if(!battle)return;
+    const {f,before,elite,node}=battle;
+    clearTimeout(battle.timer);battle=null;
+    $('#enemy').getAnimations().forEach(a=>a.cancel());$('#enemy').style.translate='';
+    $('#battleView').hidden=true;document.body.classList.remove('battling');
+    document.querySelectorAll('[data-combat]').forEach(el=>{el.getAnimations().forEach(a=>a.cancel());el.remove();});
+    $('.dock').inert=false;$('.voyage-actions').inert=false;
+    run.phase='result';
+    run.hp=Math.max(0,before-f.damage);
+    const survived=run.hp>0;
+    if(survived) {
+      if(f.heal) run.hp=Math.min(100,run.hp+f.heal);
+      run.wood+=f.reward;
+    }
+    run.result={before,elite,node:node};
+    // 打赢了才开箱；巨兽之后是通关，不再发战利品
+    if(survived&&!f.boss) run.result.rewards=rewardOptions();
+    presentResult(f,before);
+  }
+  function presentResult(f,before) {
+    const survived=run.hp>0;
+    const title=!survived?'木筏沉没了':f.boss?'你驶出了深海！':'第 '+run.day+' 天 · 遭遇胜利';
+    const foes=f.foes.map(id=>MONSTERS[id].name).join('、');
+    const detail=f.attack?'对 '+foes+' 齐射 '+f.attack+' / 轮，撑过 '+f.rounds+' 轮后清场。':'没有攻击建筑，无法抵御 '+foes+'。';
+    const rewards=survived&&!f.boss&&run.result&&run.result.rewards?run.result.rewards:null;
+    const picked=run.result&&run.result.picked?run.result.picked:null;
+    const lootHtml=rewards
+      ? '<p class="loot-title">'+(picked?'已选择战利品':'选择一件战利品 · 三选一')+'</p>'+
+        '<div class="loot-grid">'+rewards.map(id=>{
+          const info=rewardInfo(id), on=picked===id, dim=picked&&!on;
+          return '<button class="loot-card '+info.tone+(on?' picked':'')+(dim?' dim':'')+'" data-loot="'+id+'"'+(picked?' disabled':'')+'>'+
+            info.art+'<b>'+info.title+'</b><small>'+info.desc+'</small></button>';
+        }).join('')+'</div>'
+      : '';
+    showJourney(title,
+      '<p>'+(!survived?'火力或防护不足，船体未能撑过这场交锋。':detail)+'</p>'+
+      '<p class="combat-summary">船体 '+before+' → '+run.hp+(survived&&f.heal?'（盐罐 +'+f.heal+'）':'')+'<br>'+ (survived?'回收 '+f.reward+' 木材（含捕鱼 '+f.income+'）'+(f.stolen?'，被吸走 '+f.stolen:'')+'':'调整弹药架的位置、增加弩炮或护盾，再试一次。')+'</p>'+
+      lootHtml+
+      (f.boss&&survived?'<p>五日航程完成。你靠这艘自己搭建的木筏活了下来。</p>':''),
+      survived&&!f.boss?[['领取并整备下一天',()=>nextDay()]]:
+      [['再来一局',()=>startGame(true)],['自由构筑',()=>startGame(false),true]]);
+    if(!rewards) return;
+    const next=document.querySelector('#journeyActions button');
+    if(picked) return;
+    if(next){ next.disabled=true; next.textContent='先选一件战利品'; next.classList.add('waiting'); }
+    document.querySelectorAll('[data-loot]').forEach(card=>card.addEventListener('click',()=>{
+      const id=card.dataset.loot, info=rewardInfo(id);
+      applyReward(id);
+      run.result.picked=id;
+      document.querySelectorAll('[data-loot]').forEach(c=>{
+        c.disabled=true;
+        c.classList.toggle('picked',c.dataset.loot===id);
+        c.classList.toggle('dim',c.dataset.loot!==id);
+      });
+      const titleEl=document.querySelector('.loot-title');
+      if(titleEl) titleEl.textContent='已获得 '+info.title;
+      const summary=document.querySelector('#journeyBody .combat-summary');
+      if(summary) summary.insertAdjacentHTML('beforeend','<span class="sum-line">战利品：'+info.title+'</span>');
+      if(next){ next.disabled=false; next.textContent='领取并整备下一天'; next.classList.remove('waiting'); next.focus(); }
+      paint();
+    }));
+  }
+  $('#skipBattle').addEventListener('click',finishBattle);
+  reducedMotion.addEventListener('change',()=>{if(reducedMotion.matches&&battle)finishBattle();});
+  $('#helpBtn').addEventListener('click',welcome);
+  $('#sailBtn').addEventListener('click',chooseRoute);
+  $('#repairBtn').addEventListener('click',()=>{
+    if(!run||run.phase!=='build'||run.wood<10||run.hp>=100)return;
+    run.wood-=10;run.hp=Math.min(100,run.hp+25);paint();announce('消耗 10 木材，船体恢复 25（最高 100）。');
+  });
+
+  // Inspired by Tidewater's guarded, versioned local saves; this schema is specific to our run.
+  function validSave(d) {
+    const integer=(v,min,max)=>Number.isSafeInteger(v)&&v>=min&&v<=max;
+    if(!d||d.version!==1||!integer(d.sizeIdx,0,2)||!integer(d.pity,0,19)||typeof d.soundEnabled!=='boolean'||typeof d.guideEnabled!=='boolean')return false;
+    const r=d.run,n=SIZES[d.sizeIdx].n;
+    if(!r||!integer(r.day,1,5)||!integer(r.hp,0,100)||!integer(r.wood,0,1e9)||!['build','result'].includes(r.phase))return false;
+    if(r.phase==='build'&&r.hp===0)return false;
+    if(!Array.isArray(r.route)||r.route.length!==r.day-(r.phase==='build'?1:0))return false;
+    if(r.route.some((v,i)=>{
+      if(!v||v.day!==i+1||typeof v.node!=='string'||!NODE_MAP[v.node])return true;
+      const node=NODE_MAP[v.node];
+      if(node.day!==v.day)return true;
+      // 上一站必须真的连到这一站，否则就是改过的存档
+      if(i===0) return node.day!==1;
+      return NODE_MAP[r.route[i-1].node].links.indexOf(v.node)<0;
+    }))return false;
+    if(r.phase==='result'&&(!r.result||!integer(r.result.before,1,100)||typeof r.result.node!=='string'||r.result.node!==r.route.at(-1).node))return false;
+    if(!Array.isArray(d.cells)||d.cells.length>n*n)return false;
+    const keys=new Set();
+    for(const cell of d.cells) {
+      if(!Array.isArray(cell)||cell.length!==2||typeof cell[0]!=='string'||typeof cell[1]!=='string'||!/^\d,\d$/.test(cell[0])||!Object.hasOwn(MAP,cell[1]))return false;
+      const [x,y]=cell[0].split(',').map(Number);
+      if(x>=n||y>=n||keys.has(cell[0]))return false;keys.add(cell[0]);
+    }
+    if(!d.stock||typeof d.stock!=='object'||Array.isArray(d.stock))return false;
+    return Object.entries(d.stock).every(([id,count])=>Object.hasOwn(MAP,id)&&integer(count,0,1e9));
+  }
+  // 旧版存档里 route 只记了 day + elite，按"同类且连得上"的规则补成航点
+  function migrateSave(d) {
+    if(!d||!d.run||!Array.isArray(d.run.route))return d;
+    if(d.run.route.every(v=>v&&typeof v.node==='string'))return d;
+    const out=[];
+    for(const v of d.run.route) {
+      const prev=out.length?NODE_MAP[out[out.length-1].node]:null;
+      const from=prev?prev.links:MAP_NODES.filter(n=>n.day===1).map(n=>n.id);
+      const cands=from.map(id=>NODE_MAP[id]).filter(n=>n&&n.day===v.day);
+      const want=v.elite?'elite':'fight';
+      const pick=cands.find(n=>n.kind===want)
+        ||cands.find(n=>n.kind==='fight'||n.kind==='elite')
+        ||cands[0];
+      if(!pick)break;
+      out.push({day:pick.day,node:pick.id});
+    }
+    d.run.route=out;
+    if(d.run.result&&typeof d.run.result.node!=='string'){
+      const last=out[out.length-1];
+      d.run.result.node=last?last.node:null;
+      if(last)d.run.result.elite=NODE_MAP[last.node].kind==='elite';
+    }
+    return d;
+  }
+  function readSave() {
+    try {
+      const raw=localStorage.getItem(SAVE_KEY);
+      if(!raw)return;
+      if(raw.length>100000)throw new Error('oversized save');
+      const d=migrateSave(JSON.parse(raw));
+      if(!validSave(d))throw new Error('invalid save');
+      savedGame=d;lastSaved=raw;
+    } catch {saveMessage='存档不可读取，原数据保留；可开始新局';}
+  }
+  function saveProgress() {
+    if(!run||!['build','result'].includes(run.phase))return;
+    const d={version:1,sizeIdx,cells:[...cells],stock,pity,run,soundEnabled,guideEnabled};
+    const raw=JSON.stringify(d);
+    if(raw===lastSaved)return;
+    try {
+      localStorage.setItem(SAVE_KEY,raw);lastSaved=raw;savedGame=JSON.parse(raw);saveMessage='已自动保存';
+    } catch {saveMessage='无法保存，请勿关闭本页';}
+  }
+  function resumeGame() {
+    if(!savedGame||!validSave(savedGame))return;
+    const d=JSON.parse(JSON.stringify(savedGame));
+    saveMessage='已恢复存档';
+    sizeIdx=d.sizeIdx;N=SIZES[sizeIdx].n;stock=d.stock;pity=d.pity;run=d.run;
+    soundEnabled=d.soundEnabled;guideEnabled=d.guideEnabled;
+    cells.clear();for(const [k,id] of d.cells)cells.set(k,id);
+    selected=null;hover=null;preview=null;noGhostKey=null;setRemoving(false);
+    $('#growBtn').disabled=sizeIdx===2;
+    $('#soundBtn').textContent='音效：'+(soundEnabled?'开':'关');$('#soundBtn').setAttribute('aria-pressed',String(soundEnabled));
+    buildTools();buildGrid();paint();
+    if(run.phase==='result')presentResult(forecast(run.result.elite),run.result.before);
+    else announce('已恢复第 '+run.day+' 天的木筏、仓库和保底进度。');
+  }
+  $('#miniMap').addEventListener('click',chooseRoute);
+  $('#coachClose').addEventListener('click',()=>{guideEnabled=false;paint();});
+  $('#helpBtn').addEventListener('click',()=>{guideEnabled=true;paint();});
+  $('#soundBtn').addEventListener('click',saveProgress);
+
+  // ---------------- 启动 ----------------
+  // 数值核对出口：自动化测试与平衡调试用，不影响正常游玩
+  window.__ff={ simulate, forecast, encounter, fleet, MONSTERS, monsterArt, RELICS, rewardOptions, applyReward, relicBonus, paint,
+    MAP_NODES, NODE_MAP, KIND_NAME, reachableNodes, hereNode, routeNodes, validSave, migrateSave,
+    get stock(){return stock;},
+    get run(){return run;}, set run(v){run=v;} };
+  readSave();
+  buildTools();
+  buildGrid();
+  applyPreset('beacon');
+  welcome();
+})();
+</script>
+</body>
+</html>

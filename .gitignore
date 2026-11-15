@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.workbuddy/
+.wbapp_*.genie
+preview-*.png
+debug-*.png
+*.bak.html
+.env
+.env.*
+!.env.example
+prototype/.godot/
