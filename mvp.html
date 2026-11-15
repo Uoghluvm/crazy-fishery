@@ -84,6 +84,33 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
 @media(min-width:1000px){.title{font-size:26px;letter-spacing:7px}.title small{font-size:10px;letter-spacing:4px}.sea{inset:18% 0 9%}}
 @media(max-width:600px){.dock{padding:4px;gap:3px}.dock button{padding:10px 6px}.dock #shopBtn{padding:10px 5px}}
 .grid.compact-labels .value{font-size:12px;line-height:12px}.grid.compact-labels .value small{font-size:7px;line-height:9px;letter-spacing:0}
+#codex{width:min(660px,calc(100vw - 28px));padding:22px 24px}
+#codex .codex-head p{font-size:12px;line-height:1.5;color:#4f6e68;margin:0 0 8px}
+.codex-tabs{display:flex;gap:8px;margin:6px 0 2px}
+.codex-tabs button{padding:8px 18px;border:1px solid #b8bba0;border-radius:5px;background:#e6ddc3;color:#244b4c;font-size:12px}
+.codex-tabs button[aria-pressed="true"]{background:#226e71;border-color:#226e71;color:#fff1cc}
+.codex-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:10px}
+.codex-grid h3{grid-column:1/-1;display:flex;align-items:center;gap:7px;margin:8px 0 0;padding-bottom:4px;border-bottom:1px solid #c9bd96;font-size:12px;letter-spacing:2px;color:#2a5a57}
+.codex-grid h3:first-child{margin-top:0}
+.codex-grid h3:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--c,#9fb08c)}
+.codex-card{position:relative;display:grid;grid-template-columns:56px minmax(0,1fr);gap:9px;padding:9px 9px 9px 10px;background:#e7dfc4;border:1px solid #b8b89a;border-left:4px solid var(--c,#9fb08c);border-radius:7px}
+.codex-card.seen{background:#e3ebcf}
+.codex-card.locked{background:#d8d2bc;border-left-color:#a39d86}
+.codex-art{display:flex;align-items:center;justify-content:center;border-radius:50%;background:radial-gradient(circle at 50% 58%,#ffffff88,#ffffff00 72%)}
+.codex-art svg{width:52px;height:56px}
+.codex-art.lock{font-size:28px;font-weight:bold;color:#8b8670}
+.codex-body{min-width:0}
+.codex-body b{display:block;font-size:13px;line-height:1.3;color:#1f4a4c;padding-right:44px}
+.codex-card .codex-body p{font-size:11.5px;line-height:1.55;margin:4px 0}
+.codex-body small{display:block;font-size:10px;line-height:1.4;color:#5c7671}
+.codex-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:3px}
+.codex-tags i{font-style:normal;font-size:10px;padding:1px 6px;border-radius:9px;background:#d3cbae;color:#3c5c58}
+.codex-tags i.cat{background:var(--c);color:#fff}
+.codex-tags i.fx{background:#2a6a6f;color:#ffe6b3}
+.codex-state{position:absolute;right:8px;top:8px;font-style:normal;font-size:10px;padding:1px 7px;border-radius:9px;background:#b9bda4;color:#43524d}
+.codex-card.seen .codex-state{background:#2f8f6e;color:#fff}
+.codex-card.own .codex-state{background:#c9a44e;color:#4a3410}
+@media(max-width:600px){#codex{padding:18px 14px}.codex-grid{grid-template-columns:1fr}.codex-card{grid-template-columns:46px minmax(0,1fr)}.codex-art svg{width:42px;height:46px}}
 </style>
 </head>
 <body>
@@ -200,7 +227,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
 <aside class="coach" id="coach" hidden aria-label="航海提示"><button id="coachClose" aria-label="收起航海提示">×</button><b>下一步</b><span id="coachText"></span></aside>
 <button class="nav-mini" id="miniMap" hidden aria-label="打开航线图"></button>
 <div class="voyage-hud" id="voyageHud" hidden></div>
-<div class="voyage-actions"><button id="repairBtn" hidden>修船 · 10 木材</button><button id="sailBtn" hidden>出航 →</button><button id="helpBtn">怎么玩</button></div>
+<div class="voyage-actions"><button id="repairBtn" hidden>修船 · 10 木材</button><button id="sailBtn" hidden>出航 →</button><button id="codexBtn">图鉴</button><button id="helpBtn">怎么玩</button></div>
 <div id="battleView" hidden>
   <div class="battle-status" role="status" aria-live="polite"><b id="battleRound"></b><small id="battleDetail"></small></div>
   <div class="enemy" id="enemy">
@@ -210,6 +237,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
   </div>
   <button id="skipBattle">跳过动画 · 直接结算</button>
 </div>
+<dialog id="codex" aria-labelledby="codexTitle"><div class="codex-head"><small>船坞图鉴</small><h2 id="codexTitle">道具图鉴</h2><p id="codexProgress"></p><div class="codex-tabs" id="codexTabs"><button type="button" data-tab="building" aria-pressed="true">建筑</button><button type="button" data-tab="relic" aria-pressed="false">宝藏</button></div></div><div class="codex-grid" id="codexGrid"></div><div class="dialog-actions"><button type="button" id="codexClose" class="secondary">关闭</button></div></dialog>
 <dialog id="journey" aria-labelledby="journeyTitle"><div class="sea-mark" aria-hidden="true">≈ ⛵ ≈</div><small>五日归航 · 试验玩法</small><h2 id="journeyTitle"></h2><div id="journeyBody"></div><div class="dialog-actions" id="journeyActions"></div></dialog>
 <script>
 (() => {
@@ -872,6 +900,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     $('#miniMap').hidden=!run; $('#coach').hidden=!run||!guideEnabled||run.phase!=='build';
     $('.waves').style.filter=run?'hue-rotate('+(run.day-1)*5+'deg) saturate('+(1-(run.day-1)*.045)+')':'';
     if (!run) return;
+    markSeen();
     saveProgress();
     const relicChips=(run.relics||[]).map(id=>RELICS[id]?'<span class="relic-chip" title="'+RELICS[id].desc+'">'+RELICS[id].name+'</span>':'').join('');
     $('#voyageHud').innerHTML='第 '+Math.min(run.day,5)+' / 5 天 <span>船体 <strong>'+run.hp+'</strong>/100</span><progress max="100" value="'+run.hp+'" aria-label="船体耐久"></progress><span>木材 <strong>'+run.wood+'</strong></span><span class="save-state">'+saveMessage+'</span>'+(relicChips?'<span class="relic-bar">'+relicChips+'</span>':'');
@@ -889,10 +918,11 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     });
   }
   function startGame(adventure) {
-    stock={};pity=0;run=null;cells.clear();sizeIdx=0;N=3;hover=null;preview=null;selected=null;noGhostKey=null;setRemoving(false);
+    stock={};pity=0;run=null;cells.clear();sizeIdx=0;N=3;hover=null;preview=null;selected=null;noGhostKey=null;setRemoving(false);useMap(null);
     $('#growBtn').disabled=false;$('#growBtn').textContent='扩建';buildTools();buildGrid();
     if(adventure) {
-      run={day:1,hp:100,wood:18,phase:'build',route:[]};
+      run={day:1,hp:100,wood:18,phase:'build',route:[],seed:newSeed()};
+      useMap(run.seed);
       cells.set('1,0','ballista');cells.set('0,1','ballista');cells.set('1,1','ammo');cells.set('0,0','net');
       announce('目标：撑过 5 天并击败巨兽。先用 18 木材建造，再选择航线。');
     } else {applyPreset('beacon');announce('自由构筑：无限建造。点“怎么玩”可开始五日冒险。');}
@@ -933,16 +963,19 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     ambush:   { name:'残骸潜伏者', hpW:1.15, hitW:1.25, pierce:.6,  tag:'伏击 · 每 2 轮 2 倍重击',      skills:[{k:'heavy', every:2, mult:2}] },
     leviathan:{ name:'深海巨兽',   hpW:1,    hitW:1,    pierce:.45, tag:'涡流 1.6× + 每轮回 3% 血',    skills:[{k:'heavy', every:3, mult:1.6},{k:'regen', pct:.03}] }
   };
+  // 每天、每种航道都有几套海怪组合；第 0 套就是旧版固定配置。
+  // 随机海图给每个航点分配一个 variant，同一天里同类航道尽量错开。
   const ENCOUNTERS = {
-    1:{ safe:['tentacle'],           risk:['tentacle','school'] },
-    2:{ safe:['school','leech'],     risk:['shell','tentacle'] },
-    3:{ safe:['barnacle'],           risk:['spore','school'] },
-    4:{ safe:['shell','leech'],      risk:['ambush','wraith'] },
-    5:{ safe:['leviathan'],          risk:['leviathan'] }
+    1:{ safe:[['tentacle'],['school']],                        risk:[['tentacle','school'],['leech','shell']] },
+    2:{ safe:[['school','leech'],['shell']],                   risk:[['shell','tentacle'],['barnacle','school']] },
+    3:{ safe:[['barnacle'],['spore']],                         risk:[['spore','school'],['ambush','leech']] },
+    4:{ safe:[['shell','leech'],['barnacle','school']],        risk:[['ambush','wraith'],['wraith','spore']] },
+    5:{ safe:[['leviathan']],                                  risk:[['leviathan']] }
   };
-  function encounter(day, elite) {
+  function encounter(day, elite, node) {
     const row=ENCOUNTERS[day]||ENCOUNTERS[1];
-    return (elite?row.risk:row.safe).slice();
+    const list=elite?row.risk:row.safe;
+    return list[((node&&node.variant)||0)%list.length].slice();
   }
 
   // ---------------- 战利品 ----------------
@@ -1116,10 +1149,10 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     return {rounds, damage, wood, log, monsters, win:monsters.every(m=>!m.alive)};
   }
   // Both the forecast and settlement call this function. Each round attacks simultaneously.
-  function forecast(elite) {
+  function forecast(elite, node) {
     const f=fleet(), boss=run.day===5;
     const power=boss?72:12+run.day*8+(elite?14:0);
-    const foes=encounter(run.day,elite);
+    const foes=encounter(run.day,elite,node);
     const sim=simulate(f,foes,{power,boss});
     const enemyHp=sim.monsters.reduce((s,m)=>s+m.maxHp,0);
     const hit=sim.monsters.reduce((s,m)=>s+m.hit,0);
@@ -1138,7 +1171,8 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
   // 想多拿一个遗物就得提前两层绕进险航，代价写在船票的船损上。
   const COLX=[86,154,222];
   const START={x:154,y:196};
-  const MAP_NODES=[
+  // 旧版固定海图：没有 seed 的旧存档和自由构筑沿用它。
+  const LEGACY_NODES=[
     {id:'1a',day:1,col:1,kind:'fight', links:['2a','2b']},
     {id:'1b',day:1,col:2,kind:'elite', links:['2b','2c']},
     {id:'2a',day:2,col:0,kind:'supply',links:['3a']},
@@ -1151,8 +1185,72 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     {id:'4b',day:4,col:2,kind:'elite', links:['5']},
     {id:'5', day:5,col:1,kind:'boss',  links:[]}
   ];
-  const NODE_MAP={};
-  MAP_NODES.forEach(n=>{NODE_MAP[n.id]=n;});
+  // 随机海图：同一个 seed 永远生成同一张图，所以存档只需要记 seed。
+  // 结构保证：每层节点数固定（2/3/3/2/1）、每个节点都有来路和去路、第 5 天只有巨兽、
+  // 每层至少一条巡游，且第 2、3 天里至少有一天出现补给。
+  function mulberry32(a) {
+    return function() {
+      a|=0; a=a+0x6D2B79F5|0;
+      let t=Math.imul(a^a>>>15,1|a);
+      t=t+Math.imul(t^t>>>7,61|t)^t;
+      return ((t^t>>>14)>>>0)/4294967296;
+    };
+  }
+  const MAP_SEED_MAX=999999;
+  const LAYER_SIZE=[2,3,3,2,1];
+  const MID_PATTERNS=[['fight','elite','supply'],['fight','fight','supply'],['fight','elite','elite'],['fight','elite','fight']];
+  function buildMap(seed) {
+    if(seed==null) return LEGACY_NODES.map(n=>({...n,links:n.links.slice(),variant:0}));
+    const rnd=mulberry32(seed);
+    const shuf=list=>{ const a=list.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(rnd()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+    const pick=list=>list[Math.floor(rnd()*list.length)];
+    const kinds=[null,
+      shuf(['fight','elite']),
+      null,null,
+      rnd()<.7?shuf(['fight','elite']):['fight','fight'],
+      ['boss']];
+    const p2=Math.floor(rnd()*MID_PATTERNS.length);
+    let p3=Math.floor(rnd()*MID_PATTERNS.length);
+    if(p2>1&&p3>1) p3=0;
+    kinds[2]=shuf(MID_PATTERNS[p2]); kinds[3]=shuf(MID_PATTERNS[p3]);
+    const layers=[];
+    for(let day=1;day<=5;day++) {
+      const size=LAYER_SIZE[day-1];
+      const cols=size===3?[0,1,2]:size===1?[1]:pick([[0,2],[0,1],[1,2]]);
+      const seen={fight:rnd()<.5?0:1,elite:rnd()<.5?0:1};
+      layers.push(cols.map((col,i)=>{
+        const kind=kinds[day][i];
+        const variant=kind==='fight'||kind==='elite'?seen[kind]++:0;
+        return {id:day===5?'5':day+'abc'[i],day,col,kind,links:[],variant};
+      }));
+    }
+    for(let d=0;d<4;d++) {
+      const A=layers[d], B=layers[d+1], incoming=new Set();
+      for(const a of A) {
+        let cand=B.filter(b=>Math.abs(b.col-a.col)<=1);
+        if(!cand.length) cand=[B.slice().sort((x,y)=>Math.abs(x.col-a.col)-Math.abs(y.col-a.col))[0]];
+        cand=shuf(cand);
+        const take=cand.length>1&&rnd()<.45?2:1;
+        for(const b of cand.slice(0,take)) { a.links.push(b.id); incoming.add(b.id); }
+      }
+      for(const b of B) {
+        if(incoming.has(b.id)) continue;
+        const near=shuf(A).sort((x,y)=>Math.abs(x.col-b.col)-Math.abs(y.col-b.col))[0];
+        near.links.push(b.id);
+      }
+    }
+    return layers.flat();
+  }
+  function indexMap(nodes) { const index={}; nodes.forEach(n=>{index[n.id]=n;}); return index; }
+  let MAP_NODES=buildMap(null);
+  let NODE_MAP=indexMap(MAP_NODES);
+  function useMap(seed) { MAP_NODES=buildMap(seed); NODE_MAP=indexMap(MAP_NODES); }
+  // ?seed=123456 可以复现某一张图；只对页面载入后的第一局冒险生效。
+  let forcedSeed=(()=>{ try { const v=Number(new URLSearchParams(location.search).get('seed')); return Number.isSafeInteger(v)&&v>=1&&v<=MAP_SEED_MAX?v:null; } catch { return null; } })();
+  function newSeed() {
+    if(forcedSeed!==null) { const s=forcedSeed; forcedSeed=null; return s; }
+    return 1+Math.floor(Math.random()*MAP_SEED_MAX);
+  }
   const KIND_NAME={fight:'巡游',elite:'险航',supply:'补给',boss:'终局'};
   const nodeX=n=>COLX[n.col];
   const nodeY=n=>24+(5-n.day)*36;
@@ -1280,13 +1378,13 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     const opts=reachableNodes();
     const rows=opts.map(node=>{
       if(node.kind==='supply') return supplyRow(node);
-      return sailRow(forecast(node.kind==='elite'),node);
+      return sailRow(forecast(node.kind==='elite',node),node);
     }).join('');
     const stat=forecast(opts.some(n=>n.kind==='elite'));
     const types=opts.map(n=>KIND_NAME[n.kind]).join(' / ');
     showJourney(run.day===5?'第五天 · 迎战深海巨兽':'第 '+run.day+' 天 · 选一条航道',
       seaChart()+
-      '<p class="chart-legend">金线＝走过的航路 · 金圈＝今天能去 · 方块＝补给 · 红＝险航</p>'+
+      '<p class="chart-legend">金线＝走过的航路 · 金圈＝今天能去 · 方块＝补给 · 红＝险航'+(run.seed?' · 海图 #'+run.seed:'')+'</p>'+
       '<p class="powers">攻击 <b>'+stat.attack+'</b> · 每轮护盾 <b>'+stat.shield+'</b> · 捕鱼 <b>'+stat.income+'</b>'+
       ' · 今天有 '+opts.length+' 条航道（'+types+'）</p>'+
       '<div class="sail-list">'+rows+'</div>'+
@@ -1364,7 +1462,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     if(!run || run.phase!=='build') return;
     const elite=node.kind==='elite';
     saveProgress();
-    const f=forecast(elite), before=run.hp;
+    const f=forecast(elite,node), before=run.hp;
     run.route.push({day:run.day,node:node.id});
     run.phase='battle';
     battle={f,before,elite:elite,node:node.id,round:0,enemyHp:f.enemyHp,art:null,timer:null};
@@ -1543,6 +1641,9 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     if(!d||d.version!==1||!integer(d.sizeIdx,0,2)||!integer(d.pity,0,19)||typeof d.soundEnabled!=='boolean'||typeof d.guideEnabled!=='boolean')return false;
     const r=d.run,n=SIZES[d.sizeIdx].n;
     if(!r||!integer(r.day,1,5)||!integer(r.hp,0,100)||!integer(r.wood,0,1e9)||!['build','result'].includes(r.phase))return false;
+    // seed 缺省＝旧版固定海图；有 seed 就必须是合法整数，路线按这张图校验
+    if(r.seed!=null&&!integer(r.seed,1,MAP_SEED_MAX))return false;
+    const NODE_MAP=indexMap(buildMap(r.seed==null?null:r.seed));
     if(r.phase==='build'&&r.hp===0)return false;
     if(!Array.isArray(r.route)||r.route.length!==r.day-(r.phase==='build'?1:0))return false;
     if(r.route.some((v,i)=>{
@@ -1568,6 +1669,8 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
   function migrateSave(d) {
     if(!d||!d.run||!Array.isArray(d.run.route))return d;
     if(d.run.route.every(v=>v&&typeof v.node==='string'))return d;
+    // 只有旧版（没有 seed）存档会走到这里，按固定海图补全
+    const legacy=buildMap(null), NODE_MAP=indexMap(legacy), MAP_NODES=legacy;
     const out=[];
     for(const v of d.run.route) {
       const prev=out.length?NODE_MAP[out[out.length-1].node]:null;
@@ -1611,14 +1714,14 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     if(!savedGame||!validSave(savedGame))return;
     const d=JSON.parse(JSON.stringify(savedGame));
     saveMessage='已恢复存档';
-    sizeIdx=d.sizeIdx;N=SIZES[sizeIdx].n;stock=d.stock;pity=d.pity;run=d.run;
+    sizeIdx=d.sizeIdx;N=SIZES[sizeIdx].n;stock=d.stock;pity=d.pity;run=d.run;useMap(run.seed==null?null:run.seed);
     soundEnabled=d.soundEnabled;guideEnabled=d.guideEnabled;
     cells.clear();for(const [k,id] of d.cells)cells.set(k,id);
     selected=null;hover=null;preview=null;noGhostKey=null;setRemoving(false);
     $('#growBtn').disabled=sizeIdx===2;
     $('#soundBtn').textContent='音效：'+(soundEnabled?'开':'关');$('#soundBtn').setAttribute('aria-pressed',String(soundEnabled));
     buildTools();buildGrid();paint();
-    if(run.phase==='result')presentResult(forecast(run.result.elite),run.result.before);
+    if(run.phase==='result')presentResult(forecast(run.result.elite,NODE_MAP[run.result.node]),run.result.before);
     else announce('已恢复第 '+run.day+' 天的木筏、仓库和保底进度。');
   }
   $('#miniMap').addEventListener('click',chooseRoute);
@@ -1626,10 +1729,88 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
   $('#helpBtn').addEventListener('click',()=>{guideEnabled=true;paint();});
   $('#soundBtn').addEventListener('click',saveProgress);
 
+  // ---------------- 道具图鉴 ----------------
+  // 建筑的数值本来就公开在工具箱里，所以图鉴始终显示全部建筑，只标记“收集过没有”；
+  // 宝藏只在战利品里出现，未获得前保持隐藏。收集记录跨局保留，单独存放，不进冒险存档。
+  const CODEX_KEY='crazy-fishery.codex.v1';
+  const codexSeen={b:new Set(),r:new Set()};
+  let codexTab='building';
+  try {
+    const d=JSON.parse(localStorage.getItem(CODEX_KEY)||'null');
+    if(d&&Array.isArray(d.b)&&Array.isArray(d.r)) {
+      d.b.forEach(id=>{ if(Object.hasOwn(MAP,id)) codexSeen.b.add(id); });
+      d.r.forEach(id=>{ if(Object.hasOwn(RELICS,id)) codexSeen.r.add(id); });
+    }
+  } catch { /* 图鉴记录损坏或存储不可用：从空白开始，不影响游玩 */ }
+  function markSeen() {
+    if(!run) return;
+    let fresh=false;
+    const addBuilding=id=>{ if(Object.hasOwn(MAP,id)&&!codexSeen.b.has(id)){ codexSeen.b.add(id); fresh=true; } };
+    for(const id of cells.values()) addBuilding(id);
+    for(const [id,n] of Object.entries(stock)) if(n>0) addBuilding(id);
+    for(const id of run.relics||[]) if(Object.hasOwn(RELICS,id)&&!codexSeen.r.has(id)){ codexSeen.r.add(id); fresh=true; }
+    if(!fresh) return;
+    try { localStorage.setItem(CODEX_KEY,JSON.stringify({b:[...codexSeen.b],r:[...codexSeen.r]})); } catch { /* 同上 */ }
+  }
+  const SCOPE_NAME={adjacent:'上下左右相邻',range:'周围 3×3',row:'同一行',col:'同一列',all:'全船',self:'自身'};
+  function sourceOf(id) {
+    const tier=Object.keys(POOLS).find(k=>POOLS[k].includes(id));
+    return (tier?RARITY[tier]+'池招募 · ':'')+'战利品 / 补给 / 商店直购';
+  }
+  function buildingCard(b) {
+    const placed=run?[...cells.values()].filter(id=>id===b.id).length:0, held=run?(stock[b.id]||0):0;
+    const mine=placed+held>0, seen=codexSeen.b.has(b.id);
+    const state=mine?'本局持有 '+(placed+held):seen?'已收集':'未收集';
+    const fx=effectsOf(b).map(e=>'<i class="fx">'+SCOPE_NAME[e.to]+' · '+e.tag+'</i>').join('');
+    return '<div class="codex-card '+(mine?'own':seen?'seen':'locked')+'" style="--c:'+CAT[b.cat].color+'" data-codex="'+b.id+'">'+
+      '<div class="codex-art">'+model(b.id)+'</div>'+
+      '<div class="codex-body"><b>'+b.name+'</b><i class="codex-state">'+state+'</i><p>'+b.desc+'</p>'+
+      '<div class="codex-tags"><i class="cat">'+CAT[b.cat].name+'</i><i>基础 '+b.base+'</i><i>'+COST[b.id]+' 木材</i>'+fx+'</div>'+
+      '<small>来源：'+sourceOf(b.id)+(mine&&placed?' · 已放置 '+placed:'')+(held?' · 库存 '+held:'')+'</small></div></div>';
+  }
+  function relicCard(id) {
+    const r=RELICS[id];
+    if(!codexSeen.r.has(id)) {
+      return '<div class="codex-card locked" data-codex="'+id+'"><div class="codex-art lock">?</div>'+
+        '<div class="codex-body"><b>？？？</b><i class="codex-state">未获得</i><p>击败海怪后，有机会出现在三选一战利品里。</p></div></div>';
+    }
+    const mine=run&&(run.relics||[]).includes(id);
+    return '<div class="codex-card '+(mine?'own':'seen')+'" style="--c:#c9a44e" data-codex="'+id+'">'+
+      '<div class="codex-art">'+lootArt(id)+'</div>'+
+      '<div class="codex-body"><b>'+r.name+'</b><i class="codex-state">'+(mine?'本局持有':'已获得')+'</i><p>'+r.desc+'</p><small>整局生效 · 不占甲板格子</small></div></div>';
+  }
+  function renderCodex() {
+    document.querySelectorAll('#codexTabs button').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.tab===codexTab)));
+    const relicIds=Object.keys(RELICS);
+    $('#codexProgress').textContent='建筑 '+codexSeen.b.size+' / '+BUILDINGS.length+' · 宝藏 '+codexSeen.r.size+' / '+relicIds.length+'。冒险中获得过就永久记录。';
+    let html='';
+    if(codexTab==='building') {
+      for(const cat of Object.keys(CAT)) {
+        html+='<h3 style="--c:'+CAT[cat].color+'">'+CAT[cat].name+'</h3>'+BUILDINGS.filter(b=>b.cat===cat).map(buildingCard).join('');
+      }
+    } else html=relicIds.map(relicCard).join('');
+    $('#codexGrid').innerHTML=html;
+  }
+  const codex=$('#codex');
+  function openCodex() {
+    if(battle||journey.open) return;
+    codexTab='building';
+    renderCodex();
+    if(!codex.open) codex.showModal();
+    codex.scrollTop=0;
+  }
+  $('#codexBtn').addEventListener('click',openCodex);
+  $('#codexClose').addEventListener('click',()=>codex.close());
+  $('#codexTabs').addEventListener('click',ev=>{
+    const button=ev.target.closest('button[data-tab]'); if(!button) return;
+    codexTab=button.dataset.tab; renderCodex();
+  });
+
   // ---------------- 启动 ----------------
   // 数值核对出口：自动化测试与平衡调试用，不影响正常游玩
   window.__ff={ simulate, forecast, encounter, fleet, MONSTERS, monsterArt, RELICS, rewardOptions, applyReward, relicBonus, paint,
-    MAP_NODES, NODE_MAP, KIND_NAME, reachableNodes, hereNode, routeNodes, validSave, migrateSave,
+    KIND_NAME, reachableNodes, hereNode, routeNodes, validSave, migrateSave, buildMap, useMap,
+    get MAP_NODES(){return MAP_NODES;}, get NODE_MAP(){return NODE_MAP;},
     get stock(){return stock;},
     get run(){return run;}, set run(v){run=v;} };
   readSave();

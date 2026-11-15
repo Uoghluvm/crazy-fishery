@@ -1,6 +1,7 @@
 """Run: python test_mvp.py (uses the locally installed Playwright)."""
 from pathlib import Path
 from playwright.sync_api import sync_playwright
+from ui_helpers import *
 
 
 def check_game(page):
@@ -67,163 +68,196 @@ def check_game(page):
 
 
 def check_adventure(page):
-    errors=[]
-    page.on('pageerror',lambda e: errors.append(str(e)))
-    page.goto(Path(__file__).with_name('mvp.html').as_uri())
+    """Pinned chart #4242: day-1 tickets are fixed, so the opening numbers can be asserted exactly."""
+    errors = []
+    page.on('pageerror', lambda e: errors.append(str(e)))
     page.emulate_media(reduced_motion='reduce')
-    page.get_by_role('button',name='开始五日冒险',exact=True).click()
-    assert '18' in page.locator('#voyageHud').inner_text()
+    start_adventure(page, 4242)
+    assert hud(page) == {'hp': 100, 'wood': 18}
     page.locator('#buildBtn').click()
     page.locator('.tool[data-id="ballista"]').click()
     page.locator('.cell').nth(5).focus()
-    assert page.locator('.cell.ghost').count()==1
-    page.locator('#sailBtn').click()
-    assert '你的攻击 30' in page.locator('#journeyBody').inner_text()
-    assert '预计船损 10' in page.locator('#journeyBody').inner_text()
-    page.get_by_role('button',name='返回整备',exact=True).click()
-    assert page.locator('#voyageHud strong').last.inner_text()=='18'
-    def build(kind,index):
-        page.locator('#buildBtn').click()
-        page.locator('.tool[data-id="'+kind+'"]').click()
-        page.locator('.cell').nth(index).focus()
-        page.locator('.cell').nth(index).press('Enter')
-        page.keyboard.press('Escape')
-    build('ballista',5)
-    build('ballista',7)
-    assert page.locator('[data-cat="attack"] b').inner_text()=='60'
-    assert page.locator('#voyageHud strong').last.inner_text()=='2'
-    build('beacon',2)  # unaffordable: no free building or negative balance
+    assert page.locator('.cell.ghost').count() == 1
+    open_chart(page)
+    body = page.locator('#journeyBody').inner_text()
+    assert '攻击 30' in body and '海图 #4242' in body
+    first = tickets(page)
+    assert [(t['kind'], t['net']) for t in first] == [('fight', 10), ('elite', 22)], first
+    assert '预计船损 10' in page.locator('.sail-row').first.get_attribute('aria-label')
+    page.get_by_role('button', name='返回整备', exact=True).click()
+    assert hud(page)['wood'] == 18  # a hover preview and a peek at the chart cost nothing
+    build(page, 'ballista', 5)
+    build(page, 'ballista', 7)
+    assert page.locator('[data-cat="attack"] b').inner_text() == '60'
+    assert hud(page)['wood'] == 2
+    build(page, 'beacon', 2)  # unaffordable: no free building or negative balance
     assert 'empty' in page.locator('.cell').nth(2).get_attribute('class')
-    assert page.locator('#voyageHud strong').last.inner_text()=='2'
+    assert hud(page)['wood'] == 2
     page.locator('#growBtn').click()
-    assert page.locator('.cell').count()==9
-    for day in range(1,6):
-        if day==2:
-            build('shield',8)
-        page.locator('#sailBtn').click()
-        if day==1:
-            assert '预计船损 5' in page.locator('#journeyBody').inner_text()
-        page.get_by_role('button',name='迎战巨兽' if day==5 else '驶入浅海',exact=True).click()
-        if day<5:
-            assert '遭遇胜利' in page.locator('#journeyTitle').inner_text()
-            page.get_by_role('button',name='领取并整备下一天',exact=True).click()
-        else:
-            assert page.locator('#journeyTitle').inner_text()=='你驶出了深海！'
-            assert page.locator('#voyageHud strong').first.inner_text()=='3'
+    assert page.locator('.cell').count() == 9
+    open_chart(page)
+    assert tickets(page)[0]['net'] == 5  # the extra firepower shows up in the forecast
+    page.get_by_role('button', name='返回整备', exact=True).click()
+
+    # Full five-day clear on the pinned chart with the adaptive build order.
+    outcome = None
+    for day in range(1, 6):
+        assert page.evaluate('window.__ff.run.day') == day
+        strengthen(page)
+        open_chart(page)
+        ts = tickets(page)
+        pick = min([t for t in ts if not t['wreck']], key=lambda t: t['net'] or 0)
+        if day == 5:
+            assert pick['kind'] == 'boss' and len(ts) == 1
+        page.locator('.sail-row[data-node="%s"]' % pick['node']).click()
+        outcome = settle_stop(page)
+        if day < 5:
+            assert outcome in ('win', 'supply'), outcome
+    assert outcome == 'victory'
+    assert page.locator('#journeyTitle').inner_text() == '你驶出了深海！'
+    assert hud(page)['hp'] > 0
     page.screenshot(path=str(Path(__file__).with_name('preview-victory.png')))
-    page.get_by_role('button',name='再来一局',exact=True).click()
-    assert page.locator('#voyageHud strong').first.inner_text()=='100'
-    assert page.locator('#voyageHud strong').last.inner_text()=='18'
+    page.get_by_role('button', name='再来一局', exact=True).click()
+    assert hud(page) == {'hp': 100, 'wood': 18}
+    assert page.evaluate('window.__ff.run.day') == 1
     # Full refund and zero-attack defeat.
-    for index in [1,3]:
+    for index in [1, 3]:
         page.locator('.cell').nth(index).focus()
         page.locator('.cell').nth(index).press('Delete')
-    assert page.locator('#voyageHud strong').last.inner_text()=='34'
-    page.locator('#sailBtn').click()
-    page.get_by_role('button',name='驶入浅海',exact=True).click()
-    assert page.locator('#journeyTitle').inner_text()=='木筏沉没了'
-    page.get_by_role('button',name='再来一局',exact=True).click()
-    page.locator('#sailBtn').click()
-    page.get_by_role('button',name='驶入浅海',exact=True).click()
-    page.get_by_role('button',name='领取并整备下一天',exact=True).click()
-    assert page.locator('#voyageHud strong').first.inner_text()=='90'
+    assert hud(page)['wood'] == 34
+    assert page.locator('[data-cat="attack"] b').inner_text() == '0'
+    open_chart(page)
+    assert all(t['wreck'] for t in tickets(page) if t['kind'] != 'supply'), tickets(page)
+    page.locator('.sail-row').first.click()
+    wait_for_dialog(page)
+    assert page.locator('#journeyTitle').inner_text() == '木筏沉没了'
+    page.get_by_role('button', name='再来一局', exact=True).click()
+    # Restart, win day 1, then repair and paid expansion.
+    open_chart(page)  # a fresh run draws a random chart, so don't assume which monsters day 1 holds
+    page.locator('.sail-row.fight').first.click()
+    # Skip the repair/wood cards: a repair card would top the hull back up and hide the damage we measure.
+    assert settle_stop(page, loot=('relic', 'build')) == 'win'
+    hp = hud(page)['hp']
+    assert hp < 100
+    wood = hud(page)['wood']
     page.locator('#repairBtn').click()
-    assert page.locator('#voyageHud strong').first.inner_text()=='100'
-    assert page.locator('#voyageHud strong').last.inner_text()=='21'
+    assert hud(page) == {'hp': min(100, hp + 25), 'wood': wood - 10}
+    while hud(page)['hp'] < 100 and not page.locator('#repairBtn').is_disabled():
+        page.locator('#repairBtn').click()
     assert page.locator('#repairBtn').is_disabled()
+    wood = hud(page)['wood']
     page.locator('#growBtn').click()
-    assert page.locator('.cell').count()==16
-    assert page.locator('#voyageHud strong').last.inner_text()=='6'
-    assert not errors,errors
+    assert page.locator('.cell').count() == 16
+    assert hud(page)['wood'] == wood - 15
+    assert not errors, errors
 
 
 def check_combat_animation(page):
-    errors=[]
-    page.on('pageerror',lambda e: errors.append(str(e)))
-    for mode in ['watch','skip','reduce_midway']:
+    errors = []
+    page.on('pageerror', lambda e: errors.append(str(e)))
+    seen = None
+    for mode in ['watch', 'skip', 'reduce_midway']:
         page.emulate_media(reduced_motion='no-preference')
-        page.goto(Path(__file__).with_name('mvp.html').as_uri())
-        page.get_by_role('button',name='开始五日冒险',exact=True).click()
-        page.locator('#buildBtn').click()
-        page.locator('.tool[data-id="shield"]').click()
-        page.locator('.cell').nth(2).focus()
-        page.locator('.cell').nth(2).press('Enter')
-        page.keyboard.press('Escape')
-        page.locator('#sailBtn').click()
-        page.get_by_role('button',name='驶入浅海',exact=True).click()
+        start_adventure(page, 4242)
+        build(page, 'shield', 2)
+        open_chart(page)
+        page.locator('.sail-row.fight').first.click()
         assert page.locator('#battleView').is_visible()
         assert page.locator('.dock').evaluate('e=>e.inert')
         assert page.locator('.voyage-actions').evaluate('e=>e.inert')
         page.locator('.cell').nth(1).dispatch_event('contextmenu')
         assert 'empty' not in page.locator('.cell').nth(1).get_attribute('class')
         page.wait_for_function("document.querySelectorAll('.projectile').length>0")
-        if mode=='watch':
+        if mode == 'watch':
             page.wait_for_timeout(150)
-            page.screenshot(path=str(Path(__file__).with_name('preview-combat-'+str(page.viewport_size['width'])+'.png')))
+            page.screenshot(path=str(Path(__file__).with_name('preview-combat-' + str(page.viewport_size['width']) + '.png')))
             page.wait_for_function("document.querySelectorAll('.shield-ring').length>0")
             page.wait_for_timeout(100)
-            page.screenshot(path=str(Path(__file__).with_name('preview-shield-'+str(page.viewport_size['width'])+'.png')))
-            enemy_left=page.locator('#enemy').bounding_box()['x']
-            page.wait_for_function('(x)=>document.querySelector("#enemy").getBoundingClientRect().left < x-20',arg=enemy_left,timeout=3000)
-        elif mode=='skip':
+            page.screenshot(path=str(Path(__file__).with_name('preview-shield-' + str(page.viewport_size['width']) + '.png')))
+            enemy_left = page.locator('#enemy').bounding_box()['x']
+            page.wait_for_function('(x)=>document.querySelector("#enemy").getBoundingClientRect().left < x-20', arg=enemy_left, timeout=3000)
+        elif mode == 'skip':
             page.locator('#skipBattle').click()
         else:
             page.emulate_media(reduced_motion='reduce')
-        page.wait_for_function("document.querySelector('#journey').open",timeout=10000)
-        assert page.locator('#journeyTitle').inner_text()=='第 1 天 · 遭遇胜利'
-        assert page.locator('#voyageHud strong').first.inner_text()=='96'
-        assert page.locator('#voyageHud strong').last.inner_text()=='21'
-        assert page.locator('[data-combat]').count()==0
+        wait_for_dialog(page, 10000)
+        assert page.locator('#journeyTitle').inner_text() == '第 1 天 · 遭遇胜利'
+        # All three ways of watching must settle to identical hull and wood.
+        result = (hud(page)['hp'], hud(page)['wood'])
+        if seen is None:
+            seen = result
+        assert result == seen, (mode, result, seen)
+        assert page.locator('[data-combat]').count() == 0
         assert not page.locator('#battleView').is_visible()
-        page.get_by_role('button',name='领取并整备下一天',exact=True).click()
+        wood = hud(page)['wood']
+        claim_loot(page, ('relic',))  # a relic changes no wood, so the next-day totals stay comparable
+        next_day(page)
         page.wait_for_timeout(1100)  # Old round timers must not mutate the next day.
         assert '第 2 / 5 天' in page.locator('#voyageHud').inner_text()
-        assert page.locator('#voyageHud strong').last.inner_text()=='21'
+        assert hud(page)['wood'] == wood
         assert not page.locator('.dock').evaluate('e=>e.inert')
-    assert not errors,errors
+    assert not errors, errors
 
 
 def check_map_shop(page):
-    errors=[]
-    page.on('pageerror',lambda e: errors.append(str(e)))
+    errors = []
+    page.on('pageerror', lambda e: errors.append(str(e)))
     page.add_init_script('Math.random = () => 0')
     page.emulate_media(reduced_motion='reduce')
-    page.goto(Path(__file__).with_name('mvp.html').as_uri())
-    page.get_by_role('button',name='开始五日冒险',exact=True).click()
+    start_adventure(page, 4242)
     page.locator('#shopBtn').click()
     assert '金币 ∞' in page.locator('.shop-banner').inner_text()
     page.locator('[data-buy="shield"]').click()
-    page.get_by_role('button',name='十连',exact=True).click()
-    assert page.locator('.recruit-card').count()==10
-    assert page.locator('.recruit-card.legendary').count()==0
-    page.get_by_role('button',name='十连',exact=True).click()
-    assert page.locator('.recruit-card.legendary').count()==1
+    page.get_by_role('button', name='十连', exact=True).click()
+    assert page.locator('.recruit-card').count() == 10
+    assert page.locator('.recruit-card.legendary').count() == 0
+    page.get_by_role('button', name='十连', exact=True).click()
+    assert page.locator('.recruit-card.legendary').count() == 1
     assert '弩炮 ×19' in page.locator('.stock').inner_text()
     assert '灯塔 ×1' in page.locator('.stock').inner_text()
-    page.screenshot(path=str(Path(__file__).with_name('preview-recruit-'+str(page.viewport_size['width'])+'.png')))
+    page.screenshot(path=str(Path(__file__).with_name('preview-recruit-' + str(page.viewport_size['width']) + '.png')))
     page.locator('#buyWood').click()
-    assert page.locator('#voyageHud strong').last.inner_text()=='118'
-    page.get_by_role('button',name='去建造',exact=True).click()
+    assert hud(page)['wood'] == 118
+    page.get_by_role('button', name='去建造', exact=True).click()
     page.locator('.tool[data-id="shield"]').click()
     page.locator('.cell').nth(2).focus()
     page.locator('.cell').nth(2).press('Enter')
     page.keyboard.press('Escape')
-    assert page.locator('#voyageHud strong').last.inner_text()=='118'
+    assert hud(page)['wood'] == 118  # stocked shield is placed for free
     page.locator('#shopBtn').click()
     assert '护盾塔' not in page.locator('.stock').inner_text()
-    page.get_by_role('button',name='返回海面',exact=True).click()
-    page.locator('#sailBtn').click()
-    assert page.locator('.map-node').count()==9
-    assert page.locator('.map-node.current').count()==2
-    assert page.locator('.map-node:disabled').count()==7
-    page.screenshot(path=str(Path(__file__).with_name('preview-map-'+str(page.viewport_size['width'])+'.png')))
-    page.get_by_role('button',name='驶入浅海',exact=True).click()
-    page.get_by_role('button',name='领取并整备下一天',exact=True).click()
-    page.locator('#sailBtn').click()
-    assert page.locator('.map-node.visited').count()==1
-    assert page.locator('.map-node.current').first.get_attribute('data-day')=='2'
-    assert page.locator('.map-node.visited').is_disabled()
-    assert not errors,errors
+    page.get_by_role('button', name='返回海面', exact=True).click()
+
+    # Day 1 chart: 11 nodes, exactly the two day-1 nodes are open, everything else is locked.
+    open_chart(page)
+    chart = '.chart .node'
+    assert page.locator(chart).count() == 11
+    assert page.locator(chart + '.open').count() == 2
+    assert page.locator(chart + '.lock').count() == 9
+    assert page.locator('.chart .edge.open').count() == 2
+    assert page.locator('.sail-row').count() == 2
+    page.screenshot(path=str(Path(__file__).with_name('preview-map-' + str(page.viewport_size['width']) + '.png')))
+    # Hovering a ticket lights its node on the chart.
+    row = page.locator('.sail-row').first
+    row.hover()
+    assert page.locator(chart + '.lit').count() == 1
+    assert page.locator(chart + '.lit').get_attribute('data-id') == row.get_attribute('data-node')
+    taken = row.get_attribute('data-node')
+    row.click()
+    assert settle_stop(page) == 'win'
+    # Day 2: the node we sailed is on the trail, only its links are open, off-route nodes fade out.
+    open_chart(page)
+    assert page.locator(chart + '.here').count() == 1
+    assert page.locator(chart + '.here').get_attribute('data-id') == taken
+    links = page.evaluate('(id)=>window.__ff.NODE_MAP[id].links', taken)
+    opened = page.locator(chart + '.open')
+    assert sorted(opened.nth(i).get_attribute('data-id') for i in range(opened.count())) == sorted(links)
+    assert page.locator('.sail-row').count() == len(links)
+    assert page.locator(chart + '.dead').count() >= 1
+    assert page.evaluate('window.__ff.routeNodes()') == [taken]
+    # The chart only ever offers what is linked from where we are; nothing locked can be sailed.
+    assert {t['node'] for t in tickets(page)} == set(links)
+    assert not errors, errors
 
 
 if __name__ == '__main__':
