@@ -13,9 +13,10 @@ def resume(page):
     page.reload()
     page.get_by_role('button',name='继续上次冒险 · 第 1 天',exact=True).click()
 
-def sail(page, index=0):
+def sail(page, kind='fight'):
+    """出海图，挑第一张指定种类的船票：海图现在是随机的，只有按种类点才稳得住木材断言。"""
     page.locator('#sailBtn').click()
-    page.locator('.sail-row').nth(index).click()
+    page.locator('.sail-row.%s' % kind).first.click()
 
 def pick_loot(page):
     """战利品三选一：挑不是木材的那张，保持木材数量可断言。"""

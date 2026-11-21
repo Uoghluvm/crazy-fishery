@@ -173,7 +173,8 @@ def check_reward_not_undoable(page):
     page.emulate_media(reduced_motion='reduce')
     start_adventure(page)
     page.locator('#sailBtn').click()
-    page.locator('.sail-row').first.click()
+    # 第 1 天可能摆着灯影事件，按种类点战斗票才拿得到战报
+    page.locator('.sail-row.fight, .sail-row.elite').first.click()
     page.wait_for_function("document.querySelector('#journeyTitle').textContent.includes('遭遇胜利')")
     assert page.locator('#undoBtn').is_disabled(), '结算阶段不能撤销'
     assert depth(page) == 0

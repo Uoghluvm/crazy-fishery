@@ -89,7 +89,7 @@ def settle_stop(page, loot=('wood', 'repair', 'relic', 'build'), supply='wood'):
         page.get_by_role('button', name='继续航行', exact=True).click()
         return 'supply'
     title = page.locator('#journeyTitle').inner_text()
-    if title == '你驶出了深海！':
+    if title.startswith('你征服了'):
         return 'victory'
     if title == '木筏沉没了':
         return 'sunk'

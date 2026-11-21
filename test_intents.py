@@ -96,7 +96,8 @@ def check_intent_on_screen(page):
     page.get_by_role('button', name='开始五日冒险', exact=True).click()
     # 第二天走有潜伏者的航线太慢，这里直接在第 1 天验证播报结构：有「下轮：」提示
     page.locator('#sailBtn').click()
-    page.locator('.sail-row').first.click()
+    # 第 1 天固定有灯影事件，挑战斗票才能进战斗界面
+    page.locator('.sail-row.fight, .sail-row.elite').first.click()
     page.wait_for_function("document.querySelector('#battleDetail').textContent.includes('首轮：')")
     detail = page.locator('#battleDetail').inner_text()
     assert '首轮：' in detail, ('开场播报应给出首轮意图', detail)

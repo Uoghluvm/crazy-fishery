@@ -75,12 +75,20 @@ def hp(page):
 
 
 def sail(page, want='fight'):
-    """按航点类型挑航道：fight 跳过补给点，supply 专找补给点。"""
+    """按航点类型挑航道：fight 跳过补给与事件，supply 专找补给点。
+
+    海图是随机的，第 2~4 天可能摆着事件节点，所以不能"点第一张"，否则会打开事件弹窗。
+    """
     page.locator('#sailBtn').click()
     rows = page.locator('.sail-row')
     for i in range(rows.count()):
-        is_supply = 'supply' in (rows.nth(i).get_attribute('class') or '')
-        if (want == 'supply') == is_supply:
+        cls = rows.nth(i).get_attribute('class') or ''
+        is_supply = 'supply' in cls
+        is_stop = is_supply or 'event' in cls
+        if want == 'supply' and is_supply:
+            rows.nth(i).click()
+            return
+        if want != 'supply' and not is_stop:
             rows.nth(i).click()
             return
     rows.first.click()
@@ -208,7 +216,8 @@ def check_combat_animation(page):
     results = []
     for mode in ['watch', 'skip', 'reduce_midway']:
         page.emulate_media(reduced_motion='no-preference')
-        page.goto(Path(__file__).with_name('mvp.html').as_uri())
+        # 固定海图编号：三种观看方式必须打同一张图，否则随机海图会换成不同的敌人组合
+        page.goto(Path(__file__).with_name('mvp.html').as_uri() + '?seed=4242')
         page.get_by_role('button', name='开始五日冒险', exact=True).click()
         page.locator('#buildBtn').click()
         page.locator('.tool[data-id="shield"]').click()
@@ -282,7 +291,8 @@ def check_map_shop(page):
     assert page.locator('#chart .node.open').count() == 3, '第一天有三个可选航点'
     assert page.locator('.sail-row').count() == 3, '每个可选航点一张船票'
     page.screenshot(path=str(Path(__file__).with_name('preview-map-' + str(page.viewport_size['width']) + '.png')))
-    page.locator('.sail-row').first.click()
+    # 第 1 天固定有一处灯影，点第一张可能打开事件：这里要的是战斗票
+    page.locator('.sail-row.fight, .sail-row.elite').first.click()
     page.wait_for_function("document.querySelector('#journey').open", timeout=10000)
     take_reward(page)
     page.locator('#sailBtn').click()

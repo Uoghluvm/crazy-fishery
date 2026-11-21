@@ -5,7 +5,9 @@ import json
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
-URL = Path(__file__).with_name('mvp.html').as_uri()
+# 这些用例断言的是精确数值与流程，用 ?chart=legacy 固定成原来那张 13 节点海图；
+# 随机海图的行为由 test_map_codex.py 覆盖。
+URL = Path(__file__).with_name('mvp.html').as_uri() + '?chart=legacy'
 KEY = 'crazy-fishery.save.v1'
 
 

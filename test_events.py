@@ -85,7 +85,8 @@ def check_route_options(page):
     kinds = [rows.nth(i).get_attribute('class') for i in range(rows.count())]
     assert sum('event' in k for k in kinds) == 1, kinds
     assert page.locator('#chart .node').count() == 13, '航线图应画出 13 个航点'
-    assert page.locator('#chart .node.event').count() == 2, '两个事件航点'
+    # 第 1 天固定一处灯影、第 4 天固定一处风暴；第 2、3 天可能再各加一处灯影
+    assert page.locator('#chart .node.event').count() in (2, 3, 4), '事件航点数量应固定在第 1 天的灯影与第 4 天的风暴之上'
     assert page.locator('#chart .node.open').count() == 3, '第一天三个可选航点'
     assert '事件' in page.locator('.powers').inner_text(), '可选航道类型里应出现"事件"'
     page.screenshot(path=str(Path(__file__).with_name('preview-event-route-' + str(page.viewport_size['width']) + '.png')))
@@ -97,6 +98,8 @@ def check_lamp_event(page):
     page.get_by_role('button', name='开始五日冒险', exact=True).click()
     sail(page, want='event')
     page.wait_for_function("document.querySelector('#journey').open")
+    # 海图是随机的，灯影落在 1a/1b/1c 哪一列不固定，按实际点下去的那张船票断言
+    event_node = page.evaluate('window.__ff.run.route[0].node')
     assert page.locator('#journeyTitle').inner_text() == '第 1 天 · 海雾里的灯影'
     assert page.locator('[data-event]').count() == 2, '事件应给出两个选项'
     assert page.locator('#journeyActions button').is_disabled(), '未做选择前不能起航'
@@ -122,7 +125,7 @@ def check_lamp_event(page):
     page.get_by_role('button', name='继续航行', exact=True).click()
     snap = stored(page)
     assert snap['run']['day'] == 2 and snap['run']['phase'] == 'build'
-    assert len(snap['run']['route']) == 1 and snap['run']['route'][0]['node'] == '1c'
+    assert len(snap['run']['route']) == 1 and snap['run']['route'][0]['node'] == event_node
     assert page.evaluate('(d)=>window.__ff.validSave(d)', snap) is True
     assert sum(snap['stock'].values()) == sum(stock_before.values()) + 1, '奖励应恰好进账一次'
 
@@ -148,9 +151,28 @@ def check_event_cannot_farm(page):
 
 
 def check_storm_event(page, choice, expect):
-    """走到 4c 风暴前夜，验证两个选项的代价与收益。"""
+    """走到第 4 天的风暴前夜，验证两个选项的代价与收益。"""
     page.emulate_media(reduced_motion='reduce')
     page.goto(URL)
+    # 海图随机：挑一张"连打三天第一张票后，第 4 天仍能点到风暴"的图，两次选项走同一张
+    seed = page.evaluate("""() => {
+      const ff = window.__ff;
+      for (let s = 1; s < 20000; s++) {
+        const nodes = ff.buildMap(s), byId = Object.fromEntries(nodes.map(n => [n.id, n]));
+        const storm = nodes.find(n => n.kind === 'event' && n.event === 'storm');
+        let cur = null, ok = true;
+        for (let day = 1; day <= 3; day++) {
+          const opts = cur ? cur.links.map(id => byId[id]) : nodes.filter(n => n.day === 1);
+          const pick = opts.find(n => n.kind === 'fight' || n.kind === 'elite');
+          if (!pick) { ok = false; break; }
+          cur = pick;
+        }
+        if (ok && cur.links.includes(storm.id)) return s;
+      }
+      return null;
+    }""")
+    assert seed, '找不到能走到风暴的海图'
+    page.goto(URL + '?seed=%d' % seed)
     page.get_by_role('button', name='开始五日冒险', exact=True).click()
     page.locator('#shopBtn').click()
     page.locator('#buyWood').click()
