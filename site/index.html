@@ -3,21 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>疯狂渔场 · 木筏构筑验证 MVP</title>
+<title>疯狂水世界 · 木筏构筑验证 MVP</title>
 <style>
 :root{--ink:#fff2d4;--dim:#afcecb;--gold:#ffdc89;--cyan:#86eadb;--cell:112px}
 *{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}body{font-family:"Microsoft YaHei",sans-serif;color:var(--ink);overflow:hidden;background:#125660}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid var(--gold);outline-offset:4px}button:disabled{opacity:.5;cursor:default}
 .app,main{height:100%;position:relative}.waves{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 74% 8%,#fff1c9c9,transparent 27%),radial-gradient(ellipse at 25% 42%,#31949066,transparent 48%),linear-gradient(#b7c9bc 0%,#e0d7b6 12%,#8ab3ac 13%,#498e8f 18%,#236c77 42%,#104755 76%,#082f42);overflow:hidden}.waves:before,.waves:after{content:"";position:absolute;inset:15% -15% -15%;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22740%22%20height%3D%22280%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23b6e5d5%22%3E%3Cpath%20d%3D%22M0%200q3.6%20-3%207.2%200t4.8%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M137%2071q9.3%20-3%2018.6%200t12.4%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M274%20142q15.0%20-3%2030.0%200t20.0%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M411%20213q20.7%20-3%2041.4%200t27.6%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M548%204q26.4%20-3%2052.8%200t35.2%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M685%2075q5.1%20-3%2010.2%200t6.8%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M82%20146q10.8%20-3%2021.6%200t14.4%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M219%20217q16.5%20-3%2033.0%200t22.0%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M356%208q22.2%20-3%2044.4%200t29.6%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M493%2079q27.9%20-3%2055.8%200t37.2%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M630%20150q6.6%20-3%2013.2%200t8.8%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M27%20221q12.3%20-3%2024.6%200t16.4%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M164%2012q18.0%20-3%2036.0%200t24.0%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M301%2083q23.7%20-3%2047.4%200t31.6%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M438%20154q29.4%20-3%2058.8%200t39.2%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M575%20225q8.1%20-3%2016.2%200t10.8%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M712%2016q13.8%20-3%2027.6%200t18.4%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M109%2087q19.5%20-3%2039.0%200t26.0%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M246%20158q25.2%20-3%2050.4%200t33.6%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M383%20229q3.9%20-3%207.8%200t5.2%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M520%2020q9.6%20-3%2019.2%200t12.8%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M657%2091q15.3%20-3%2030.6%200t20.4%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M54%20162q21.0%20-3%2042.0%200t28.0%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M191%20233q26.7%20-3%2053.4%200t35.6%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M328%2024q5.4%20-3%2010.8%200t7.2%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M465%2095q11.1%20-3%2022.2%200t14.8%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M602%20166q16.8%20-3%2033.6%200t22.4%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M739%20237q22.5%20-3%2045.0%200t30.0%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M136%2028q28.2%20-3%2056.4%200t37.6%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M273%2099q6.9%20-3%2013.8%200t9.2%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M410%20170q12.6%20-3%2025.2%200t16.8%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M547%20241q18.3%20-3%2036.6%200t24.4%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M684%2032q24.0%20-3%2048.0%200t32.0%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M81%20103q29.7%20-3%2059.4%200t39.6%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M218%20174q8.4%20-3%2016.8%200t11.2%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M355%20245q14.1%20-3%2028.2%200t18.8%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M492%2036q19.8%20-3%2039.6%200t26.4%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M629%20107q25.5%20-3%2051.0%200t34.0%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M26%20178q4.2%20-3%208.4%200t5.6%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M163%20249q9.9%20-3%2019.8%200t13.2%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M300%2040q15.6%20-3%2031.2%200t20.8%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M437%20111q21.3%20-3%2042.6%200t28.4%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M574%20182q27.0%20-3%2054.0%200t36.0%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M711%20253q5.7%20-3%2011.4%200t7.6%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M108%2044q11.4%20-3%2022.8%200t15.2%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M245%20115q17.1%20-3%2034.2%200t22.8%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M382%20186q22.8%20-3%2045.6%200t30.4%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M519%20257q28.5%20-3%2057.0%200t38.0%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M656%2048q7.2%20-3%2014.4%200t9.6%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M53%20119q12.9%20-3%2025.8%200t17.2%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M190%20190q18.6%20-3%2037.2%200t24.8%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M327%20261q24.3%20-3%2048.6%200t32.4%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M464%2052q30.0%20-3%2060.0%200t40.0%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M601%20123q8.7%20-3%2017.4%200t11.6%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M738%20194q14.4%20-3%2028.8%200t19.2%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M135%20265q20.1%20-3%2040.2%200t26.8%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M272%2056q25.8%20-3%2051.6%200t34.4%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.115%22/%3E%3Cpath%20d%3D%22M409%20127q4.5%20-3%209.0%200t6.0%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.15000000000000002%22/%3E%3Cpath%20d%3D%22M546%20198q10.2%20-3%2020.4%200t13.6%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.185%22/%3E%3Cpath%20d%3D%22M683%20269q15.9%20-3%2031.8%200t21.2%200%22%20stroke-width%3D%221.5%22%20opacity%3D%220.22000000000000003%22/%3E%3Cpath%20d%3D%22M80%2060q21.6%20-3%2043.2%200t28.8%200%22%20stroke-width%3D%220.7%22%20opacity%3D%220.08%22/%3E%3Cpath%20d%3D%22M217%20131q27.3%20-3%2054.6%200t36.4%200%22%20stroke-width%3D%221.1%22%20opacity%3D%220.115%22/%3E%3C/g%3E%3C/svg%3E");background-size:740px 280px;animation:water 40s linear infinite}.waves:after{inset:40% -15% -20%;background-size:1040px 430px;opacity:.55;animation:water 16s linear infinite reverse}@keyframes water{to{transform:translate(100px,20px)}}
 .title{position:absolute;left:30px;top:25px;font-size:23px;letter-spacing:5px;color:#163f46}.title small{display:block;font-size:10px;letter-spacing:3px;margin-top:7px}.topbar{position:absolute;right:24px;top:25px;z-index:6}.stats{display:flex;gap:18px}.stat{font-size:10px;color:#17424a;display:flex;gap:5px;align-items:center}.stat b{font-size:15px}.sea{overflow:hidden;position:absolute;inset:16% 0 12%;display:flex;align-items:center;justify-content:center}.raft{position:relative;animation:roll 7.1s ease-in-out infinite alternate;transform-origin:center 70%}.raft:before{content:'';position:absolute;inset:30% 0 -10%;border-radius:50%;background:#062e3990;filter:blur(17px);transform:translate(24px,32px);pointer-events:none}.raft:after{content:"";position:absolute;inset:30% -10% -17%;border-radius:50%;pointer-events:none;border:1px solid #b9e6d328;border-top-color:transparent;box-shadow:0 14px 0 -12px #bdeddf4d,0 27px 0 -24px #a9dccc40;animation:ripple 5.3s ease-in-out infinite alternate}@keyframes roll{from{transform:rotate(-1.5deg) translateY(-3px)}to{transform:rotate(1.5deg) translateY(3px)}}@keyframes pitch{from{transform:rotateX(-1deg)}to{transform:rotateX(1deg)}}@keyframes ripple{to{transform:scale(1.04,.98);opacity:.4}}
 .grid{position:relative;animation:pitch 5.3s ease-in-out infinite alternate;perspective:1000px}.cell{pointer-events:none;position:absolute;width:var(--cell);height:calc(var(--cell)*.64);background:none;border:0;color:var(--ink);overflow:visible}.cell:before,.cell:after{content:'';position:absolute;inset:0;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);pointer-events:none}.cell:before{background:#64412c;transform:translateY(13px);filter:drop-shadow(0 4px 2px #162f35)}.cell:after{pointer-events:auto;clip-path:polygon(50% 3%,96.5% 50%,50% 97%,3.5% 50%);background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22180%22%20height%3D%22110%22%3E%3Cg%20transform%3D%22rotate%2832%2090%2055%29%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M-80%20-80q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-75q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-70q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-65q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-60q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-55q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-50q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-45q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-40q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-35q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-30q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-25q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-20q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-15q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-10q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20-5q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%200q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%205q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2010q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2015q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2020q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2025q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2030q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2035q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2040q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2045q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2050q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2055q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2060q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2065q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2070q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2075q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2080q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2085q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2090q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%2095q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20100q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20105q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20110q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20115q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20120q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20125q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20130q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20135q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20140q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20145q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20150q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20155q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20160q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20165q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20170q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20175q75%20-3%20140%200t160%200%22%20stroke%3D%22%233e2b19%22%20opacity%3D%220.12%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20180q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cpath%20d%3D%22M-80%20185q75%20-3%20140%200t160%200%22%20stroke%3D%22%23ffe2a0%22%20opacity%3D%220.13%22%20stroke-width%3D%22.7%22/%3E%3Cellipse%20cx%3D%2285%22%20cy%3D%2245%22%20rx%3D%2212%22%20ry%3D%222%22%20stroke%3D%22%23644020%22%20opacity%3D%22.3%22/%3E%3Cellipse%20cx%3D%2285%22%20cy%3D%2245%22%20rx%3D%225%22%20ry%3D%221%22%20stroke%3D%22%23644020%22%20opacity%3D%22.25%22/%3E%3C/g%3E%3C/svg%3E"),repeating-linear-gradient(32deg,transparent 0 17px,#654728 18px 19px,#e3bc80 20px 21px),linear-gradient(135deg,#dcb377,#b17d48 65%,#967041);background-size:180px 110px,auto,auto;filter:brightness(var(--wood-tone,1)) drop-shadow(0 0 2px #3a2411);box-shadow:inset 0 0 20px #76532e33}.cell.empty:after{filter:brightness(calc(var(--wood-tone,1)*.86)) drop-shadow(0 0 2px #33200f)}.cell.focus:after,.cell:focus-visible:after{filter:brightness(1.25) drop-shadow(0 0 3px #ffe4a0)}.cell.link:after{filter:sepia(.2) hue-rotate(40deg) saturate(.8) brightness(1.14)}.cell .ic{position:absolute;z-index:2;width:64%;height:112%;left:18%;bottom:28%;pointer-events:none;filter:drop-shadow(11px 9px 3px #273b3655)}.cell .ic svg{width:100%;height:100%;overflow:visible;animation:idle 3.7s ease-in-out infinite alternate;animation-delay:var(--delay)}@keyframes idle{to{transform:translateY(-2px)}}.cell.focus .ic{filter:drop-shadow(0 0 3px #ffdc89) drop-shadow(12px 10px 3px #273b3655)}.cell.ghost .ic{opacity:.55}.cell .idx,.cell .nm,.cell .mod{display:none}.cell .val{display:none}.labels{position:absolute;inset:0;z-index:100;pointer-events:none}.value{position:absolute;transform:translate(-50%,-100%);font-weight:700;font-size:var(--label-size,25px);text-shadow:0 2px 3px #153c40,1px 0 #153c40,-1px 0 #153c40;white-space:nowrap}.value small{display:block;font-size:var(--label-small,9px);text-align:center;letter-spacing:1px;color:#fff2d4}.links{position:absolute;inset:0;overflow:visible;z-index:90;pointer-events:none}.links line{stroke:#a5ffe5;stroke-width:2;stroke-dasharray:5 5;opacity:.8}
-.dock{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:200;display:flex;gap:8px;align-items:center;white-space:nowrap}.ghost,.dock button{color:#234b4e;background:#eddfbd;border:1px solid #acbb9b;border-radius:5px;padding:10px 15px;font-size:12px;box-shadow:0 3px 0 #173e4930}.dock .primary{background:#ffdc89}.instruction{position:fixed;bottom:79px;width:100%;text-align:center;font-size:11px;letter-spacing:1px;color:#b9d8d5;pointer-events:none}.announcement{position:fixed;top:56px;left:50%;transform:translateX(-50%);font-size:12px;color:#f2f6e4;pointer-events:none;background:#0d3a44b8;padding:6px 14px;border-radius:20px;border:1px solid #9fd4c733;backdrop-filter:blur(6px);max-width:min(560px,86vw);text-align:center;line-height:1.5}
-aside#drawer{position:fixed;max-height:62vh;overflow:auto;bottom:78px;left:50%;transform:translateX(-50%);z-index:210;width:min(680px,94vw);padding:16px;background:#efe4c8;color:#244b4c;border-radius:8px;box-shadow:0 18px 60px #0c30394d}aside[hidden]{display:none}.brand,.legend,.spacer,.tip,aside>.row2,aside>.sec-title{display:none}.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.tool{display:flex;gap:8px;align-items:center;padding:9px;background:#f8efd9;border:1px solid #c7cbb1;border-radius:5px;color:#244b4c;text-align:left}.tool[aria-pressed=true]{outline:2px solid #267c78}.tool .ic{width:24px;height:24px;color:var(--c)}.tool svg{width:24px;height:24px}.tool b,.tool i{display:block;font-size:11px}.tool i{font-size:10px;font-style:normal;opacity:.7}.tool .dot{display:none}.status{position:fixed;z-index:220;pointer-events:none;width:260px;padding:12px 15px;background:#f3e9cf;color:#264b4b;border-radius:6px;box-shadow:0 8px 30px #062f3940;font-size:12px;line-height:1.7}.status[hidden]{display:none}.status .desc,.status .who{display:block;font-size:11px}.status .k{font-weight:700}.status .res{font-weight:bold}.hintbar{display:none}.float{position:absolute;z-index:150;pointer-events:none;font-size:22px;color:#ffe1a0;font-weight:bold;text-shadow:0 2px 3px #123f49;animation:float .85s ease-out forwards}@keyframes float{to{transform:translateY(-65px);opacity:0}}@keyframes land{0%{transform:translateY(-35px);opacity:.3}70%{transform:translateY(4px)}100%{transform:translateY(0)}}@keyframes sink{50%{transform:translateY(3px)}}
+.dock{position:fixed;bottom:24px;left:0;right:0;margin-inline:auto;width:fit-content;z-index:200;display:flex;gap:8px;align-items:center;white-space:nowrap}.ghost,.dock button{color:#234b4e;background:#eddfbd;border:1px solid #acbb9b;border-radius:5px;padding:10px 15px;font-size:12px;box-shadow:0 3px 0 #173e4930}.dock .primary{background:#ffdc89}.instruction{position:fixed;bottom:79px;width:100%;text-align:center;font-size:11px;letter-spacing:1px;color:#b9d8d5;pointer-events:none}.announcement{position:fixed;top:56px;left:50%;transform:translateX(-50%);font-size:12px;color:#f2f6e4;pointer-events:none;background:#0d3a44b8;padding:6px 14px;border-radius:20px;border:1px solid #9fd4c733;backdrop-filter:blur(6px);max-width:min(560px,86vw);text-align:center;line-height:1.5}
+aside#drawer{position:fixed;top:68px;bottom:88px;left:16px;width:292px;max-height:none;overflow:auto;z-index:210;padding:14px;background:#efe4c8;color:#244b4c;border-radius:10px;box-shadow:0 18px 60px #0c30394d}aside[hidden]{display:none}@media(min-width:641px){body.drawer-open .coach{visibility:hidden}body.drawer-open .voyage-hud{left:320px}}@media(max-width:640px){aside#drawer{top:auto;bottom:78px;left:50%;right:auto;transform:translateX(-50%);width:min(680px,94vw);max-height:62vh;border-radius:8px}}.brand,.legend,.spacer,.tip,aside>.row2:not(.presets),aside>.sec-title{display:none}.tools{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.cat-h{display:flex;align-items:center;gap:6px;margin:14px 0 7px;font-size:11px;font-weight:700;color:#4b6a68;letter-spacing:.04em}.cat-h:first-of-type{margin-top:0}.cat-h .cd{width:9px;height:9px;border-radius:50%;background:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 20%,transparent)}.cat-h .n{font-weight:500;color:#8b9a91;font-size:10px;margin-left:auto}.tool{display:grid;grid-template-columns:32px 1fr;gap:9px;align-items:center;min-width:0;padding:9px 10px;background:#f8efd9;border:1px solid #c7cbb1;border-left:3px solid var(--c);border-radius:6px;color:#244b4c;text-align:left;transition:transform .1s ease,box-shadow .1s ease,border-color .1s ease}.tool:hover{transform:translateY(-1px);box-shadow:0 6px 14px #7a6a3c22;border-color:var(--c)}.tool[aria-pressed=true]{outline:2px solid #267c78;background:#e2f0e6}.tool .ic{width:32px;height:32px;color:var(--c);place-self:center}.tool svg{width:32px;height:32px}.tool .nm{display:flex;align-items:baseline;justify-content:space-between;gap:6px}.tool b{font-size:12px;line-height:1.2}.tool .cost{font-size:10px;font-style:normal;font-weight:700;color:#8a4a1e;white-space:nowrap}.tool .sub{display:block;font-size:10px;font-style:normal;opacity:.72;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tool.locked{opacity:.55}.tool.locked .cost{color:#9a7b4a}.tool .dot{display:none}.status{position:fixed;z-index:220;pointer-events:none;width:260px;padding:12px 15px;background:#f3e9cf;color:#264b4b;border-radius:6px;box-shadow:0 8px 30px #062f3940;font-size:12px;line-height:1.7}.status[hidden]{display:none}.status .desc,.status .who{display:block;font-size:11px}.status .k{font-weight:700}.status .res{font-weight:bold}.hintbar{display:none}.float{position:absolute;z-index:150;pointer-events:none;font-size:22px;color:#ffe1a0;font-weight:bold;text-shadow:0 2px 3px #123f49;animation:float .85s ease-out forwards}@keyframes float{to{transform:translateY(-65px);opacity:0}}@keyframes land{0%{transform:translateY(-35px);opacity:.3}70%{transform:translateY(4px)}100%{transform:translateY(0)}}@keyframes sink{50%{transform:translateY(3px)}}
 @media(max-width:600px){.title{left:18px;top:20px;font-size:18px}.title small{font-size:8px}.topbar{top:80px;left:18px;right:auto}.stats{gap:12px}.tools{grid-template-columns:repeat(2,1fr)}.dock{gap:4px;bottom:20px}.dock button{font-size:10px;padding:10px 8px}.instruction{font-size:9px}.value{font-size:var(--label-size,21px)}.sea{inset:23% 0 17%}}
 .particle{position:absolute;z-index:120;pointer-events:none;width:5px;height:5px;background:#e7bb78;animation:scatter .5s ease-out forwards}.particle.water{background:#b7e9e3;border-radius:50%}@keyframes scatter{to{translate:var(--dx) var(--dy);rotate:130deg;opacity:0}}.removed{position:absolute;z-index:130;pointer-events:none;animation:remove .22s ease-out forwards}.removed svg{width:100%;height:100%}@keyframes remove{to{transform:translateY(-25px) rotate(12deg);opacity:0}}#removeBtn[aria-pressed=true]{background:#d88e68;color:#2c302b}body.removing .cell:after{cursor:crosshair}.drawer-options{display:flex;justify-content:space-between;margin-bottom:12px;align-items:center;font-size:12px}.drawer-options button{background:transparent;border:0;color:#244b4c;padding:5px}.dock{max-width:calc(100vw - 12px)}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 
-.voyage-hud{position:fixed;left:30px;top:88px;z-index:8;display:flex;gap:12px;align-items:center;font-size:12px;color:#234b4e}.voyage-hud[hidden]{display:none}.voyage-hud progress{width:80px;height:8px;accent-color:#d8db98}.voyage-actions{position:fixed;right:26px;bottom:25px;display:flex;gap:8px;z-index:205}.voyage-actions button,.dialog-actions button{padding:12px 18px;border:0;border-radius:5px;background:#ffdc89;color:#234b4e}.voyage-actions #helpBtn{background:#d7e5cc}.voyage-actions button[hidden]{display:none}
-dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:auto;border:1px solid #d5caa7;border-radius:12px;padding:28px;background:#f3e8cd;color:#234b4e;box-shadow:0 30px 100px #062a45aa}dialog::backdrop{background:#06394499;backdrop-filter:blur(4px)}dialog h2{font-size:25px;margin:8px 0 15px}dialog p{font-size:14px;line-height:1.8;margin:10px 0}dialog small{color:#637d77;font-size:11px}.dialog-actions{position:sticky;bottom:0;z-index:5;background:#f3e8cd;padding:12px 0 4px;display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;box-shadow:0 -14px 18px -12px #a08f62aa}.dialog-actions button{background:#226e71;color:#fff1cc;flex:1;min-width:120px}.dialog-actions button.secondary{background:#e0d5b6;color:#345857}.sea-mark{font-size:42px;letter-spacing:10px}.combat-summary{padding:12px;background:#e5dcc1;border-left:3px solid #498a7e}.combat-summary>b:first-child{display:block;margin-bottom:6px;font-size:14px}.combat-summary .danger{color:#b03a24}.foes{list-style:none;margin:7px 0;padding:0;display:grid;gap:4px}.foes li{display:grid;grid-template-columns:1fr auto;gap:1px 8px;padding:5px 8px;background:#d8cfaf88;border-radius:4px;font-size:11px;line-height:1.45}.foes li b{font-size:11px;color:#1f4a4c}.foes li span{color:#5c7671;font-size:10px;text-align:right}.foes li em{grid-column:1/-1;font-style:normal;color:#8a5a1e;font-size:10px}.route-options{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}.combat-summary{min-width:0}.combat-summary .sum-line{display:block;font-size:11px;line-height:1.6;color:#3c5c58}.combat-summary .sum-line b{font-size:13px;color:#8a4a1e}.combat-summary .danger{display:inline-block;margin-top:4px;padding:2px 6px;background:#e2b3a2;border-radius:3px;font-size:11px!important;color:#7d2a17}.combat-summary.risk{border-left-color:#b1663f;background:#e7d3b3}.powers{font-size:12px;margin:6px 0}.powers b{color:#8a4a1e}.loot-title{margin:14px 0 8px;font-size:13px;font-weight:bold;color:#245a56}.loot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.loot-card{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 6px;background:#e7dfc4;border:2px solid #b8b89a;border-radius:8px;color:#234b4e;cursor:pointer;transition:transform .12s ease-out,box-shadow .12s ease-out}.loot-card:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 8px 16px #7a6a3c33}.loot-card:disabled{cursor:default}.loot-card svg{width:60px;height:60px;border-radius:50%;background:radial-gradient(circle at 50% 58%,#ffffff88,#ffffff00 72%)}.loot-card b{font-size:12px;line-height:1.3;text-align:center}.loot-card small{font-size:10px;line-height:1.4;color:#5c7671;text-align:center}.loot-card.relic{background:#f4e6b8;border-color:#c9a44e}.loot-card.relic svg{background:radial-gradient(circle at 50% 58%,#fff6d8cc,#fff6d800 72%)}.loot-card.relic b{color:#7d5416}.loot-card.build{background:#dde6cd;border-color:#9fb08c}.loot-card.picked{border-color:#2f8f6e;box-shadow:inset 0 0 0 2px #2f8f6e66;background:#dcefdc}.loot-card.dim{opacity:.55}.dialog-actions button.waiting{background:#cfc5a8;color:#6b7a73}.relic-chip{display:inline-block;margin-left:5px;padding:1px 7px;border-radius:9px;background:#2a6a6f;color:#ffe6b3;font-size:10px;white-space:nowrap}.relic-bar{display:inline-flex;flex-wrap:wrap;gap:3px;vertical-align:middle}@media(max-width:600px){.route-options{grid-template-columns:1fr}.loot-grid{grid-template-columns:repeat(3,1fr);gap:6px}.loot-card{padding:8px 3px}.loot-card svg{width:44px;height:44px}.loot-card b{font-size:11px}.loot-card small{font-size:9px}}.voyage-hud strong{color:#874920}.adventure .dock [data-preset],.adventure #resetBtn{display:none}
+.voyage-hud{position:fixed;left:30px;top:88px;z-index:8;display:flex;gap:12px;align-items:center;font-size:12px;color:#234b4e;max-width:min(62vw,640px);flex-wrap:wrap;row-gap:2px}.voyage-hud[hidden]{display:none}.voyage-hud progress{width:80px;height:8px;accent-color:#d8db98}.voyage-actions{position:fixed;right:26px;bottom:25px;display:flex;gap:8px;z-index:205}.voyage-actions button,.dialog-actions button{padding:12px 18px;border:0;border-radius:5px;background:#ffdc89;color:#234b4e}.voyage-actions #helpBtn{background:#d7e5cc}.voyage-actions button[hidden]{display:none}
+dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:auto;border:1px solid #d5caa7;border-radius:12px;padding:28px;background:#f3e8cd;color:#234b4e;box-shadow:0 30px 100px #062a45aa}dialog::backdrop{background:#06394499;backdrop-filter:blur(4px)}dialog h2{font-size:25px;margin:8px 0 15px}dialog p{font-size:14px;line-height:1.8;margin:10px 0}dialog small{color:#637d77;font-size:11px}
+.ch-row{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.ch-chip{cursor:pointer}.ch-chip.picked{background:#2a6a6f;color:#ffe6b3}.ch-chip.locked{opacity:.45;cursor:not-allowed}.diag{white-space:pre-wrap;word-break:break-all;font-size:10.5px;line-height:1.6;background:#e3dbc2;border-radius:6px;padding:9px 10px;margin:8px 0;max-height:190px;overflow:auto;font-family:ui-monospace,Consolas,monospace;color:#2c4a48}.dialog-actions{position:sticky;bottom:0;z-index:5;background:#f3e8cd;padding:12px 0 4px;display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;box-shadow:0 -14px 18px -12px #a08f62aa}.dialog-actions button{background:#226e71;color:#fff1cc;flex:1;min-width:120px}.dialog-actions button.secondary{background:#e0d5b6;color:#345857}.sea-mark{font-size:42px;letter-spacing:10px}.combat-summary{padding:12px;background:#e5dcc1;border-left:3px solid #498a7e}.combat-summary>b:first-child{display:block;margin-bottom:6px;font-size:14px}.combat-summary .danger{color:#b03a24}.foes{list-style:none;margin:7px 0;padding:0;display:grid;gap:4px}.foes li{display:grid;grid-template-columns:1fr auto;gap:1px 8px;padding:5px 8px;background:#d8cfaf88;border-radius:4px;font-size:11px;line-height:1.45}.foes li b{font-size:11px;color:#1f4a4c}.foes li span{color:#5c7671;font-size:10px;text-align:right}.foes li em{grid-column:1/-1;font-style:normal;color:#8a5a1e;font-size:10px}.route-options{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}.combat-summary{min-width:0}.combat-summary .sum-line{display:block;font-size:11px;line-height:1.6;color:#3c5c58}.combat-summary .sum-line b{font-size:13px;color:#8a4a1e}.combat-summary .danger{display:inline-block;margin-top:4px;padding:2px 6px;background:#e2b3a2;border-radius:3px;font-size:11px!important;color:#7d2a17}.combat-summary.risk{border-left-color:#b1663f;background:#e7d3b3}.powers{font-size:12px;margin:6px 0}.powers b{color:#8a4a1e}.loot-title{margin:14px 0 8px;font-size:13px;font-weight:bold;color:#245a56}.loot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.loot-grid.two{grid-template-columns:1fr 1fr;gap:10px}.loot-grid.two .loot-card{padding:14px 10px;gap:6px;align-items:flex-start;text-align:left;background:#f9f0d8;border:1px solid #adaf92;box-shadow:0 2px 0 #b3a37755}.loot-grid.two .loot-card:hover:not(:disabled){border-color:#2f8f6e;background:#fbf5e4}.loot-grid.two .loot-card b{font-size:13px;color:#1f4a4c}.loot-grid.two .loot-card small{font-size:11px;color:#4f6b66}.loot-grid.two .loot-card.picked:disabled{opacity:1;border-color:#2f8f6e;background:#e4f1e2;box-shadow:inset 0 0 0 2px #2f8f6e55}.loot-grid.two .loot-card.dim:disabled{opacity:.4}.loot-card{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 6px;background:#e7dfc4;border:2px solid #b8b89a;border-radius:8px;color:#234b4e;cursor:pointer;transition:transform .12s ease-out,box-shadow .12s ease-out}.loot-card:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 8px 16px #7a6a3c33}.loot-card:disabled{cursor:default}.loot-card svg{width:60px;height:60px;border-radius:50%;background:radial-gradient(circle at 50% 58%,#ffffff88,#ffffff00 72%)}.loot-card b{font-size:12px;line-height:1.3;text-align:center}.loot-card small{font-size:10px;line-height:1.4;color:#5c7671;text-align:center}.loot-card.relic{background:#f4e6b8;border-color:#c9a44e}.loot-card.relic svg{background:radial-gradient(circle at 50% 58%,#fff6d8cc,#fff6d800 72%)}.loot-card.relic b{color:#7d5416}.loot-card.build{background:#dde6cd;border-color:#9fb08c}.loot-card.picked{border-color:#2f8f6e;box-shadow:inset 0 0 0 2px #2f8f6e66;background:#dcefdc}.loot-card.dim{opacity:.55}.dialog-actions button.waiting{background:#cfc5a8;color:#6b7a73}.relic-chip{display:inline-block;margin-left:5px;padding:1px 7px;border-radius:9px;background:#2a6a6f;color:#ffe6b3;font-size:10px;white-space:nowrap}.relic-bar{display:inline-flex;flex-wrap:wrap;gap:3px;vertical-align:middle}@media(max-width:600px){.route-options{grid-template-columns:1fr}.loot-grid{grid-template-columns:repeat(3,1fr);gap:6px}.loot-card{padding:8px 3px}.loot-card svg{width:44px;height:44px}.loot-card b{font-size:11px}.loot-card small{font-size:9px}}.voyage-hud strong{color:#874920}.adventure .dock [data-preset],.adventure #resetBtn{display:none}
 @media(max-width:1200px){.voyage-actions{right:14px;bottom:82px}.voyage-actions button{padding:9px 12px}.adventure .instruction{bottom:125px}.voyage-hud strong{color:#ffdc89}.voyage-hud{color:#e8f0d4;top:112px;left:18px;font-size:11px;gap:8px}.announcement{top:56px;font-size:11px;width:auto;text-align:center}}
 
 #battleView{position:fixed;inset:0;z-index:190;pointer-events:none}#battleView[hidden]{display:none}.enemy{position:absolute;left:76%;top:27%;width:170px;transform:translateX(-50%);text-align:center}.enemy svg{width:158px;height:130px;filter:drop-shadow(12px 16px 5px #072f4266);animation:prowl 2.3s ease-in-out infinite alternate}.enemy.boss svg{scale:1.18;filter:drop-shadow(0 0 12px #c67f7255)}.enemy b{display:block;font-size:13px;color:#ffdfb3}.enemy progress{width:145px;height:10px;accent-color:#df997b}.enemy span{display:block;font-size:11px;color:#f7e9d0}.enemy em{display:block;margin-top:7px;font-style:normal;font-size:10px;line-height:1.5;color:#a5e2d3;max-width:100%;margin-inline:auto;text-shadow:0 1px 3px #062a3688}.enemy em span{display:block;text-align:center}.enemy small{display:block;margin-top:5px;font-size:10px;line-height:1.4;color:#93cfc4}.battle-status{position:absolute;top:150px;width:100%;text-align:center;color:#fff0c6;font-size:14px;text-shadow:0 2px 5px #123e48}.battle-status small{display:block;margin-top:7px;font-size:11px;color:#c5e0d4}#skipBattle{pointer-events:auto;position:absolute;right:24px;bottom:85px;padding:11px 18px;border:1px solid #c5cba8;border-radius:5px;background:#eadcb9;color:#234b4e}.projectile{position:fixed;z-index:195;pointer-events:none;width:22px;height:5px;background:#ffe5a1;border-radius:50%;box-shadow:0 0 9px #ffda8d;transform-origin:center}.projectile.hostile{width:15px;height:15px;background:#7ce6de;box-shadow:0 0 15px #a8f5dc}.shield-ring{position:fixed;z-index:194;pointer-events:none;border:3px solid #9bf7e3;border-radius:50%;box-shadow:0 0 25px #8be4de77;opacity:0}.battle-number{position:fixed;z-index:198;pointer-events:none;color:#ffdb99;font-size:25px;font-weight:bold;text-shadow:0 2px 4px #183946}.battle-number.hurt{color:#ffb39a}@keyframes prowl{to{translate:0 -8px;rotate:3deg}}.battling .instruction,.battling .announcement,.battling .voyage-actions,.battling .dock{visibility:hidden}
@@ -30,6 +31,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
 .chart .edge.fight{stroke:#8fd3bf}
 .chart .edge.elite{stroke:#e9a878}
 .chart .edge.supply{stroke:#d6cd7c}
+.chart .edge.event{stroke:#c9a9e8}
 .chart .edge.boss{stroke:#e58e78}
 .chart .edge.ahead{stroke-opacity:.42;stroke-width:1.9}
 .chart .edge.open{stroke-opacity:.95;stroke-width:2.4;stroke-dasharray:none}
@@ -39,6 +41,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
 .chart .node.fight{fill:#2f8078}
 .chart .node.elite{fill:#8d5a41}
 .chart .node.supply{fill:#a8873f}
+.chart .node.event{fill:#6d5490}
 .chart .node.boss{fill:#6d2f2a;stroke-width:2.6}
 .chart .node.open{stroke:#ffdc89;stroke-width:2.6;animation:node-beat 1.7s ease-in-out infinite}
 .chart .node.taken{fill:#b99a5e;stroke:#e8d9ac;opacity:.95}
@@ -61,6 +64,8 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
 .sail-row.elite{background:linear-gradient(#5f3c34,#38292b);border-color:#d89a6c88}
 .sail-row.elite:hover,.sail-row.elite:focus-visible{border-color:#ffb98c}
 .sail-row.supply{background:linear-gradient(#4e5533,#2f3626);border-color:#cfc47a88}
+.sail-row.event{background:linear-gradient(#4b3f66,#2b2540);border-color:#c2a7e088}
+.sail-row.event:hover,.sail-row.event:focus-visible{border-color:#e2cdf7}
 .sail-row.boss{background:linear-gradient(#63332c,#3a2224);border-color:#e08a6e99}
 .sail-row.boss:hover,.sail-row.boss:focus-visible{border-color:#ffb98c}
 .sail-row.supply:hover,.sail-row.supply:focus-visible{border-color:#f0e6a8}
@@ -84,7 +89,22 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
 @media(min-width:1000px){.title{font-size:26px;letter-spacing:7px}.title small{font-size:10px;letter-spacing:4px}.sea{inset:18% 0 9%}}
 @media(max-width:600px){.dock{padding:4px;gap:3px}.dock button{padding:10px 6px}.dock #shopBtn{padding:10px 5px}}
 .grid.compact-labels .value{font-size:12px;line-height:12px}.grid.compact-labels .value small{font-size:7px;line-height:9px;letter-spacing:0}
-</style>
+/* 规则型建筑不产出数值：徽标贴在建筑脚下，不进浮动标签层，避免在密集布局里挤掉邻居的数字 */
+.cell .val.rule-badge{display:block;position:absolute;left:50%;bottom:7%;transform:translateX(-50%);z-index:3;font-size:calc(var(--label-small,9px)*1.2);letter-spacing:1px;padding:1px 6px 2px;border-radius:9px;background:#0d3a44d9;border:1px solid #9fd4c455;color:#d7f4ea;font-weight:600;white-space:nowrap}
+
+/* 移动 / 交换 / 撤销 */
+.grid{touch-action:none}
+body.moving .cell:after{cursor:grab}
+body.moving.dragging .cell:after{cursor:grabbing}
+.cell.held:after{filter:brightness(.78) drop-shadow(0 0 4px #ffdc89)}
+.cell.held .ic{opacity:.22}
+.cell.drop:after{filter:brightness(1.32) drop-shadow(0 0 5px #fff3c4)}
+.drag-ghost{position:fixed;z-index:260;width:80px;pointer-events:none;transform:translate(-50%,-68%);opacity:.95;filter:drop-shadow(0 12px 7px #06222e88)}
+.drag-ghost svg{width:100%;height:auto;animation:none}
+#moveBtn[aria-pressed=true]{background:#bfe0c4;color:#1e3f36}
+aside .presets{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 12px}
+aside .presets .ghost{background:#f8efd9;border:1px solid #c7cbb1;border-radius:5px;color:#244b4c;padding:9px;font-size:12px;box-shadow:none}
+aside .presets[hidden]{display:none}</style>
 </head>
 <body>
 <div class="waves"></div><div class="sun-path"></div><div class="sea-haze"></div>
@@ -128,21 +148,34 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
       <path d="M12 3.2 l7 2.9 v6.1c0 3.9-2.9 6.9-7 8.7-4.1-1.8-7-4.8-7-8.7V6.1z"/>
       <path d="M9 12.2 l2.2 2.2 L15.2 10"/>
     </g>
+    <g id="ic-tidegate" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
+      <path d="M6.5 20.5 h11 V7.5 h-11z"/><path d="M6.5 11.8h11M6.5 16.2h11"/>
+      <path d="M4 6.5h16"/><path d="M9 20.5v2.2M15 20.5v2.2"/>
+    </g>
+    <g id="ic-chain" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+      <path d="M4.5 8h9v5h-9zM14 11h5.5v5H14zM7 20l10.5-6.5"/>
+    </g>
+    <g id="ic-mortar" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+      <path d="M6 15h12v3H6zM12 15l1.5-4M10.5 11h6M5 15c-1 3 3 4 7 4s8-1 7-4"/>
+    </g>
+    <g id="ic-doom" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+      <path d="M5 16h14l2 3H3Z"/><path d="M12 16l1.5-6M10.5 10h6M12 6l2-3 2 3Z"/><path d="M5 16c-1 3 3 4 7 4s8-1 7-4"/>
+    </g>
   </defs>
 </svg>
 
 <div class="app">
   <aside id="drawer" hidden aria-label="选择建筑">
     <div class="brand">
-      <h1>疯狂渔场 <em>· 木筏构筑验证</em></h1>
+      <h1>疯狂水世界 <em>· 木筏构筑验证</em></h1>
       <p>只验证一件事：建筑摆在哪，值不值得反复琢磨。无战斗、无资源消耗。</p>
     </div>
 
     <div class="sec-title">建筑工具箱</div>
-    <div class="drawer-options"><b>建造工具箱</b><button id="soundBtn" aria-pressed="true">音效：开</button></div><div class="tools" id="tools"></div>
+    <div class="drawer-options"><b>建造工具箱</b><button id="soundBtn" aria-pressed="true">音效：开</button></div><div id="tools"></div>
 
     <div class="sec-title">快速组合</div>
-    <div class="row2">
+    <div class="row2 presets" id="presetRow">
       <button class="ghost" data-preset="beacon">灯塔弩炮阵</button>
       <button class="ghost" data-preset="coral">珊瑚渔场</button>
     </div>
@@ -167,7 +200,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
   </aside>
 
   <main>
-<h1 class="title">疯狂渔场<small>一方木筏 · 无尽之海</small></h1>
+<h1 class="title">疯狂水世界<small>一方木筏 · 无尽之海</small></h1>
     <div class="topbar">
       <div class="stats" id="stats">
         <div class="stat" data-cat="attack"><b>0</b>攻击</div>
@@ -190,12 +223,13 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
   </main>
 </div>
 
-<div class="instruction">选择建筑后点击甲板放置 · 右键 / Delete 拆除 · Esc 取消选择</div>
+<div class="instruction">点甲板放置 · 拖动可移动或交换 · 右键拆除 · Ctrl+Z 撤销</div>
 <div class="announcement" role="status" id="announcement"></div>
 <nav class="dock" aria-label="建造操作">
 <button id="shopBtn">招募商店</button><button class="primary" id="buildBtn" aria-expanded="false" aria-controls="drawer">＋ 建造</button>
-<button data-preset="beacon">灯塔阵</button><button data-preset="coral">珊瑚场</button>
-<button id="removeBtn" aria-pressed="false">拆除</button><button id="growBtn">扩建</button><button id="resetBtn">清空</button>
+<button id="moveBtn" aria-pressed="false">移动</button><button id="removeBtn" aria-pressed="false">拆除</button>
+<button id="undoBtn" disabled title="撤销最近一次整备操作">撤销</button>
+<button id="growBtn">扩建</button><button id="resetBtn">清空</button>
 </nav>
 <aside class="coach" id="coach" hidden aria-label="航海提示"><button id="coachClose" aria-label="收起航海提示">×</button><b>下一步</b><span id="coachText"></span></aside>
 <button class="nav-mini" id="miniMap" hidden aria-label="打开航线图"></button>
@@ -242,7 +276,11 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     { id:'frost',    name:'冰雾灯', cat:'skill',    base:0,  desc:'全船护盾塔 +2。护盾流派的核心放大器。', effects:[{to:'all',filter:'shield',op:'add',v:2,tag:'盾+2'}] },
     { id:'beacon',   name:'灯塔',   cat:'special',  base:0,  desc:'相邻（上下左右）的建筑 ×1.5。', effects:[{to:'adjacent',filter:'any',op:'mult',v:1.5,tag:'×1.5'}] },
     { id:'coral',    name:'珊瑚礁', cat:'special',  base:3,  desc:'周围 3×3 范围（含斜向）的其他建筑 +2。', effects:[{to:'range',filter:'any',op:'add',v:2,tag:'+2'}] },
-    { id:'tidemark', name:'潮汐钟', cat:'special',  base:0,  desc:'全船其他建筑 +2。占一格不产出，但谁都能吃。', effects:[{to:'all',filter:'any',op:'add',v:2,tag:'全体+2'}] }
+    { id:'tidemark', name:'潮汐钟', cat:'special',  base:0,  desc:'全船其他建筑 +2。占一格不产出，但谁都能吃。', effects:[{to:'all',filter:'any',op:'add',v:2,tag:'全体+2'}] },
+    { id:'tidegate', name:'潮汐闸', cat:'special',  base:0,  desc:'规则：护盾当一整池用。跨轮不再清零，最多攒到单轮护盾的 2 倍；按整池抵扣，但每轮最多挡下 3/4 的命中。穿影依旧无视护盾。', effects:[], rule:'shieldCarry' },
+    { id:'chain',   name:'链式弩', cat:'attack',   base:12, desc:'进阶武器，等级解锁。相邻攻击建筑 +2。', effects:[{to:'adjacent',filter:'attack',op:'add',v:2,tag:'邻攻+2'}], unlock:2 },
+    { id:'mortar',  name:'震爆炮', cat:'attack',   base:20, desc:'进阶武器，等级解锁。沉重而有力。', effects:[], unlock:3 },
+    { id:'doom',    name:'灭神炮', cat:'attack',   base:36, desc:'终极武器，等级解锁。一炮顶一队。', effects:[], unlock:4 }
   ];
 
   // 兼容旧数据：只有 effect 字符串时按此映射成通用效果
@@ -258,6 +296,8 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
   }
   // 格子里显示的辅助建筑标记：范围前缀 + 数值
   const SCOPE_MARK = { adjacent:'', range:'周', row:'横', col:'竖', all:'全', self:'自' };
+  // 规则型建筑不产出数值，格子里显示规则缩写，避免出现一个无意义的「—」
+  const RULE_BADGE = { shieldCarry:'盾续' };
   function effectBadge(b) {
     const e = effectsOf(b)[0];
     if (!e) return '—';
@@ -266,13 +306,15 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
   }
   const MAP = Object.fromEntries(BUILDINGS.map(b => [b.id, b]));
   const ICON = { ballista:'ic-ballista', harpoon:'ic-harpoon', net:'ic-net', purifier:'ic-purifier',
-                 ammo:'ic-ammo', beacon:'ic-beacon', coral:'ic-coral', shield:'ic-shield' };
+                 ammo:'ic-ammo', beacon:'ic-beacon', coral:'ic-coral', shield:'ic-shield',
+                 tidegate:'ic-tidegate', chain:'ic-chain', mortar:'ic-mortar', doom:'ic-doom' };
 
   const SIZES = [ {n:3, cell:112}, {n:4, cell:92}, {n:5, cell:76} ];
 
   // ---------------- 状态 ----------------
-  const COST = {ballista:8,harpoon:5,net:6,purifier:5,ammo:8,beacon:14,coral:12,shield:10,ratling:9,powder:11,trawl:7,still:9,frost:12,tidemark:16};
+  const COST = {ballista:8,harpoon:5,net:6,purifier:5,ammo:8,beacon:14,coral:12,shield:10,ratling:9,powder:11,trawl:7,still:9,frost:12,tidemark:16,tidegate:18,chain:11,mortar:24,doom:46};
   const SAVE_KEY='crazy-fishery.save.v1';
+  const SAVE_VERSION=2;
   const REGIONS=['珊瑚浅湾','漂木海峡','雾礁航道','沉船深海','巨兽海沟'];
   let savedGame=null, lastSaved='', saveMessage='', guideEnabled=true;
   let stock = {};
@@ -282,6 +324,11 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
   let N = SIZES[sizeIdx].n;
   const cells = new Map();          // "x,y" -> buildingId
   let removing = false;
+  let moving = false;               // 移动模式：先点建筑，再点目标格
+  let held = null;                  // 已拿起的建筑 {x,y}
+  let undoStack = [];               // 整备撤销栈，进入新一天时清空，避免倒退战斗奖励
+  let conflictSave = null;          // 另一窗口写入的不同进度
+  const UNDO_MAX = 20;
   let soundEnabled = true;
   let selected = null;              // buildingId
   let hover = null;                 // {x,y}
@@ -290,6 +337,16 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
 
   const $ = s => document.querySelector(s);
   const key = (x, y) => x + ',' + y;
+
+  // 可复现的随机：同一 seed 同一串结果。出问题把 seed 报出来就能重放这一局。
+  // 用 xorshift32 而不是线性同余——后者的相邻种子前几十个输出几乎一样，做复现没意义。
+  const mixSeed = v => { let x=(v>>>0)||1; x^=x<<13; x>>>=17; x^=x<<5; return (x>>>0)||1; };
+  let seedState = mixSeed(Date.now()>>>0);
+  function rnd() {
+    let x=seedState; x^=x<<13; x>>>=17; x^=x<<5;
+    seedState=(x>>>0)||1;
+    return seedState/4294967296;
+  }
 
   const gridEl = $('#grid');
   const formulaEl = $('#formula');
@@ -445,7 +502,11 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
       ammo:'<path d="M22 44l29-13 23 14v34L45 92 22 78Z" fill="url(#oak)"/><path d="M45 58l29-13v34L45 92Z" fill="#654b36"/><path d="M22 44l23 14 29-13-23-14Z" fill="#c89c5e"/><path d="M30 50v31m32-29v31" stroke="#bac0a5" stroke-width="5"/><path d="M35 40V21m13 15V16m12 23V20" stroke="#e0ad66" stroke-width="7"/>',
       beacon:'<path d="M33 81l8-51h17l9 51-17 9Z" fill="#e4d0a4"/><path d="M50 89V30h8l9 51Z" fill="#9c8465"/><path d="M34 28V13h32v15Z" fill="#ffe098" stroke="#696b5b" stroke-width="4"/><path d="M30 12L50 0 70 12Z" fill="#c8754f"/><path d="M35 48h28M33 65h31" stroke="#b77250" stroke-width="7"/>',
       coral:'<path d="M47 84V42m0 21L29 46V28m18 20 19-20V13M29 43L17 31m49 0 12-10" fill="none" stroke="#b58dc3" stroke-width="9" stroke-linecap="round"/><circle cx="47" cy="27" r="6" fill="#f0bbe0"/>',
-      shield:'<path d="M31 82l7-25h24l8 25-20 9Z" fill="#6b8e9e"/><path d="M50 15l23 12-4 24-19 19-19-19-4-24Z" fill="#619ed0" stroke="#c2e6de" stroke-width="3"/><path d="M50 21v40l14-13 3-18Z" fill="#346985"/><path d="M39 39l8 8 14-15" fill="none" stroke="#e2f0d4" stroke-width="4"/>'
+      shield:'<path d="M31 82l7-25h24l8 25-20 9Z" fill="#6b8e9e"/><path d="M50 15l23 12-4 24-19 19-19-19-4-24Z" fill="#619ed0" stroke="#c2e6de" stroke-width="3"/><path d="M50 21v40l14-13 3-18Z" fill="#346985"/><path d="M39 39l8 8 14-15" fill="none" stroke="#e2f0d4" stroke-width="4"/>',
+      tidegate:'<path d="M28 84l22-10 22 10-22 11Z" fill="#4f676b"/><path d="M22 34h14v48H22Z" fill="#b6c6c1" stroke="#6d8580" stroke-width="2"/><path d="M64 34h14v48H64Z" fill="#a2b5b0" stroke="#6d8580" stroke-width="2"/><path d="M36 42h28v40H36Z" fill="#2e5560" stroke="#6d8580" stroke-width="2"/><path d="M36 52h28M36 62h28M36 72h28" stroke="#cfe7dd" stroke-width="3"/><path d="M18 26h64v10H18Z" fill="#c9a052" stroke="#8a6f3c" stroke-width="2"/><path d="M46 14h8v12h-8Z" fill="#e0c088" stroke="#8a6f3c" stroke-width="2"/><path d="M36 84q14 8 28 0" stroke="#9fe0d8" stroke-width="4" fill="none"/>',
+      chain:'<path d="M28 80l19-12 22 12-22 13Z" fill="#3f4a4c"/><path d="M39 72V56l11-6 11 7v16l-12 6Z" fill="#6b503b"/><path d="M50 50v24l12-3V55Z" fill="#4c3a2c"/><path d="M26 66L64 31l8 5-39 37Z" fill="#596d70" stroke="#2a4146" stroke-width="2"/><path d="M29 63L65 29l3 2-36 33Z" fill="#cdd2b6"/><path d="M21 32Q54 14 77 64" fill="none" stroke="#4c3c2c" stroke-width="8"/><path d="M21 30Q54 12 77 62" fill="none" stroke="#b68a4f" stroke-width="4"/><circle cx="46" cy="55" r="3.5" fill="url(#brass)"/>',
+      mortar:'<path d="M30 82l21-10 20 10-21 11Z" fill="#4a5a58"/><path d="M32 66h36v14H32Z" fill="#5c6a66"/><path d="M44 60l12-6v12Z" fill="#6b5a3e"/><circle cx="50" cy="40" r="15" fill="#3c4c50"/><path d="M50 25v12m-11-6 11-6 11 6" fill="none" stroke="#e0b35c" stroke-width="5"/><path d="M50 48v10" stroke="#2a3a3e" stroke-width="6"/>',
+      doom:'<path d="M24 82l26-13 26 13-26 14Z" fill="#43504e"/><path d="M28 69h44l8 12H20Z" fill="#5e6a64"/><path d="M30 60h40l-6-18H36Z" fill="#6b5a3e"/><path d="M50 42l14 6v14l-14 7Z" fill="#7a5f43"/><path d="M50 24v18" stroke="#d4a45c" stroke-width="8"/><circle cx="50" cy="22" r="7" fill="#ffb347" opacity=".6"/><circle cx="50" cy="22" r="3.5" fill="#ffe08a"/><path d="M20 42q30-18 60 0" fill="none" stroke="#31474d" stroke-width="4"/>'
     };
     const details={
       ballista:'',
@@ -457,60 +518,254 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
       coral:'<g fill="#ffd3c0"><circle cx="29" cy="29" r="3"/><circle cx="66" cy="14" r="3"/><circle cx="18" cy="31" r="2"/><circle cx="77" cy="21" r="3"/></g><path d="M34 81q14-7 27 0" stroke="#d5adc8" stroke-width="3" fill="none"/>',
       shield:'<ellipse cx="50" cy="80" rx="14" ry="5" fill="#a2d3cb" opacity=".6"/><path d="M36 31l3 17 11 12" stroke="#e7fcdb" opacity=".5" fill="none"/><circle cx="50" cy="82" r="3" fill="#dff9ca"/>',
       ratling:'',powder:'',trawl:'',still:'',frost:'',tidemark:'',
+      chain:'<path d="M25 72l7 3 7-3v7l-7 3-7-3Z" fill="#a98c58"/><path d="M42 73l7 3 7-3v7l-7 3-7-3Z" fill="#8f7a4d"/>',
+      mortar:'<path d="M50 40v18" stroke="#e0b35c" stroke-width="2"/><circle cx="50" cy="36" r="2" fill="#ffd06a"/>',
+      doom:'<path d="M44 30v-8m6 8v-8m6 8v-8" stroke="#d4a45c" stroke-width="2"/><circle cx="50" cy="18" r="2.5" fill="#fff1a2"/>',
     };
     return '<svg viewBox="0 0 100 105" aria-hidden="true">'+base+shapes[id]+(details[id]||'')+'</svg>';
   }
   function announce(message) { $('#announcement').textContent = message; }
-  function drawer(open) { $('#drawer').hidden = !open; $('#buildBtn').setAttribute('aria-expanded', String(open)); }
-  let audio;
-  function sound(remove) {
-    if (!soundEnabled) return;
-    try {
-      audio ||= new (window.AudioContext || window.webkitAudioContext)();
-      audio.resume().catch(()=>{});
-      const osc=audio.createOscillator(), gain=audio.createGain(), now=audio.currentTime;
-      osc.type='triangle'; osc.frequency.setValueAtTime(remove?180:120,now);
-      osc.frequency.exponentialRampToValueAtTime(45,now+.16);
-      gain.gain.setValueAtTime(.09,now); gain.gain.exponentialRampToValueAtTime(.001,now+.18);
-      osc.connect(gain).connect(audio.destination);osc.start(now);osc.stop(now+.18);
-    } catch { /* Audio is optional when unavailable in the host browser. */ }
+  function drawer(open) {
+    const wasOpen = !$('#drawer').hidden;
+    $('#drawer').hidden = !open;
+    $('#buildBtn').setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('drawer-open', open);
+    if (wasOpen !== open) SFX.play(open ? 'open' : 'close');
   }
+  // ---------------- 音效 ----------------
+  // 全部实时合成，不加载任何音频文件：包体不增加，离线打开也能出声。
+  // 每个事件都带节流，避免一轮齐射里多座弩炮同时触发把音量顶爆。
+  const SFX = (() => {
+    let ctx = null, bus = null, noiseBuf = null, ambience = null, enabled = true;
+    const lastAt = {};
+    const GAP = { ui:50, place:60, remove:60, swap:60, pick:60, loot:80, cannon:80, splash:140, enemyHit:60, hullHit:80, error:400 };
+
+    function ensure() {
+      if (ctx) return ctx;
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      try {
+        ctx = new AC();
+        // 压缩器当限幅用：连续爆点也不会削爆扬声器
+        const comp = ctx.createDynamicsCompressor();
+        comp.threshold.value = -16; comp.knee.value = 10; comp.ratio.value = 5;
+        comp.attack.value = .004; comp.release.value = .22;
+        bus = ctx.createGain(); bus.gain.value = enabled ? .85 : 0;
+        bus.connect(comp).connect(ctx.destination);
+      } catch { ctx = null; }
+      return ctx;
+    }
+    // freq→to 的滑音；gain 用指数包络收尾，避免爆音
+    function tone(freq, o = {}) {
+      if (!ctx) return;
+      const { to = freq, type = 'sine', dur = .18, gain = .12, delay = 0, attack = .006, detune = 0 } = o;
+      const t = ctx.currentTime + delay;
+      const osc = ctx.createOscillator(), g = ctx.createGain();
+      osc.type = type; osc.detune.value = detune;
+      osc.frequency.setValueAtTime(freq, t);
+      if (to !== freq) osc.frequency.exponentialRampToValueAtTime(Math.max(20, to), t + dur);
+      g.gain.setValueAtTime(.0001, t);
+      g.gain.exponentialRampToValueAtTime(Math.max(.0002, gain), t + attack);
+      g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+      osc.connect(g).connect(bus);
+      osc.start(t); osc.stop(t + dur + .02);
+    }
+    function noiseBuffer() {
+      if (noiseBuf) return noiseBuf;
+      const len = Math.floor(ctx.sampleRate * 1);
+      noiseBuf = ctx.createBuffer(1, len, ctx.sampleRate);
+      const d = noiseBuf.getChannelData(0);
+      for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+      return noiseBuf;
+    }
+    // 白噪声经滤波＝木头、水花、炮口、船体这些"非乐音"的质感
+    function noise(o = {}) {
+      if (!ctx) return;
+      const { dur = .2, gain = .1, delay = 0, type = 'lowpass', freq = 1000, to = null, q = 1, attack = .005 } = o;
+      const t = ctx.currentTime + delay;
+      const src = ctx.createBufferSource(); src.buffer = noiseBuffer();
+      const f = ctx.createBiquadFilter(); f.type = type; f.Q.value = q;
+      f.frequency.setValueAtTime(freq, t);
+      if (to) f.frequency.exponentialRampToValueAtTime(Math.max(40, to), t + dur);
+      const g = ctx.createGain();
+      g.gain.setValueAtTime(.0001, t);
+      g.gain.exponentialRampToValueAtTime(Math.max(.0002, gain), t + attack);
+      g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+      src.connect(f).connect(g).connect(bus);
+      src.start(t, Math.random() * .4); src.stop(t + dur + .02);
+    }
+
+    const VOICES = {
+      ui() { tone(880, { type:'triangle', to:1040, dur:.05, gain:.045 }); },
+      open() { noise({ dur:.24, gain:.045, type:'bandpass', freq:620, to:1700, q:.9 }); },
+      close() { noise({ dur:.2, gain:.035, type:'bandpass', freq:1600, to:520, q:.9 }); },
+      pick() { tone(560, { type:'triangle', to:840, dur:.09, gain:.07 }); tone(900, { to:1260, dur:.11, gain:.05, delay:.05 }); },
+      place() { tone(150, { type:'triangle', to:68, dur:.12, gain:.15 }); noise({ dur:.09, gain:.06, freq:1500, to:400 }); },
+      remove() { tone(210, { type:'triangle', to:62, dur:.2, gain:.13 }); noise({ dur:.15, gain:.05, freq:900, to:260 }); },
+      swap() { tone(300, { type:'triangle', to:190, dur:.09, gain:.09 }); tone(300, { type:'triangle', to:430, dur:.1, gain:.06, delay:.07 }); },
+      undo() { tone(330, { type:'triangle', to:560, dur:.11, gain:.07 }); noise({ dur:.1, gain:.03, freq:1200, to:600 }); },
+      repair() { [0, .11, .22].forEach((d, i) => { noise({ dur:.05, gain:.07, freq:2400, to:800, delay:d }); tone(520 - i * 40, { type:'square', to:240, dur:.07, gain:.045, delay:d }); }); },
+      cannon() { noise({ dur:.24, gain:.13, freq:1300, to:200 }); tone(96, { to:36, dur:.3, gain:.2 }); },
+      splash() { noise({ dur:.18, gain:.05, type:'highpass', freq:900, to:2400 }); },
+      enemyHit() { noise({ dur:.15, gain:.09, freq:1700, to:420 }); tone(220, { type:'sawtooth', to:105, dur:.14, gain:.05 }); },
+      hullHit() { tone(74, { to:34, dur:.3, gain:.22 }); noise({ dur:.2, gain:.08, freq:520, to:120 }); },
+      shield() { tone(1380, { to:2060, dur:.16, gain:.05 }); tone(2060, { to:1540, dur:.2, gain:.035, delay:.02 }); },
+      heal() { tone(420, { to:700, dur:.22, gain:.07 }); tone(700, { to:980, dur:.24, gain:.05, delay:.12 }); },
+      error() { tone(150, { type:'square', dur:.09, gain:.05 }); tone(118, { type:'square', dur:.13, gain:.05, delay:.12 }); },
+      loot() { [1046, 1318, 1568].forEach((f, i) => tone(f, { type:'triangle', dur:.16, gain:.055, delay:i * .06 })); },
+      levelup() { [659, 880, 1046, 1318].forEach((f, i) => tone(f, { type:'triangle', dur:.24, gain:.07, delay:i * .09 })); },
+      day() { tone(523, { dur:.3, gain:.07 }); tone(784, { dur:.36, gain:.05, delay:.1 }); noise({ dur:.5, gain:.03, type:'bandpass', freq:600, to:1200, q:.8 }); },
+      sail() { noise({ dur:.8, gain:.05, freq:1200, to:320 }); tone(196, { to:262, dur:.5, gain:.05 }); },
+      victory() { [523, 659, 784, 1046].forEach((f, i) => tone(f, { type:'triangle', dur:.28, gain:.075, delay:i * .11 })); },
+      bossVictory() { [392, 523, 659, 784, 1046, 1318].forEach((f, i) => tone(f, { type:'triangle', dur:.4, gain:.075, delay:i * .13 })); },
+      defeat() { [392, 330, 262, 196].forEach((f, i) => tone(f, { dur:.42, gain:.09, delay:i * .14 })); },
+      boss() { noise({ dur:1.4, gain:.09, freq:240, to:90, q:1.8 }); tone(58, { to:38, dur:1.2, gain:.16 }); },
+      encounter() { noise({ dur:.6, gain:.055, type:'bandpass', freq:300, to:900, q:1.2 }); tone(120, { to:170, dur:.5, gain:.06 }); },
+      start() { noise({ dur:.5, gain:.045, type:'bandpass', freq:400, to:1400 }); [659, 880].forEach((f, i) => tone(f, { type:'triangle', dur:.24, gain:.06, delay:.1 + i * .1 })); }
+    };
+
+    function play(name) {
+      if (!enabled || document.hidden) return;
+      const c = ensure(); if (!c) return;
+      if (c.state === 'suspended') c.resume().catch(() => {});
+      const gap = GAP[name] || 30, now = performance.now();
+      if (lastAt[name] && now - lastAt[name] < gap) return;
+      lastAt[name] = now;
+      const voice = VOICES[name]; if (!voice) return;
+      try { voice(); } catch { /* 浏览器拒绝过早创建音源时静默跳过 */ }
+    }
+
+    // 底色：低通白噪声 + 极慢的起伏，像浪一层层推过来
+    function startAmbience() {
+      if (!enabled || ambience || !ctx || ctx.state !== 'running') return;
+      try {
+        const src = ctx.createBufferSource(); src.buffer = noiseBuffer(); src.loop = true;
+        const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 460; lp.Q.value = .6;
+        const g = ctx.createGain(); g.gain.value = .001;
+        const lfo = ctx.createOscillator(), depth = ctx.createGain();
+        lfo.frequency.value = .07; depth.gain.value = .018;
+        lfo.connect(depth).connect(g.gain);
+        src.connect(lp).connect(g).connect(bus);
+        src.start(); lfo.start();
+        g.gain.exponentialRampToValueAtTime(.05, ctx.currentTime + 3);
+        ambience = { src, lfo, g };
+      } catch { ambience = null; }
+    }
+    function stopAmbience() {
+      if (!ambience || !ctx) return;
+      const { src, lfo, g } = ambience; ambience = null;
+      try {
+        g.gain.cancelScheduledValues(ctx.currentTime);
+        g.gain.setTargetAtTime(.0001, ctx.currentTime, .25);
+        src.stop(ctx.currentTime + 1.2); lfo.stop(ctx.currentTime + 1.2);
+      } catch { /* 已停止 */ }
+    }
+    function setEnabled(on) {
+      enabled = !!on;
+      if (!enabled) {
+        if (ctx && bus) { bus.gain.cancelScheduledValues(ctx.currentTime); bus.gain.setTargetAtTime(0, ctx.currentTime, .06); }
+        stopAmbience();
+        return;
+      }
+      const c = ensure(); if (!c) return;
+      if (c.state === 'suspended') c.resume().catch(() => {});
+      if (bus) { bus.gain.cancelScheduledValues(c.currentTime); bus.gain.setTargetAtTime(.85, c.currentTime, .06); }
+      startAmbience();
+    }
+    function unlock() {
+      if (!enabled) return;
+      const c = ensure(); if (!c) return;
+      if (c.state === 'suspended') c.resume().then(startAmbience).catch(() => {});
+      else startAmbience();
+    }
+    function suspend(on) {
+      if (!ctx) return;
+      if (on && ctx.state === 'running') ctx.suspend().catch(() => {});
+      else if (!on && enabled && ctx.state === 'suspended') ctx.resume().catch(() => {});
+    }
+    return { play, setEnabled, unlock, suspend };
+  })();
+
+  // 旧调用点保留同名入口：拆除＝下行，放置＝木质闷响
+  function sound(remove) { SFX.play(remove ? 'remove' : 'place'); }
   function editCell(x,y,remove=false) {
     if (run && run.phase !== "build") return;
+    if (moving && !remove) { pickOrDrop(x,y); return; }
     preview = null;
-    const before = compute().total;
     const k = key(x,y), previous = cells.get(k);
     if (!remove && previous === selected) return;
+    if (!remove && !selected) return;   // 点击已有建筑只是查看，不会误拆
+    if (remove && !previous) return;
+    const before = compute().total;
     const useStock = !remove && selected && (stock[selected] || 0) > 0;
-    if (run && (remove || selected)) {
-      const cost = (remove || useStock ? 0 : COST[selected]) - (previous ? COST[previous] : 0);
-      if (cost > run.wood) { announce('木材不足：需要 '+cost+'，现有 '+run.wood+'。拆除会全额返还。'); return; }
-      run.wood -= cost;
-    }
+    const cost = run && (remove || selected)
+      ? (remove || useStock ? 0 : COST[selected]) - (previous ? COST[previous] : 0)
+      : 0;
+    if (run && cost > run.wood) { announce('木材不足：需要 '+cost+'，现有 '+run.wood+'。拆除会全额返还。'); SFX.play('error'); return; }
+    pushUndo(remove ? '拆除 '+MAP[previous].name : (previous ? '替换为 '+MAP[selected].name : '放置 '+MAP[selected].name));
+    if (run) run.wood -= cost;
     if (useStock) stock[selected]--;
     if (remove) { cells.delete(k); noGhostKey = k; }
-    else if (selected) { cells.set(k,selected); drawer(false); }
-    else return; // Inspecting an existing building never deletes it.
+    else { cells.set(k,selected); drawer(false); }
     paint();
     preview = null;
     const after = compute().total;
     if (previous === cells.get(k)) return;
     sound(remove);
-    if (!reducedMotion.matches) {
-      const p=point(x,y);
-      for(let i=0;i<10;i++) {
-        const particle=document.createElement('i'); particle.className='particle'+(i%2?' water':'');
-        particle.style.left=(p.x+unit/2)+'px';particle.style.top=(p.y+unit*.32)+'px';
-        particle.style.setProperty('--dx',((i-4.5)*10)+'px');
-        particle.style.setProperty('--dy',(-18-Math.sin(i)*20)+'px');
-        gridEl.append(particle);setTimeout(()=>particle.remove(),550);
-      }
-      if(remove && previous) {
-        const ghost=document.createElement('span');ghost.className='removed';ghost.innerHTML=model(previous);
-        ghost.style.cssText='left:'+(p.x+unit*.1)+'px;top:'+(p.y-unit*.41)+'px;width:'+unit*.8+'px;height:'+unit*.9+'px';
-        gridEl.append(ghost);setTimeout(()=>ghost.remove(),250);
-      }
+    spark(x,y,remove,previous);
+    floatDeltas(before, after);
+    landCell(k);
+    announce(remove ? '已拆除建筑' : '已放置'+MAP[selected].name+' · 继续点击可连续建造');
+  }
+
+  // ---------------- 撤销 ----------------
+  function pushUndo(label) {
+    if (run && run.phase !== 'build') return;   // 战斗/结算期间的操作不进入撤销栈
+    undoStack.push({
+      label,
+      cells: [...cells],
+      wood: run ? run.wood : 0,
+      hp: run ? run.hp : 100,
+      stock: { ...stock },
+      sizeIdx
+    });
+    if (undoStack.length > UNDO_MAX) undoStack.shift();
+    paintUndo();
+  }
+  function clearUndo() { undoStack = []; paintUndo(); }
+  function canUndo() { return undoStack.length > 0 && (!run || run.phase === 'build'); }
+  function paintUndo() {
+    const btn = $('#undoBtn');
+    if (!btn) return;
+    btn.disabled = !canUndo();
+    btn.title = canUndo() ? '撤销：' + undoStack.at(-1).label + '（Ctrl+Z）' : '没有可撤销的整备操作';
+  }
+  function undoLast() {
+    if (!canUndo()) {
+      announce(run && run.phase !== 'build' ? '战斗结算后不能撤销，以免倒退已领取的奖励。' : '没有可撤销的整备操作。');
+      SFX.play('error');
+      return;
     }
+    const snap = undoStack.pop();
+    held = null;
+    setMoving(false); setRemoving(false);
+    selected = null; hover = null; preview = null; noGhostKey = null;
+    cells.clear();
+    for (const [k, id] of snap.cells) cells.set(k, id);
+    stock = { ...snap.stock };
+    if (run) { run.wood = snap.wood; run.hp = snap.hp; }
+    if (snap.sizeIdx !== sizeIdx) {
+      sizeIdx = snap.sizeIdx; N = SIZES[sizeIdx].n;
+      $('#growBtn').disabled = sizeIdx === SIZES.length - 1;
+      $('#growBtn').textContent = sizeIdx === SIZES.length - 1 ? '已达 5×5' : '扩建';
+      buildGrid();
+    }
+    paint(); paintUndo();
+    SFX.play('undo');
+    announce('已撤销：' + snap.label);
+  }
+
+  function floatDeltas(before, after) {
     for (const [target, value] of after) {
       const delta = value - before.get(target);
       if (!delta) continue;
@@ -520,11 +775,141 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
       text.style.left=(p.x+unit/2)+'px'; text.style.top=(p.y-15)+'px';
       gridEl.append(text); setTimeout(()=>text.remove(),900);
     }
-    if (!reducedMotion.matches) {
-      cellEls.get(k).querySelector('.ic').animate([{transform:'translateY(-35px)',opacity:.3},{transform:'translateY(4px)',offset:.75},{transform:'translateY(0)',opacity:1}],{duration:220,easing:'ease-out'});
-      gridEl.animate([{translate:'0 0'},{translate:'0 3px'},{translate:'0 0'}],{duration:220});
+  }
+  function spark(x,y,remove,previous) {
+    if (reducedMotion.matches) return;
+    const p = point(x,y);
+    for(let i=0;i<10;i++) {
+      const particle=document.createElement('i'); particle.className='particle'+(i%2?' water':'');
+      particle.style.left=(p.x+unit/2)+'px';particle.style.top=(p.y+unit*.32)+'px';
+      particle.style.setProperty('--dx',((i-4.5)*10)+'px');
+      particle.style.setProperty('--dy',(-18-Math.sin(i)*20)+'px');
+      gridEl.append(particle);setTimeout(()=>particle.remove(),550);
     }
-    announce(remove ? '已拆除建筑' : '已放置'+MAP[selected].name+' · 继续点击可连续建造');
+    if(remove && previous) {
+      const ghost=document.createElement('span');ghost.className='removed';ghost.innerHTML=model(previous);
+      ghost.style.cssText='left:'+(p.x+unit*.1)+'px;top:'+(p.y-unit*.41)+'px;width:'+unit*.8+'px;height:'+unit*.9+'px';
+      gridEl.append(ghost);setTimeout(()=>ghost.remove(),250);
+    }
+  }
+  function splash(k) {
+    if (reducedMotion.matches) return;
+    const [x,y] = k.split(',').map(Number), p = point(x,y);
+    for (let i = 0; i < 3; i++) {
+      const dot = document.createElement('i');
+      dot.className = 'particle water';
+      dot.style.left=(p.x+unit/2)+'px'; dot.style.top=(p.y+unit*.32)+'px';
+      dot.style.setProperty('--dx',((i-1)*9)+'px');
+      dot.style.setProperty('--dy',(-14-i*6)+'px');
+      gridEl.append(dot); setTimeout(()=>dot.remove(),550);
+    }
+  }
+  function landCell(k) {
+    if (reducedMotion.matches) return;
+    const el = cellEls.get(k);
+    if (!el) return;
+    el.querySelector('.ic').animate([{transform:'translateY(-35px)',opacity:.3},{transform:'translateY(4px)',offset:.75},{transform:'translateY(0)',opacity:1}],{duration:220,easing:'ease-out'});
+    gridEl.animate([{translate:'0 0'},{translate:'0 3px'},{translate:'0 0'}],{duration:220});
+  }
+
+  // ---------------- 移动 / 交换 ----------------
+  function setMoving(value) {
+    moving = value;
+    if (!value) held = null;
+    document.body.classList.toggle('moving', value);
+    const btn = $('#moveBtn');
+    if (btn) btn.setAttribute('aria-pressed', String(value));
+    if (value) { selected = null; setRemoving(false); }
+  }
+  function pickOrDrop(x,y) {
+    const k = key(x,y), id = cells.get(k);
+    if (!held) {
+      if (!id) { announce('先点一艘建筑，再点要放的位置。'); return; }
+      held = { x, y };
+      paint();
+      announce('已拿起 '+MAP[id].name+' · 点空格移动，点另一座建筑交换，Esc 放回');
+      return;
+    }
+    if (held.x === x && held.y === y) {
+      held = null; paint();
+      announce('已放回原处。');
+      return;
+    }
+    moveBuilding(held, { x, y });
+  }
+  function moveBuilding(from, to) {
+    held = null;
+    if (run && run.phase !== 'build') { paint(); return; }
+    const fromKey = key(from.x, from.y), toKey = key(to.x, to.y);
+    const id = cells.get(fromKey);
+    if (!id || fromKey === toKey) { paint(); return; }
+    const other = cells.get(toKey) || null;
+    const before = compute().total;
+    pushUndo(other ? '交换 '+MAP[id].name+' 与 '+MAP[other].name : '移动 '+MAP[id].name);
+    cells.delete(fromKey);
+    cells.set(toKey, id);
+    if (other) cells.set(fromKey, other);
+    paint();
+    const after = compute().total;
+    SFX.play('swap');
+    floatDeltas(before, after);
+    landCell(toKey);
+    announce(other
+      ? MAP[id].name+' 与 '+MAP[other].name+' 交换了位置 · 木材不变'
+      : '已把 '+MAP[id].name+' 移到 '+(to.y*N+to.x+1)+' 号格 · 木材不变');
+  }
+
+  // ---------------- 拖拽 ----------------
+  let drag = null;
+  function startDrag(ev, x, y) {
+    if (run && run.phase !== 'build') return;
+    if (ev.pointerType === 'mouse' && ev.button !== 0) return;
+    if (removing || moving || selected) return;   // 建造/拆除模式下拖拽会与落点操作冲突
+    const id = cells.get(key(x, y));
+    if (!id) return;
+    drag = { from: { x, y }, id, x0: ev.clientX, y0: ev.clientY, moved: false, ghost: null, over: null };
+  }
+  function cellFromPoint(cx, cy) {
+    const el = document.elementFromPoint(cx, cy);
+    const cell = el && el.closest ? el.closest('.cell') : null;
+    return cell && gridEl.contains(cell) ? cell : null;
+  }
+  function dragMove(ev) {
+    if (!drag) return;
+    if (!drag.moved) {
+      if (Math.hypot(ev.clientX - drag.x0, ev.clientY - drag.y0) < 8) return;
+      drag.moved = true;
+      document.body.classList.add('dragging');
+      const ghost = document.createElement('div');
+      ghost.className = 'drag-ghost';
+      ghost.style.width = Math.max(44, unit * .8) + 'px';
+      ghost.innerHTML = model(drag.id);
+      document.body.append(ghost);
+      drag.ghost = ghost;
+      held = { x: drag.from.x, y: drag.from.y };
+      paint();
+    }
+    ev.preventDefault();
+    drag.ghost.style.left = ev.clientX + 'px';
+    drag.ghost.style.top = ev.clientY + 'px';
+    const cell = cellFromPoint(ev.clientX, ev.clientY);
+    if (drag.over && drag.over !== cell) drag.over.classList.remove('drop');
+    drag.over = cell;
+    if (cell) cell.classList.add('drop');
+  }
+  function dragEnd(ev) {
+    if (!drag) return;
+    const d = drag; drag = null;
+    document.body.classList.remove('dragging');
+    if (d.ghost) d.ghost.remove();
+    cellEls.forEach(el => el.classList.remove('held', 'drop'));
+    if (!d.moved) return;                     // 单击不放：沿用原有检视行为
+    let target = cellFromPoint(ev.clientX, ev.clientY);
+    if (target && target.dataset.cx === undefined) target = null;
+    if (!target) { held = null; paint(); announce('拖到甲板上的格子才能放下。'); return; }
+    const x = Number(target.dataset.cx), y = Number(target.dataset.cy);
+    if (x === d.from.x && y === d.from.y) { held = null; paint(); return; }
+    moveBuilding(d.from, { x, y });
   }
 
   // ---------------- 建格盘 ----------------
@@ -560,6 +945,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
         const el = document.createElement('button');
         el.className = 'cell empty';
         el.type = 'button';
+        el.dataset.cx = String(x); el.dataset.cy = String(y);
         const p = point(x,y);
         el.style.left = p.x+'px'; el.style.top = p.y+'px';
         el.style.zIndex = x+y+1;
@@ -577,6 +963,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
           noGhostKey = null;
           if (hover && hover.x === x && hover.y === y) { hover = null; paint(); }
         });
+        el.addEventListener('pointerdown', ev => startDrag(ev, x, y));
         el.addEventListener('focus', () => { hover={x,y}; paint(); });
         el.addEventListener('blur', () => { hover=null; paint(); });
         el.addEventListener('click', () => editCell(x,y,removing));
@@ -622,10 +1009,12 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
         el.classList.toggle('focus', !!isFocus);
         el.classList.toggle('link', !isFocus && (targetSet.has(k) || sourceSet.has(k)));
         el.classList.toggle('ghost', !!(preview && preview.x === x && preview.y === y));
+        el.classList.toggle('held', !!(held && held.x === x && held.y === y));
 
         if (!b) {
           el.style.setProperty('--c', 'transparent');
           el.querySelector('.ic').innerHTML = '';
+          delete el.dataset.building;
           el.querySelector('.nm').textContent = '';
           el.setAttribute('aria-label', (y*N+x+1)+'号空甲板');
           continue;
@@ -641,11 +1030,12 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
         const valEl = el.querySelector('.val');
 
         // 纯辅助型（基础值为 0）不显示数值，直接显示效果强度，信息量更高
-        const isSupport = b.base === 0 && effectsOf(b).length > 0;
+        const isSupport = (b.base === 0 && effectsOf(b).length > 0) || !!b.rule;
         valEl.classList.toggle('eff', isSupport);
+        valEl.classList.toggle('rule-badge', !!b.rule);
 
         if (isSupport) {
-          valEl.textContent = effectBadge(b);
+          valEl.textContent = b.rule ? (RULE_BADGE[b.rule] || '规则') : effectBadge(b);
           valEl.style.color = '';
         } else {
           valEl.textContent = v > 0 ? Math.round(v) : '—';
@@ -669,6 +1059,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     for (const [k, el] of cellEls) {
       if (el.classList.contains('empty')) continue;
       const [x,y]=k.split(',').map(Number), p=point(x,y), bld=buildingAt(x,y);
+      if(bld.rule) continue;   // 规则建筑的徽标贴在格子内，不占用浮动标签层
       const label=document.createElement('span'); label.className='value';
       label.style.left=(p.x+unit/2)+'px';
       label.style.top=(p.y-unit*(unit < 90 ? .5 : LABEL_H[bld.id]||.34))+'px';
@@ -733,11 +1124,17 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     const f = res.flat.get(k), m = res.mult.get(k), v = res.total.get(k);
     const isPreview = preview && preview.x === hover.x && preview.y === hover.y;
 
-    let calc = '（基础 ' + b.base;
-    if (f !== 0) calc += ' <span class="op">+' + Math.round(f) + '</span>';
-    calc += '）';
-    if (m !== 1) calc += ' <span class="op">×' + String(Number(m.toFixed(3))) + '</span>';
-    calc += '<span class="eq">=</span><span class="res">' + Math.round(v) + '</span>';
+    let calc;
+    if (b.rule) {
+      // 规则型建筑没有数值可算，直接标出规则缩写，避免出现"（基础 0）= 0"这种废话
+      calc = '<span class="eq">·</span><span class="res">' + (RULE_BADGE[b.rule] || '规则') + '</span>';
+    } else {
+      calc = '（基础 ' + b.base;
+      if (f !== 0) calc += ' <span class="op">+' + Math.round(f) + '</span>';
+      calc += '）';
+      if (m !== 1) calc += ' <span class="op">×' + String(Number(m.toFixed(3))) + '</span>';
+      calc += '<span class="eq">=</span><span class="res">' + Math.round(v) + '</span>';
+    }
 
     const who = contributors(hover.x, hover.y);
     formulaEl.innerHTML =
@@ -749,9 +1146,13 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
 
   function paintTools() {
     document.querySelectorAll('.tool').forEach(el => {
+      const id = el.dataset.id, b = MAP[id];
       el.setAttribute('aria-pressed', el.dataset.id === selected ? 'true' : 'false');
-      const id=el.dataset.id;
-      el.querySelector('i').textContent=(stock[id]?'库存 '+stock[id]+' · 免费放置':run?COST[id]+' 木材':'自由建造');
+      const locked = !!run && b.unlock && meta.level < b.unlock;
+      el.classList.toggle('locked', locked);
+      el.querySelector('.cost').textContent =
+        locked ? 'Lv ' + b.unlock + ' 解锁'
+               : (stock[id] ? '库存 ' + stock[id] : (run ? COST[id] + ' 木' : '免费'));
     });
   }
 
@@ -759,26 +1160,41 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
   function buildTools() {
     const wrap = $('#tools');
     wrap.innerHTML = '';
-    BUILDINGS.forEach(b => {
-      const el = document.createElement('button');
-      el.className = 'tool';
-      el.type = 'button';
-      el.dataset.id = b.id;
-      el.style.setProperty('--c', CAT[b.cat].color);
-      el.title = b.desc;
-      el.innerHTML =
-        '<span class="dot"></span>' +
-        '<span class="ic"><svg viewBox="0 0 24 24"><use href="#' + ICON[b.id] + '"/></svg></span>' +
-        '<span class="tx"><b>' + b.name + '</b><i>' +
-          (b.base > 0 ? '基础 ' + b.base : CAT[b.cat].name) + '</i></span>';
-      el.addEventListener('click', () => {
-        setRemoving(false);
-        selected = (selected === b.id) ? null : b.id;
-        paint();
-        drawer(false);
-        announce(selected ? '已选择'+b.name+' · 点击甲板放置' : '已取消选择');
+    ['attack', 'resource', 'skill', 'special'].forEach(cat => {
+      const list = BUILDINGS.filter(b => b.cat === cat).sort((a, b) => b.base - a.base);
+      if (!list.length) return;
+      const head = document.createElement('div');
+      head.className = 'cat-h';
+      head.style.setProperty('--c', CAT[cat].color);
+      head.innerHTML = '<span class="cd"></span>' + CAT[cat].name + '<span class="n">' + list.length + ' 种</span>';
+      wrap.appendChild(head);
+      const grid = document.createElement('div');
+      grid.className = 'tools';
+      list.forEach(b => {
+        const el = document.createElement('button');
+        el.className = 'tool';
+        el.type = 'button';
+        el.dataset.id = b.id;
+        el.style.setProperty('--c', CAT[b.cat].color);
+        el.title = b.desc;
+        el.innerHTML =
+          '<span class="ic"><svg viewBox="0 0 24 24"><use href="#' + ICON[b.id] + '"/></svg></span>' +
+          '<span class="tx"><span class="nm"><b>' + b.name + '</b><em class="cost"></em></span>' +
+          '<span class="sub">' + (b.base > 0 ? '基础 ' + b.base : (effectsOf(b).length ? effectBadge(b) : CAT[b.cat].name)) + '</span></span>';
+        el.addEventListener('click', () => {
+          setRemoving(false);
+          if (run && b.unlock && meta.level < b.unlock) {
+            announce('「' + b.name + '」需要等级 Lv ' + b.unlock + '，继续出航升级来解锁。');
+            return;
+          }
+          selected = (selected === b.id) ? null : b.id;
+          paint();
+          drawer(false);
+          announce(selected ? '已选择' + b.name + ' · 点击甲板放置' : '已取消选择');
+        });
+        grid.appendChild(el);
       });
-      wrap.appendChild(el);
+      wrap.appendChild(grid);
     });
   }
 
@@ -792,8 +1208,9 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     ]
   };
 
-  function applyPreset(name) {
+  function applyPreset(name, silent = false) {
     if (run) return;
+    if (!silent) pushUndo('套用组合');
     cells.clear();
     const n = N;
     (PRESETS[name] || []).forEach(([idxStr, id]) => {
@@ -803,22 +1220,32 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     });
     selected = null;
     setRemoving(false);
+    drawer(false);
     paint();
   }
 
   // ---------------- 按钮 ----------------
-  $('#clearBtn').addEventListener('click', () => { if (run) return; cells.clear(); selected=null; hover=null; setRemoving(false); paint(); });
+  $('#clearBtn').addEventListener('click', () => {
+    if (run) return;
+    if (!cells.size) { announce('木筏已经是空的。'); return; }
+    pushUndo('清空木筏');
+    cells.clear(); selected=null; hover=null; setRemoving(false); paint();
+  });
 
   $('#expandBtn').addEventListener('click', () => {
     if (sizeIdx === SIZES.length-1 || (run && run.phase !== 'build')) return;
     if (run) {
       const price = sizeIdx === 0 ? 15 : 25;
       if (run.wood < price) { announce('扩建需要 '+price+' 木材'); return; }
+      pushUndo('扩建船体');
       run.wood -= price;
+    } else {
+      pushUndo('扩建船体');
     }
     sizeIdx++;
     N = SIZES[sizeIdx].n;
     buildGrid();
+    if (!reducedMotion.matches) gridEl.animate([{opacity:.35,scale:.93},{opacity:1,scale:1}],{duration:300,easing:'ease-out'});
     hover = null;
     paint();
     $('#growBtn').disabled = sizeIdx === SIZES.length-1;
@@ -833,19 +1260,50 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
   function setRemoving(value) {
     removing=value;document.body.classList.toggle('removing',value);
     $('#removeBtn').setAttribute('aria-pressed',String(value));
+    if (value) { held=null; setMoving(false); }
   }
   $('#removeBtn').addEventListener('click',()=>{
     setRemoving(!removing); selected=null; hover=null; drawer(false);paint();
     announce(removing?'拆除模式 · 点击建筑拆除 · Esc 退出':'已退出拆除模式');
   });
+  $('#moveBtn').addEventListener('click',()=>{
+    setMoving(!moving); selected=null; hover=null; drawer(false); paint();
+    announce(moving?'移动模式 · 点建筑再点目标格：空格移动，有建筑则交换 · Esc 退出':'已退出移动模式');
+  });
+  $('#undoBtn').addEventListener('click',()=>undoLast());
   $('#soundBtn').addEventListener('click',()=>{
     soundEnabled=!soundEnabled;$('#soundBtn').setAttribute('aria-pressed',String(soundEnabled));
     $('#soundBtn').textContent='音效：'+(soundEnabled?'开':'关');
+    SFX.setEnabled(soundEnabled);
+    if(soundEnabled) SFX.play('ui');
   });
+  // 通用按钮反馈：拾取、战利品这些已有专属音效，这里只补一层轻响
+  document.addEventListener('click',ev=>{
+    const btn=ev.target.closest('button');
+    if(!btn||btn.id==='soundBtn'||btn.matches('[data-loot],[data-supply],[data-event]')) return;
+    SFX.play('ui');
+  });
+  // 浏览器要求先有用户手势才能出声：首次交互时解锁并把海浪底色铺上
+  const unlockAudio=()=>SFX.unlock();
+  window.addEventListener('pointerdown',unlockAudio,{once:true,passive:true});
+  window.addEventListener('keydown',unlockAudio,{once:true});
+  document.addEventListener('visibilitychange',()=>SFX.suspend(document.hidden));
   $('#buildBtn').addEventListener('click',()=>drawer($('#drawer').hidden));
   $('#growBtn').addEventListener('click',()=>$('#expandBtn').click());
   $('#resetBtn').addEventListener('click',()=>{ $('#clearBtn').click(); announce('木筏已清空'); });
-  document.addEventListener('keydown',ev=>{if(ev.key==='Escape'){setRemoving(false);selected=null;hover=null;drawer(false);paint();announce('已取消建造');}});
+  document.addEventListener('keydown',ev=>{
+    if((ev.ctrlKey||ev.metaKey)&&!ev.shiftKey&&ev.key.toLowerCase()==='z'){
+      if(!$('#journey').open){ev.preventDefault();undoLast();}
+      return;
+    }
+    if(ev.key==='Escape'){
+      if(held){held=null;paint();announce('已放回原处。');return;}
+      setMoving(false);setRemoving(false);selected=null;hover=null;drawer(false);paint();announce('已取消建造');
+    }
+  });
+  window.addEventListener('pointermove',dragMove,{passive:false});
+  window.addEventListener('pointerup',dragEnd);
+  window.addEventListener('pointercancel',dragEnd);
   window.addEventListener('resize',()=>{hover=null;buildGrid();paint();});
 
   // ---------------- Five-day trial run ----------------
@@ -854,11 +1312,20 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     drawer(false); selected=null; hover=null; preview=null; setRemoving(false); paint();
     $('#journeyTitle').textContent=title;
     $('#journeyBody').innerHTML=body;
+    $('#journeyBody').dataset.view='';
     $('#journeyActions').replaceChildren();
     for (const [label, action, secondary] of actions) {
       const button=document.createElement('button');button.textContent=label;
       if(secondary) button.className='secondary';
-      button.addEventListener('click',()=>{journey.close();action();});
+      button.addEventListener('click',()=>{
+        // 同一个按钮只生效一次：否则连点「继续航行」会把天数推两格，
+        // 航线只记一站，存档随即校验不过（等于丢档）。
+        if(button.dataset.fired) return;
+        button.dataset.fired='1';
+        button.disabled=true;
+        journey.close();
+        action();
+      });
       $('#journeyActions').append(button);
     }
     if(!journey.open) journey.showModal();
@@ -870,11 +1337,13 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     $('#voyageHud').hidden=!run;
     $('#sailBtn').hidden=!run; $('#repairBtn').hidden=!run;
     $('#miniMap').hidden=!run; $('#coach').hidden=!run||!guideEnabled||run.phase!=='build';
+    const presetRow=$('#presetRow'); if(presetRow) presetRow.hidden=!!run;
+    paintUndo();
     $('.waves').style.filter=run?'hue-rotate('+(run.day-1)*5+'deg) saturate('+(1-(run.day-1)*.045)+')':'';
     if (!run) return;
     saveProgress();
     const relicChips=(run.relics||[]).map(id=>RELICS[id]?'<span class="relic-chip" title="'+RELICS[id].desc+'">'+RELICS[id].name+'</span>':'').join('');
-    $('#voyageHud').innerHTML='第 '+Math.min(run.day,5)+' / 5 天 <span>船体 <strong>'+run.hp+'</strong>/100</span><progress max="100" value="'+run.hp+'" aria-label="船体耐久"></progress><span>木材 <strong>'+run.wood+'</strong></span><span class="save-state">'+saveMessage+'</span>'+(relicChips?'<span class="relic-bar">'+relicChips+'</span>':'');
+    $('#voyageHud').innerHTML='<span class="ch"><b>Lv '+meta.level+'</b> · 第 '+meta.chapter+' 章</span> 第 '+Math.min(run.day,5)+' / 5 天 <span>船体 <strong>'+run.hp+'</strong>/100</span><progress max="100" value="'+run.hp+'" aria-label="船体耐久"></progress><span>木材 <strong>'+run.wood+'</strong></span><span class="save-state">'+saveMessage+'</span>'+(relicChips?'<span class="relic-bar">'+relicChips+'</span>':'');
     const mini=REGIONS.map((name,i)=>'<circle cx="'+(12+i*22)+'" cy="'+(35-i*5)+'" r="'+(i+1===run.day?5:3)+'" fill="'+(i+1<=run.day?'#ffe0a0':'#799c9a')+'"/>').join('');
     const miniHtml='<small>航程 '+run.day+'/5 · 点击展开</small><svg viewBox="0 0 120 50" aria-hidden="true"><path d="M12 35L100 15" stroke="#87b2a5" stroke-width="2" fill="none"/>'+mini+'</svg>'+REGIONS[run.day-1];
     if($('#miniMap').innerHTML!==miniHtml) $('#miniMap').innerHTML=miniHtml;
@@ -884,55 +1353,118 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     $('#sailBtn').textContent=run.day===5?'决战航线 →':'航线图 →';
     $('#repairBtn').disabled=run.phase!=='build'||run.wood<10||run.hp>=100;
     $('#growBtn').textContent=sizeIdx===2?'已达 5×5':'扩建 · '+(sizeIdx===0?15:25);
-    document.querySelectorAll('.tool').forEach(el=>{
-      const b=MAP[el.dataset.id];el.querySelector('i').textContent=stock[b.id]?'库存 '+stock[b.id]+' · 免费放置':COST[b.id]+' 木材 · '+(b.base?'基础 '+b.base:CAT[b.cat].name);
-    });
+    paintTools();
   }
   function startGame(adventure) {
-    stock={};pity=0;run=null;cells.clear();sizeIdx=0;N=3;hover=null;preview=null;selected=null;noGhostKey=null;setRemoving(false);
+    stock={};pity=0;run=null;cells.clear();sizeIdx=0;N=3;hover=null;preview=null;selected=null;noGhostKey=null;
+    held=null;setMoving(false);setRemoving(false);clearUndo();conflictSave=null;
     $('#growBtn').disabled=false;$('#growBtn').textContent='扩建';buildTools();buildGrid();
     if(adventure) {
-      run={day:1,hp:100,wood:18,phase:'build',route:[]};
+      seedState=(Date.now()>>>0);
+      run={day:1,hp:100,wood:18,phase:'build',route:[],seed:seedState,chapter:meta.chapter};
       cells.set('1,0','ballista');cells.set('0,1','ballista');cells.set('1,1','ammo');cells.set('0,0','net');
       announce('目标：撑过 5 天并击败巨兽。先用 18 木材建造，再选择航线。');
-    } else {applyPreset('beacon');announce('自由构筑：无限建造。点“怎么玩”可开始五日冒险。');}
+      SFX.play('start');
+    } else {applyPreset('beacon',true);announce('自由构筑：无限建造。点“怎么玩”可开始五日冒险。');}
     paint();
   }
+  const VERSION = '0.6';
+  // 试玩反馈用：把当前局面压成一段可粘贴的文本，比"我卡住了"有用得多
+  function diagnostics() {
+    const layout=[...cells].map(([k,id])=>k+'='+id).join(' ');
+    const sim=[...cells].filter(([,id])=>MAP[id].cat==='attack').length;
+    return [
+      '疯狂水世界 MVP v'+VERSION,
+      'UA: '+navigator.userAgent,
+      '视口: '+innerWidth+'×'+innerHeight,
+      run?('第 '+run.day+' 天 · 阶段 '+run.phase+' · 船体 '+run.hp+' · 木材 '+run.wood+' · 航线 '+run.route.map(r=>r.node).join('>')):'未开局',
+      '甲板 '+(N*N)+' 格，已放 '+cells.size+' 座（攻击 '+sim+' 座）',
+      '布局: '+(layout||'空'),
+      '随机种子: '+seedState+(run?(' · 局内 '+(run.seed||'—')):''),
+      '存档: '+(saveMessage||'无')+(savedGame&&savedGame.savedAt?' · '+stampOf(savedGame.savedAt):'')
+    ].join('\n');
+  }
+  function showDiagnostics() {
+    const text=diagnostics();
+    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(text).catch(()=>{});
+    const pre=document.createElement('pre');
+    pre.className='diag'; pre.textContent=text;
+    showJourney('诊断信息 · v'+VERSION,
+      '<p>下面这段已经尝试复制到剪贴板。反馈问题时贴出来，就能复现你的局面。</p>'+
+      '<pre class="diag">'+text.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))+'</pre>'+
+      '<small>版本 '+VERSION+' · 建筑与海怪立绘为本项目手绘 SVG，未使用外部素材。</small>',
+      [['返回',()=>welcome(),true]]);
+  }
   function welcome() {
+    const chChips = CHAPTERS.map(c => {
+      const locked = c.n > meta.highest, cur = c.n === meta.chapter;
+      return '<button class="relic-chip ch-chip'+(cur?' picked':'')+(locked?' locked':'')+'" data-ch="'+c.n+'"'+(locked?' disabled':'')+'>第 '+c.n+' 章 · '+c.name+(locked?'（未通关）':'')+'</button>';
+    }).join(' ');
     showJourney('把这艘木筏，带回家。',
-      '<p>你有一艘小木筏、两座弩炮和 18 木材。<b>目标：活过 5 天，击败最终的深海巨兽。</b></p>'+
-      '<p>① 点“建造”，把弩炮放到弹药架旁，提高攻击。<br>② 点“航线图”，在两条航线里挑一条：上面是航程，下面是今天的两张船票。<br>③ 战后获得木材，用来建造、扩建或修船。<br>④ “招募商店”提供无限测试金币，可抽建筑或买物资。</p>'+
-      '<p>捕鱼网每次胜利额外产木材；护盾塔抵挡每轮伤害。拆除全额返还，放心调整位置。</p>'+
-      '<small>冒险自动保存在本浏览器。开始新冒险会覆盖上一局；战斗中刷新恢复到出航前。'+(saveMessage&&saveMessage!=='已自动保存'?saveMessage+'。':'')+'</small>',
-      [...(!run&&savedGame?[['继续上次冒险 · 第 '+savedGame.run.day+' 天',resumeGame]]:[]),['开始五日冒险',()=>startGame(true)],['自由构筑',()=>startGame(false),true],...(run?[['继续当前航程',()=>{},true]]:[])]);
+      '<p>你有一艘小木筏、两座弩炮和 18 木材。<b>目标：活过 5 天，击败章节 Boss。</b></p>'+
+      '<p><b>航程进度</b>：等级 <b>Lv '+meta.level+'</b> · 当前第 '+meta.chapter+' 章「'+currentChapter().name+'」'+
+      (nextUnlock()?' · 下一解锁 Lv '+nextUnlock().unlock+'「'+nextUnlock().name+'」':'')+'</p>'+
+      '<p class="ch-row">'+chChips+'</p>'+
+      '<p>① 点“建造”，把弩炮放到弹药架旁，提高攻击。<br>② 点“航线图”，在两条航线里挑一条：上面是航程，下面是今天的两张船票。<br>③ 战后获得木材，用来建造、扩建或修船。<br>④ 通关章节获得经验升级，解锁更强武器。</p>'+
+      '<p>捕鱼网每次胜利额外产木材；护盾塔抵挡每轮伤害。拆除全额返还，放心调整位置。'+
+      '<b>直接拖动甲板上的建筑</b>可以移动或与另一座交换；“移动”按钮提供同样的点击式操作，摆错了按“撤销”或 Ctrl+Z。</p>'+
+      '<small>冒险自动保存在本浏览器。开始新冒险会覆盖上一局；战斗中刷新恢复到出航前。'+
+      (savedGame&&savedGame.savedAt?'上次整备：'+stampOf(savedGame.savedAt)+'。':'')+
+      (saveMessage&&!saveMessage.startsWith('已存')?saveMessage+'。':'')+'</small>',
+      [
+        ...(conflictSave&&validSave(conflictSave)?[['载入另一窗口 · 第 '+conflictSave.run.day+' 天（放弃本页）',()=>resumeGame(conflictSave)]]:[]),
+        ...(!run&&savedGame?[['继续上次冒险 · 第 '+savedGame.run.day+' 天',resumeGame]]:[]),
+        ['开始五日冒险',()=>startGame(true)],
+        ['自由构筑',()=>startGame(false),true],
+        ['诊断信息',showDiagnostics,true],
+        ...(run?[['继续当前航程',()=>{},true]]:[])
+      ]);
+    document.querySelectorAll('[data-ch]').forEach(chip => chip.addEventListener('click', () => {
+      const n = +chip.dataset.ch;
+      if (n > meta.highest) return;
+      meta.chapter = n; saveMeta(); startGame(true);
+    }));
+    $('#journeyBody').dataset.view='welcome';
   }
   function fleet() {
     preview=null;
     const result=compute(); const totals={attack:0,income:0,shield:0};
+    const rules={};   // 规则型建筑：整局判定一次，交给 simulate 生效，而不是逐格数值加成
     for(const [k,id] of cells) {
       const value=Math.round(result.total.get(k));
       if(MAP[id].cat==='attack') totals.attack+=value;
       if(MAP[id].cat==='resource') totals.income+=value;
       if(id==='shield') totals.shield+=value;
+      const rule=MAP[id].rule;
+      if(rule) rules[rule]=true;
     }
     const bonus=relicBonus();
     totals.attack+=bonus.atk; totals.income+=bonus.inc;
-    return {...totals, foeHp:bonus.foeHp?1+bonus.foeHp:1, loot:bonus.loot, heal:bonus.heal};
+    return {...totals, rules, foeHp:bonus.foeHp?1+bonus.foeHp:1, loot:bonus.loot, heal:bonus.heal};
   }
   // ---------------- 海怪 ----------------
   // pierce: 护盾对其攻击的吸收比例。.6 = 常规，.3 = 大部分穿透，0 = 完全无视护盾
   // hpW/hitW: 在同场多只时的血量/攻击权重（总和会被归一化到当日难度）
   const MONSTERS = {
     tentacle: { name:'浅海触手怪', hpW:1,    hitW:1,    pierce:.6,  tag:'缠网 · 每 3 轮齐射 −25%',      skills:[{k:'stun', every:3, pct:.25}] },
-    school:   { name:'银鳞鱼群',   hpW:.5,   hitW:1,    pierce:.3,  tag:'群噬 · 护盾只挡 30%',          skills:[] },
-    shell:    { name:'铁壳蟹',     hpW:1.7,  hitW:.7,   pierce:.6,  tag:'硬壳 · 每次受击 −6',           armor:6, skills:[] },
+    school:   { name:'银鳞鱼群',   hpW:.5,   hitW:1,    pierce:.3,  tag:'群袭 · 每轮两次半伤，护盾只挡 30%', intent:'swarm', skills:[] },
+    shell:    { name:'铁壳蟹',     hpW:1.7,  hitW:.7,   pierce:.6,  tag:'结壳 · 每 3 轮护甲翻倍',       armor:6, intent:'guard', skills:[] },
     leech:    { name:'吸盘水蛭',   hpW:.8,   hitW:1,    pierce:.6,  tag:'吸髓 · 每轮偷 1 木材',         skills:[{k:'drain', v:1}] },
     spore:    { name:'爆浆孢子',   hpW:.75,  hitW:1,    pierce:.6,  tag:'爆浆 · 死亡时追加 80% 伤害',   skills:[{k:'burst', mult:.8}] },
     wraith:   { name:'深潮幽灵',   hpW:.85,  hitW:1,    pierce:0,   tag:'穿影 · 完全无视护盾',          skills:[] },
     barnacle: { name:'再生藤壶',   hpW:1.1,  hitW:.85,  pierce:.6,  tag:'自愈 · 每轮回 5% 血',          skills:[{k:'regen', pct:.05}] },
-    ambush:   { name:'残骸潜伏者', hpW:1.15, hitW:1.25, pierce:.6,  tag:'伏击 · 每 2 轮 2 倍重击',      skills:[{k:'heavy', every:2, mult:2}] },
+    ambush:   { name:'残骸潜伏者', hpW:1.15, hitW:1.25, pierce:.6,  tag:'伏击 · 蓄力一轮，下轮重击 ×3', intent:'charge', chargeMult:3, skills:[] },
     leviathan:{ name:'深海巨兽',   hpW:1,    hitW:1,    pierce:.45, tag:'涡流 1.6× + 每轮回 3% 血',    skills:[{k:'heavy', every:3, mult:1.6},{k:'regen', pct:.03}] }
   };
+  // 意图：每只怪每轮只做一件事。三种可区分的行为——蓄力/重击、结壳、群袭——都在 log 里预告。
+  const INTENT_LABEL={volley:'齐射',charge:'蓄力',heavy:'重击',guard:'结壳',swarm:'群袭'};
+  function intentOf(m, round) {
+    if(m.intent==='charge') return round%2===1?{kind:'charge'}:{kind:'heavy',mult:m.chargeMult||3};
+    if(m.intent==='guard') return round%3===0?{kind:'guard'}:{kind:'volley'};
+    if(m.intent==='swarm') return {kind:'swarm'};
+    for(const s of m.skills) if(s.k==='heavy'&&round%s.every===0) return {kind:'heavy',mult:s.mult};
+    return {kind:'volley'};
+  }
   const ENCOUNTERS = {
     1:{ safe:['tentacle'],           risk:['tentacle','school'] },
     2:{ safe:['school','leech'],     risk:['shell','tentacle'] },
@@ -956,6 +1488,32 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     hook: { name:'打捞钩爪',   desc:'每场胜利额外 +8 木材',   loot:8 },
     salt: { name:'防腐盐罐',   desc:'每场战斗后船体 +6',      heal:6 }
   };
+
+  // ---------------- 进度：章节 / 等级 / 武器解锁 ----------------
+  const META_KEY='crazy-fishery.meta.v1';
+  const CHAPTERS=[
+    { n:1, name:'浅海', boss:'深海巨兽', mult:1.00 },
+    { n:2, name:'暗礁', boss:'礁窟之主', mult:1.22 },
+    { n:3, name:'深渊', boss:'深渊巨兽', mult:1.45 }
+  ];
+  let meta={level:1,xp:0,chapter:1,highest:1};
+  try { const d=JSON.parse(localStorage.getItem(META_KEY)||'null'); if(d&&typeof d.level==='number') meta=Object.assign(meta,d); } catch {}
+  function saveMeta(){ try{localStorage.setItem(META_KEY,JSON.stringify(meta));}catch{} }
+  function currentChapter(){ return CHAPTERS[Math.min(meta.chapter,CHAPTERS.length)-1]||CHAPTERS[0]; }
+  function xpToNext(level){ return 40+(level-1)*30; }
+  // 解锁：自由构筑（无 run）不设限；冒险里按等级锁进阶武器
+  function unlocked(id){ const b=MAP[id]; return !b||!b.unlock||!run||meta.level>=b.unlock; }
+  function addXp(n){
+    if(meta.level>=99)return false;
+    meta.xp+=n; let up=false;
+    while(meta.xp>=xpToNext(meta.level)&&meta.level<99){ meta.xp-=xpToNext(meta.level); meta.level++; up=true; }
+    saveMeta(); return up;
+  }
+  function nextUnlock(){
+    return BUILDINGS.find(b=>b.unlock&&b.unlock>meta.level&&b.unlock<=meta.level+1) ||
+           BUILDINGS.filter(b=>b.unlock&&b.unlock>meta.level).sort((a,b)=>a.unlock-b.unlock)[0] || null;
+  }
+
   function relicBonus() {
     const sum={atk:0,inc:0,foeHp:0,loot:0,heal:0};
     for(const id of (run&&run.relics)||[]) {
@@ -968,14 +1526,14 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
   }
   function shuffle(list) {
     const a=list.slice();
-    for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+    for(let i=a.length-1;i>0;i--){ const j=Math.floor(rnd()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
     return a;
   }
   // 三选一：一件宝藏、一件建筑、一份材料，保证每局都能看到不同组合
   function rewardOptions() {
     const owned=new Set(run.relics||[]);
     const relicIds=shuffle(Object.keys(RELICS).filter(id=>!owned.has(id)));
-    const buildIds=shuffle(BUILDINGS.map(b=>b.id));
+    const buildIds=shuffle(BUILDINGS.filter(b=>unlocked(b.id)).map(b=>b.id));
     const mats=shuffle(['wood:'+(20+run.day*10),'wood:'+(36+run.day*14),'repair:'+(20+run.day*5)]);
     const out=[];
     if(relicIds.length) out.push('relic:'+relicIds[0]);
@@ -1053,14 +1611,33 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
       hpGiven+=maxHp; hitGiven+=hit;
       monsters.push({key:i, id, name:m.name, maxHp, hp:maxHp, hit,
         armor:m.armor||0, pierce:m.pierce==null?.6:m.pierce,
+        intent:m.intent||null, chargeMult:m.chargeMult||3,
         skills:(m.skills||[]).map(s=>({...s})), alive:true});
     });
     let rounds=0, damage=0, wood=0;
     const log=[];
+    // 规则型建筑在这里生效：护盾默认每轮重置，「潮汐闸」让它结转，上限 2 倍单轮护盾。
+    // 预测、逐轮动画、最终扣血都读这一份 log，规则只写一次就不会出现三处对不上。
+    const rules=ship.rules||{};
+    const shieldCarry=!!rules.shieldCarry && (ship.shield||0)>0;
+    const shieldCap=(ship.shield||0)*2;
+    let shieldPool=0;
     while(monsters.some(m=>m.alive) && ship.attack>0 && rounds<MAX_ROUNDS) {
       rounds++;
       const ev={round:rounds, tags:[], dealt:0, raw:0, absorb:0, taken:0, heal:0, kills:[], stolen:0};
       const aliveStart=monsters.filter(m=>m.alive);
+      // 本轮意图先定下来：齐射 / 蓄力 / 重击 / 结壳 / 群袭。预告与结算读同一份，不会各说各话。
+      const plan=new Map();
+      for(const m of aliveStart) {
+        const p=intentOf(m,rounds);
+        plan.set(m,p);
+        if(p.kind==='charge') ev.tags.push(m.name+' 蓄力（本轮不出手）');
+        else if(p.kind==='guard') ev.tags.push(m.name+' 结壳（护甲翻倍）');
+        else if(p.kind==='swarm') ev.tags.push(m.name+' 群袭 ×2');
+        else if(p.kind==='heavy') ev.tags.push(m.name+' 重击 ×'+p.mult);
+      }
+      // 本轮意图也写进 log，开场那一轮还没有"上一轮播报"可读
+      ev.intents=aliveStart.map(m=>({id:m.id,name:m.name,kind:plan.get(m).kind}));
       // 玩家齐射
       let volley=ship.attack;
       for(const m of aliveStart) for(const s of m.skills)
@@ -1071,28 +1648,48 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
       let remain=volley;
       for(const m of monsters) {
         if(!m.alive||remain<=0) continue;
-        const through=Math.max(1,remain-m.armor);
+        const armor=(plan.get(m)&&plan.get(m).kind==='guard')?m.armor*2:m.armor;
+        const through=Math.max(1,remain-armor);
         const dealt=Math.min(m.hp,through);
         m.hp-=dealt; ev.dealt+=dealt;
-        remain=Math.max(0,remain-dealt-m.armor);
+        remain=Math.max(0,remain-dealt-armor);
         if(m.hp<=0){m.alive=false;ev.kills.push(m.name);}
       }
-      // 海怪反击：护盾每轮重置，每只怪按自己的穿透系数吃一份，最多吃完整池
-      let raw=0, budget=ship.shield, absorbed=0;
+      // 海怪反击：先汇总本轮命中，再统一抵扣护盾。
+      // 默认规则：护盾每轮重置，每只怪按自己的穿透系数各吃一份，最多吃完整池。
+      // 潮汐闸规则：护盾是一整池——跨轮保留（上限 2 倍），按整池抵扣，但每轮最多挡下 3/4 命中；
+      // perice 0（穿影）依然完全无视护盾，否则这只怪的存在意义就没了。
+      let raw=0;
+      const hits=new Map();
       for(const m of aliveStart) {
-        let hit=m.hit;
-        for(const s of m.skills)
-          if(s.k==='heavy'&&rounds%s.every===0) {
-            hit=Math.round(hit*s.mult);
-            ev.tags.push(m.name+' 重击 ×'+s.mult);
-          }
-        raw+=hit;
-        const take=Math.min(budget,hit*m.pierce);
-        absorbed+=take; budget-=take;
+        const p=plan.get(m)||{kind:'volley'};
+        let parts=[];
+        if(p.kind==='charge') parts=[];                                   // 蓄力：本轮不出手
+        else if(p.kind==='swarm') parts=[Math.round(m.hit*.5),Math.round(m.hit*.5)];
+        else if(p.kind==='heavy') parts=[Math.round(m.hit*(p.mult||2))];
+        else parts=[m.hit];
+        hits.set(m,parts);
+        for(const v of parts) raw+=v;
       }
-      const taken=Math.max(1,raw-Math.round(absorbed));
+      let absorbed=0;
+      let budget=shieldCarry?Math.min(shieldCap,shieldPool+ship.shield):ship.shield;
+      const ceiling=shieldCarry?raw*.75:Infinity;
+      for(const m of aliveStart) {
+        if(shieldCarry&&m.pierce===0) continue;   // 穿影：整池规则也不挡
+        for(const v of hits.get(m)||[]) {
+          let take=Math.min(budget,shieldCarry?v:v*m.pierce);
+          if(shieldCarry) take=Math.min(take,Math.max(0,ceiling-absorbed));
+          absorbed+=take; budget-=take;
+        }
+      }
+      const taken=raw>0?Math.max(1,raw-Math.round(absorbed)):0;
       damage+=taken;
       Object.assign(ev,{raw,absorb:Math.round(absorbed),taken});
+      if(shieldCarry) {
+        const kept=Math.max(0,budget);
+        if(kept>0) ev.tags.push('盾续 +'+Math.round(kept));
+        shieldPool=kept;
+      }
       // 死亡时报复
       for(const m of aliveStart) if(!m.alive) for(const s of m.skills)
         if(s.k==='burst') {
@@ -1111,6 +1708,8 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
       ev.hpLeft=monsters.reduce((s,m)=>s+(m.alive?m.hp:0),0);
       ev.alive=monsters.filter(m=>m.alive).map(m=>m.id);
       ev.front=ev.alive[0]||monsters.find(m=>!m.alive)?.id||null;
+      // 下轮预告：让玩家在播报里就能看到"它要蓄力了"
+      ev.next=monsters.filter(m=>m.alive).map(m=>({id:m.id,name:m.name,kind:intentOf(m,rounds+1).kind}));
       log.push(ev);
     }
     return {rounds, damage, wood, log, monsters, win:monsters.every(m=>!m.alive)};
@@ -1118,7 +1717,8 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
   // Both the forecast and settlement call this function. Each round attacks simultaneously.
   function forecast(elite) {
     const f=fleet(), boss=run.day===5;
-    const power=boss?72:12+run.day*8+(elite?14:0);
+    const ch=currentChapter();
+    const power=Math.round((boss?72:12+run.day*8+(elite?14:0))*ch.mult);
     const foes=encounter(run.day,elite);
     const sim=simulate(f,foes,{power,boss});
     const enemyHp=sim.monsters.reduce((s,m)=>s+m.maxHp,0);
@@ -1130,7 +1730,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     return {...f,foes,enemies:sim.monsters,enemyHp,hit,
       rounds:f.attack?sim.rounds:Infinity,
       damage,net,heal,reward:Math.max(0,(elite?16:8)+f.income-sim.wood+(f.loot||0)),
-      stolen:sim.wood,log:sim.log,boss};
+      stolen:sim.wood,log:sim.log,boss,bossName:boss?ch.boss:null};
   }
   // ---------------- 海域航图 ----------------
   // 五层航道网：底部起点，每天一层，节点之间单向相连。
@@ -1141,19 +1741,21 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
   const MAP_NODES=[
     {id:'1a',day:1,col:1,kind:'fight', links:['2a','2b']},
     {id:'1b',day:1,col:2,kind:'elite', links:['2b','2c']},
+    {id:'1c',day:1,col:0,kind:'event', links:['2a','2b'], event:'lamp'},
     {id:'2a',day:2,col:0,kind:'supply',links:['3a']},
     {id:'2b',day:2,col:1,kind:'fight', links:['3a','3b','3c']},
     {id:'2c',day:2,col:2,kind:'elite', links:['3b','3c']},
-    {id:'3a',day:3,col:0,kind:'fight', links:['4a']},
-    {id:'3b',day:3,col:1,kind:'elite', links:['4a','4b']},
+    {id:'3a',day:3,col:0,kind:'fight', links:['4a','4c']},
+    {id:'3b',day:3,col:1,kind:'elite', links:['4a','4b','4c']},
     {id:'3c',day:3,col:2,kind:'supply',links:['4b']},
     {id:'4a',day:4,col:1,kind:'fight', links:['5']},
     {id:'4b',day:4,col:2,kind:'elite', links:['5']},
+    {id:'4c',day:4,col:0,kind:'event', links:['5'], event:'storm'},
     {id:'5', day:5,col:1,kind:'boss',  links:[]}
   ];
   const NODE_MAP={};
   MAP_NODES.forEach(n=>{NODE_MAP[n.id]=n;});
-  const KIND_NAME={fight:'巡游',elite:'险航',supply:'补给',boss:'终局'};
+  const KIND_NAME={fight:'巡游',elite:'险航',supply:'补给',event:'事件',boss:'终局'};
   const nodeX=n=>COLX[n.col];
   const nodeY=n=>24+(5-n.day)*36;
   // 走过的节点 id 序列；当前位置 = 最后一个
@@ -1201,6 +1803,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
       else if(n.day<run.day) cls.push('passed');
       else cls.push('lock');
       if(n.kind==='supply') nodes+='<rect data-id="'+n.id+'" class="'+cls.join(' ')+'" x="'+(x-6.5)+'" y="'+(y-6.5)+'" width="13" height="13" rx="2.5"/>';
+      else if(n.kind==='event') nodes+='<polygon data-id="'+n.id+'" class="'+cls.join(' ')+'" points="'+x+','+(y-7.5)+' '+(x+7.5)+','+y+' '+x+','+(y+7.5)+' '+(x-7.5)+','+y+'"/>';
       else nodes+='<circle data-id="'+n.id+'" class="'+cls.join(' ')+'" cx="'+x+'" cy="'+y+'" r="'+(n.kind==='boss'?11:8)+'"/>';
       if(n.kind==='boss') nodes+='<text class="crown" x="'+x+'" y="'+(y+4)+'">♛</text>';
     }
@@ -1221,7 +1824,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
   }
   // 船票：一条航道一行——谁在这条道上、会掉多少血、能拿多少木头。
   function sailRow(f, node) {
-    const names=f.foes.map(id=>MONSTERS[id].name).join('、');
+    const names=f.boss?(f.bossName||'深海巨兽'):f.foes.map(id=>MONSTERS[id].name).join('、');
     const tags=f.foes.map(id=>MONSTERS[id].tag).join(' · ');
     const danger=f.damage>=run.hp;
     return '<button class="sail-row '+node.kind+'" data-node="'+node.id+'" data-day="'+run.day+
@@ -1240,16 +1843,32 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
       '<span class="num gain"><b>三选一</b><small>收获</small></span>'+
       '<span class="go">停靠 →</span></button>';
   }
+  // 事件：停靠后必须做一次取舍，收益与代价同时结算，没有"白拿"的选项
+  const EVENT_ART={
+    lamp:'<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6v7" stroke="#e8d9ac" stroke-width="3"/><rect x="20" y="13" width="24" height="28" rx="5" fill="#f0d79a" stroke="#8a6f3c" stroke-width="2"/><circle cx="32" cy="27" r="7" fill="#fff4c2"/><path d="M16 43h32l-5 9H21Z" fill="#9c8465"/></svg>',
+    wave:'<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 40q8-9 16 0t16 0 16 0" fill="none" stroke="#b7e9e3" stroke-width="3" stroke-linecap="round"/><path d="M8 50q8-9 16 0t16 0 16 0" fill="none" stroke="#8fd3bf" stroke-width="3" stroke-linecap="round"/><path d="M32 8l11 17H21Z" fill="#e9a878"/></svg>'
+  };
+  function eventRow(node) {
+    const def=EVENTS[node.event]||{title:'未知事件',teaser:''};
+    return '<button class="sail-row event" data-node="'+node.id+'" data-day="'+run.day+'" aria-label="第 '+run.day+' 天 事件：'+def.title+'">'+
+      '<span class="art">'+(EVENT_ART[node.event]||EVENT_ART.lamp)+'</span>'+
+      '<span class="body"><b>'+def.title+'</b><small>'+def.teaser+'</small></span>'+
+      '<span class="num"><b>—</b><small>船损</small></span>'+
+      '<span class="num gain"><b>二选一</b><small>抉择</small></span>'+
+      '<span class="go">停靠 →</span></button>';
+  }
 
-  const POOLS = {common:['ballista','harpoon','net','purifier'],rare:['ammo','shield'],legendary:['beacon','coral']};
+  const POOLS = {common:['ballista','harpoon','net','purifier'],rare:['ammo','shield','tidegate','chain','mortar'],legendary:['beacon','coral','doom']};
   const RARITY = {common:'普通',rare:'稀有',legendary:'传奇'};
   function recruit(count) {
     if(run&&run.phase!=='build')return;
     const results=[];
     for(let i=0;i<count;i++) {
-      const roll=Math.random();
+      const roll=rnd();
       const rarity=pity>=19||roll>=.95?'legendary':roll>=.70?'rare':'common';
-      const pool=POOLS[rarity],id=pool[Math.floor(Math.random()*pool.length)];
+      let pool=(POOLS[rarity]||[]).filter(id=>unlocked(id));
+      if(!pool.length) pool=POOLS.common.filter(id=>unlocked(id));
+      const id=pool[Math.floor(rnd()*pool.length)];
       pity=rarity==='legendary'?0:pity+1;
       stock[id]=(stock[id]||0)+1;results.push({id,rarity});
     }
@@ -1265,7 +1884,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
       '<small>普通 70% · 稀有 25% · 传奇 5%。连续 19 次未出传奇，第 20 次必出；出传奇后重新计数。距保底最多 '+(20-pity)+' 抽。</small>'+
       (cards?'<div class="recruit-grid">'+cards+'</div>':'')+
       '<p><b>仓库</b> · 建造时优先消耗库存，无需木材。</p><div class="stock">'+inventory+'</div>'+
-      '<div class="shop-items">'+BUILDINGS.map(b=>'<button data-buy="'+b.id+'">购买 '+b.name+' · '+COST[b.id]*100+' 金币</button>').join('')+(run?'<button id="buyWood">100 木材 · 500 金币</button>':'')+'</div>',
+      '<div class="shop-items">'+BUILDINGS.filter(b=>unlocked(b.id)).map(b=>'<button data-buy="'+b.id+'">购买 '+b.name+' · '+COST[b.id]*100+' 金币</button>').join('')+(run?'<button id="buyWood">100 木材 · 500 金币</button>':'')+'</div>',
       [['单抽',()=>recruit(1)],['十连',()=>recruit(10)],['去建造',()=>{drawer(true);paintTools();},true],['返回海面',()=>{},true]]);
     document.querySelectorAll('[data-buy]').forEach(button=>button.addEventListener('click',()=>{
       const id=button.dataset.buy;stock[id]=(stock[id]||0)+1;openShop([{id,rarity:Object.keys(POOLS).find(r=>POOLS[r].includes(id))}]);
@@ -1277,16 +1896,18 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
   // 每天列出"从这里真正能到的"航点——昨天的选择已经砍掉了一部分选项。
   function chooseRoute() {
     if(!run || run.phase!=='build') return;
+    SFX.play('sail');
     const opts=reachableNodes();
     const rows=opts.map(node=>{
       if(node.kind==='supply') return supplyRow(node);
+      if(node.kind==='event') return eventRow(node);
       return sailRow(forecast(node.kind==='elite'),node);
     }).join('');
     const stat=forecast(opts.some(n=>n.kind==='elite'));
     const types=opts.map(n=>KIND_NAME[n.kind]).join(' / ');
     showJourney(run.day===5?'第五天 · 迎战深海巨兽':'第 '+run.day+' 天 · 选一条航道',
       seaChart()+
-      '<p class="chart-legend">金线＝走过的航路 · 金圈＝今天能去 · 方块＝补给 · 红＝险航</p>'+
+      '<p class="chart-legend">金线＝走过的航路 · 金圈＝今天能去 · 方块＝补给 · 菱形＝事件 · 红＝险航</p>'+
       '<p class="powers">攻击 <b>'+stat.attack+'</b> · 每轮护盾 <b>'+stat.shield+'</b> · 捕鱼 <b>'+stat.income+'</b>'+
       ' · 今天有 '+opts.length+' 条航道（'+types+'）</p>'+
       '<div class="sail-list">'+rows+'</div>'+
@@ -1314,20 +1935,28 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
         const node=NODE_MAP[id];
         if(!run || run.phase!=='build' || !node) return;
         journey.close();
-        if(node.kind==='supply') enterSupply(node); else resolveBattle(node);
+        if(node.kind==='supply') enterSupply(node);
+        else if(node.kind==='event') enterEvent(node);
+        else resolveBattle(node);
       });
     });
   }
   function nextDay() {
-    run.day++; run.phase='build'; delete run.result; paint();
+    // 只允许从结算推进一次；连点不会把天数推两格，也不会让航线与天数脱节
+    if(!run || run.phase!=='result') return;
+    run.day++; run.phase='build'; delete run.result;
+    // 新的一天开始新的整备：清空撤销栈，避免把已领取的战斗奖励退回去
+    clearUndo(); held=null; setMoving(false); setRemoving(false);
+    paint();
     announce('第 '+run.day+' 天：可建造、修船，准备好再出航。');
+    SFX.play('day');
   }
   // 补给点：不上战场，停靠就搬东西。三选一，选完立刻起航。
   function enterSupply(node) {
     if(!run || run.phase!=='build') return;
     const day=run.day, wood=26+day*12, heal=16+day*5;
     const pool=Object.keys(MAP).filter(id=>MAP[id].cat);
-    const gift=pool[Math.floor(Math.random()*pool.length)];
+    const gift=pool[Math.floor(rnd()*pool.length)];
     run.route.push({day:day,node:node.id});
     run.phase='result';
     run.result={node:node.id,kind:'supply'};
@@ -1348,6 +1977,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     document.querySelectorAll('[data-supply]').forEach(card=>card.addEventListener('click',()=>{
       const got=opts.find(o=>o.id===card.dataset.supply);
       got.apply();
+      SFX.play('pick');
       document.querySelectorAll('[data-supply]').forEach(c=>{
         c.disabled=true;
         c.classList.toggle('picked',c.dataset.supply===got.id);
@@ -1359,6 +1989,74 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
       paint();
     }));
   }
+  // 航路事件：两个选项各有代价，结算一次后必须起航，不能反复领取
+  const EVENTS={
+    lamp:{
+      title:'海雾里的灯影',
+      teaser:'雾里有一盏不该存在的灯，底下压着一截货舱',
+      body:'雾里有一盏灯，随着浪一起晃。它挂在半沉的桅杆上，下面好像压着一截货舱——靠过去要穿过一片暗礁。',
+      choices:[
+        {id:'follow',title:'循灯过去',desc:'捞起一件漂来的建筑（进仓库），船体 −8',apply(){
+          const pool=Object.keys(MAP).filter(id=>MAP[id].cat);
+          const gift=pool[Math.floor(rnd()*pool.length)];
+          stock[gift]=(stock[gift]||0)+1;
+          run.hp=Math.max(1,run.hp-8);
+          return '你捞到 '+MAP[gift].name+'（已进仓库），船身被暗礁刮掉 8 点。';
+        }},
+        {id:'avoid',title:'绕开灯影',desc:'不冒这个险，什么也拿不到',apply(){
+          return '你让木筏从灯的侧面漂过去，什么也没发生。';
+        }}
+      ]
+    },
+    storm:{
+      title:'风暴前夜',
+      teaser:'明早就是巨兽海沟：今晚补船，还是抢最后的物资',
+      body:'气压在往下掉。前面就是巨兽海沟，今晚只够做一件事：要么补漏，要么抢货。',
+      choices:[
+        {id:'plunder',title:'顶着风浪抢货',desc:'木材 +55，船体 −14',apply(){
+          run.wood+=55;run.hp=Math.max(1,run.hp-14);
+          return '你们把漂来的货捆上甲板：木材 +55，船体 −14。';
+        }},
+        {id:'mend',title:'落帆补漏',desc:'船体 +20（上限 100）',apply(){
+          run.hp=Math.min(100,run.hp+20);
+          return '整夜补漏，天亮时船体是 '+run.hp+'。';
+        }}
+      ]
+    }
+  };
+  function enterEvent(node) {
+    if(!run||run.phase!=='build')return;
+    const def=EVENTS[node.event];
+    if(!def)return;
+    const day=run.day;
+    run.route.push({day:day,node:node.id});
+    run.phase='result';
+    run.result={node:node.id,kind:'event'};
+    const cards=def.choices.map(c=>'<button class="loot-card" data-event="'+c.id+'"><b>'+c.title+'</b><small>'+c.desc+'</small></button>').join('');
+    showJourney('第 '+day+' 天 · '+def.title,
+      '<p>'+def.body+'</p><div class="loot-grid two">'+cards+'</div>',
+      [['继续航行',()=>nextDay()]]);
+    const next=document.querySelector('#journeyActions button');
+    if(next){ next.disabled=true; next.textContent='先做一个选择'; next.classList.add('waiting'); }
+    document.querySelectorAll('[data-event]').forEach(card=>card.addEventListener('click',()=>{
+      if(run.result.picked)return;
+      const choice=def.choices.find(c=>c.id===card.dataset.event);
+      if(!choice)return;
+      const note=choice.apply();
+      SFX.play('pick');
+      run.result.picked=choice.id;
+      document.querySelectorAll('[data-event]').forEach(c=>{
+        c.disabled=true;
+        c.classList.toggle('picked',c.dataset.event===choice.id);
+        c.classList.toggle('dim',c.dataset.event!==choice.id);
+      });
+      const lead=document.querySelector('#journeyBody p');
+      if(lead) lead.textContent=note;
+      if(next){ next.disabled=false; next.textContent='继续航行'; next.classList.remove('waiting'); next.focus(); }
+      paint();
+    }));
+  }
+
   let battle = null;
   function resolveBattle(node) {
     if(!run || run.phase!=='build') return;
@@ -1376,7 +2074,13 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     $('#enemyHealth').max=f.enemyHp;
     showFrontFoe(f.foes[0]);
     $('#enemyRest').textContent=f.foes.length>1?'还有 '+f.foes.slice(1).map(id=>MONSTERS[id].name).join('、'):'';
+    document.body.classList.toggle('boss-battle',!!f.boss);
+    if(f.boss) $('.waves').style.filter='hue-rotate(-18deg) saturate(1.18) brightness(.9)';
+    SFX.play(f.boss ? 'boss' : 'encounter');
     updateBattleHealth();
+    // 开场就把第一轮意图说出来，别让玩家等到播报才开始理解对手
+    const first=(f.log[0]&&f.log[0].intents||[])[0];
+    if(first) $('#battleDetail').textContent+='　首轮：'+first.name+' '+INTENT_LABEL[first.kind];
     $('#skipBattle').focus();
     if(reducedMotion.matches||!f.log.length) finishBattle();
     else battleMove(true);
@@ -1389,7 +2093,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
   function showFrontFoe(id) {
     if(!id) return;
     setEnemyArt(id);
-    $('#enemyName').textContent=MONSTERS[id].name;
+    $('#enemyName').textContent=(battle.f.boss&&battle.f.bossName)?battle.f.bossName:MONSTERS[id].name;
     $('#enemySkills').innerHTML='<span>'+MONSTERS[id].tag+'</span>';
   }
   function updateBattleHealth() {
@@ -1422,7 +2126,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     const next=(battle.round%2 ? (small?-55:-125) : (small?-8:-35))+'px '+(battle.round%2?30:0)+'px';
     enemy.style.translate=next;
     enemy.animate([{translate:from,opacity:entering?0:1},{translate:next,opacity:1}],{duration:500,easing:'ease-in-out'});
-    $('#battleRound').textContent=entering?'海怪正在接近木筏…':'海怪游向侧翼…';
+    $('#battleRound').textContent=entering?(battle.f.boss?'深海巨兽正在上浮…':'海怪正在接近木筏…'):(battle.f.boss?'巨兽摆尾，涡流卷了过来…':'海怪游向侧翼…');
     battle.timer=setTimeout(battleVolley,520);
   }
   function battleVolley() {
@@ -1432,21 +2136,38 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     if(!ev){finishBattle();return;}
     const enemy=$('#enemy svg').getBoundingClientRect(), target={x:enemy.left+enemy.width/2,y:enemy.top+enemy.height/2};
     const raft=$('.raft').getBoundingClientRect(), home={x:raft.left+raft.width/2,y:raft.top+raft.height/2};
-    for(const [k,id] of cells) if(MAP[id].cat==='attack') {
-      const icon=cellEls.get(k).querySelector('.ic'), box=icon.getBoundingClientRect();
-      projectile({x:box.left+box.width/2,y:box.top+box.height/2},target);
-      icon.animate([{translate:'0 0'},{translate:'-3px 4px'},{translate:'0 0'}],{duration:200});
+    let shots=0;
+    for(const [k,id] of cells) {
+      const cat=MAP[id].cat;
+      const cellEl=cellEls.get(k), icon=cellEl&&cellEl.querySelector('.ic');
+      if(!icon) continue;
+      const box=icon.getBoundingClientRect();
+      const at={x:box.left+box.width/2,y:box.top+box.height/2};
+      if(cat==='attack') {                       // 攻击：真的打出去
+        projectile(at,target);shots++;
+        icon.animate([{translate:'0 0'},{translate:'-3px 4px'},{translate:'0 0'}],{duration:200});
+      } else if(cat==='resource') {              // 资源：这一轮在产出，冒水花
+        splash(k);SFX.play('splash');
+      } else {                                   // 技能/奇妙：增益亮一下
+        icon.animate([{scale:1},{scale:1.12},{scale:1}],{duration:280});
+      }
     }
-    projectile(target,home,true);sound(false);
+    projectile(target,home,true);SFX.play('cannon');
+    // 火力越密，补一层延迟炮响，听感上才像"齐射"而不是单发
+    if(shots>=3) setTimeout(()=>SFX.play('cannon'),88);
     $('#battleRound').textContent='第 '+ev.round+' 轮'+(ev.tags.length?' · '+ev.tags.join(' · '):' · 双方同时交锋');
     $('#battleDetail').textContent='我方 −'+ev.dealt+'　受击 '+ev.raw+(ev.absorb?'（护盾挡 '+ev.absorb+'）':'')+'　船体 −'+ev.taken+(ev.heal?'　海怪回血 '+ev.heal:'');
+    const nextFoe=(ev.next||[]).find(x=>x.id===(ev.alive[0]||ev.front));
+    if(nextFoe) $('#battleDetail').textContent+='　下轮：'+nextFoe.name+' '+INTENT_LABEL[nextFoe.kind];
     battle.timer=setTimeout(()=>{
       if(!battle)return;
       const f=battle.f;
       run.hp=Math.max(0,run.hp-ev.taken);
       battle.enemyHp=ev.hpLeft;
-      if(ev.dealt) battleNumber(enemy,'−'+ev.dealt);
-      battleNumber(raft,'−'+ev.taken,true);
+      if(ev.dealt){ battleNumber(enemy,'−'+ev.dealt); SFX.play('enemyHit'); }
+      if(ev.taken){ battleNumber(raft,'−'+ev.taken,true); SFX.play('hullHit'); }   // 对方整轮蓄力时是 0，不要飘一个「−0」
+      if(ev.absorb) SFX.play('shield');
+      if(ev.heal) SFX.play('heal');
       if(f.shield) {
         const ring=effectElement('shield-ring',raft.left-10,raft.top+raft.height*.15);
         ring.style.width=(raft.width+20)+'px';ring.style.height=raft.height*.8+'px';
@@ -1470,7 +2191,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     const {f,before,elite,node}=battle;
     clearTimeout(battle.timer);battle=null;
     $('#enemy').getAnimations().forEach(a=>a.cancel());$('#enemy').style.translate='';
-    $('#battleView').hidden=true;document.body.classList.remove('battling');
+    $('#battleView').hidden=true;document.body.classList.remove('battling','boss-battle');
     document.querySelectorAll('[data-combat]').forEach(el=>{el.getAnimations().forEach(a=>a.cancel());el.remove();});
     $('.dock').inert=false;$('.voyage-actions').inert=false;
     run.phase='result';
@@ -1481,13 +2202,22 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
       run.wood+=f.reward;
     }
     run.result={before,elite,node:node};
+    if(survived) {
+      run.result.xp=f.boss?(60+meta.chapter*20):10;
+      run.result.leveled=addXp(run.result.xp);
+      if(f.boss&&meta.chapter===meta.highest&&meta.chapter<CHAPTERS.length) meta.highest=meta.chapter+1;
+      saveMeta();
+      if(run.result.leveled) paintTools();   // 升级解锁后，工具箱的锁徽标要刷新
+    }
     // 打赢了才开箱；巨兽之后是通关，不再发战利品
     if(survived&&!f.boss) run.result.rewards=rewardOptions();
+    SFX.play(survived ? (f.boss?'bossVictory':'victory') : 'defeat');
+    if(survived&&run.result.leveled) setTimeout(()=>SFX.play('levelup'),700);
     presentResult(f,before);
   }
   function presentResult(f,before) {
     const survived=run.hp>0;
-    const title=!survived?'木筏沉没了':f.boss?'你驶出了深海！':'第 '+run.day+' 天 · 遭遇胜利';
+    const title=!survived?'木筏沉没了':f.boss?'你征服了「'+(f.bossName||'深海巨兽')+'」！':'第 '+run.day+' 天 · 遭遇胜利';
     const foes=f.foes.map(id=>MONSTERS[id].name).join('、');
     const detail=f.attack?'对 '+foes+' 齐射 '+f.attack+' / 轮，撑过 '+f.rounds+' 轮后清场。':'没有攻击建筑，无法抵御 '+foes+'。';
     const rewards=survived&&!f.boss&&run.result&&run.result.rewards?run.result.rewards:null;
@@ -1504,9 +2234,13 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
       '<p>'+(!survived?'火力或防护不足，船体未能撑过这场交锋。':detail)+'</p>'+
       '<p class="combat-summary">船体 '+before+' → '+run.hp+(survived&&f.heal?'（盐罐 +'+f.heal+'）':'')+'<br>'+ (survived?'回收 '+f.reward+' 木材（含捕鱼 '+f.income+'）'+(f.stolen?'，被吸走 '+f.stolen:'')+'':'调整弹药架的位置、增加弩炮或护盾，再试一次。')+'</p>'+
       lootHtml+
-      (f.boss&&survived?'<p>五日航程完成。你靠这艘自己搭建的木筏活了下来。</p>':''),
+      (f.boss&&survived
+        ?'<p>征服了「'+(f.bossName||'深海巨兽')+'」，第 '+meta.chapter+' 章航程完成。<br>经验 +'+run.result.xp+(run.result.leveled?' · 升级到 Lv '+meta.level:'')+(meta.highest>meta.chapter?' · 解锁「第 '+meta.highest+' 章 · '+(CHAPTERS[meta.highest-1].name)+'」':'')+'。</p>'
+        :''),
       survived&&!f.boss?[['领取并整备下一天',()=>nextDay()]]:
-      [['再来一局',()=>startGame(true)],['自由构筑',()=>startGame(false),true]]);
+      (f.boss&&survived&&meta.highest>meta.chapter)
+        ?[['进入第 '+meta.highest+' 章',()=>{ meta.chapter=meta.highest; saveMeta(); startGame(true); }],['再来一局',()=>startGame(true)]]
+        :[['再来一局',()=>startGame(true)],['自由构筑',()=>startGame(false),true]]);
     if(!rewards) return;
     const next=document.querySelector('#journeyActions button');
     if(picked) return;
@@ -1514,6 +2248,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     document.querySelectorAll('[data-loot]').forEach(card=>card.addEventListener('click',()=>{
       const id=card.dataset.loot, info=rewardInfo(id);
       applyReward(id);
+      SFX.play('loot');
       run.result.picked=id;
       document.querySelectorAll('[data-loot]').forEach(c=>{
         c.disabled=true;
@@ -1534,15 +2269,18 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
   $('#sailBtn').addEventListener('click',chooseRoute);
   $('#repairBtn').addEventListener('click',()=>{
     if(!run||run.phase!=='build'||run.wood<10||run.hp>=100)return;
-    run.wood-=10;run.hp=Math.min(100,run.hp+25);paint();announce('消耗 10 木材，船体恢复 25（最高 100）。');
+    pushUndo('修船');
+    run.wood-=10;run.hp=Math.min(100,run.hp+25);paint();SFX.play('repair');announce('消耗 10 木材，船体恢复 25（最高 100）。');
   });
 
   // Inspired by Tidewater's guarded, versioned local saves; this schema is specific to our run.
   function validSave(d) {
     const integer=(v,min,max)=>Number.isSafeInteger(v)&&v>=min&&v<=max;
-    if(!d||d.version!==1||!integer(d.sizeIdx,0,2)||!integer(d.pity,0,19)||typeof d.soundEnabled!=='boolean'||typeof d.guideEnabled!=='boolean')return false;
+    if(!d||d.version!==SAVE_VERSION)return false;
+    if(!integer(d.sizeIdx,0,2)||!integer(d.pity,0,19)||typeof d.soundEnabled!=='boolean'||typeof d.guideEnabled!=='boolean')return false;
     const r=d.run,n=SIZES[d.sizeIdx].n;
     if(!r||!integer(r.day,1,5)||!integer(r.hp,0,100)||!integer(r.wood,0,1e9)||!['build','result'].includes(r.phase))return false;
+    if(r.seed!==undefined&&!integer(r.seed,0,4294967295))return false;
     if(r.phase==='build'&&r.hp===0)return false;
     if(!Array.isArray(r.route)||r.route.length!==r.day-(r.phase==='build'?1:0))return false;
     if(r.route.some((v,i)=>{
@@ -1565,7 +2303,7 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     return Object.entries(d.stock).every(([id,count])=>Object.hasOwn(MAP,id)&&integer(count,0,1e9));
   }
   // 旧版存档里 route 只记了 day + elite，按"同类且连得上"的规则补成航点
-  function migrateSave(d) {
+  function repairRoute(d) {
     if(!d||!d.run||!Array.isArray(d.run.route))return d;
     if(d.run.route.every(v=>v&&typeof v.node==='string'))return d;
     const out=[];
@@ -1588,6 +2326,26 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
     }
     return d;
   }
+  // 版本阶梯：每级只负责把上一版的数据补齐到本级，之后由 validSave 统一验收
+  const MIGRATIONS={
+    // v2：存档带上写入时间，用于"继续游戏"显示存档时刻，并提供多窗口冲突的可读来源
+    1(d){ d.version=2; if(!Number.isSafeInteger(d.savedAt))d.savedAt=0; return d; }
+  };
+  function migrateSave(d) {
+    if(!d||typeof d!=='object')return d;
+    d=repairRoute(d);
+    let v=Number.isSafeInteger(d.version)?d.version:0;
+    while(v<SAVE_VERSION&&MIGRATIONS[v]) { d=MIGRATIONS[v](d); v=d.version; }
+    return d;
+  }
+  // 只比较内容（不含写入时间），避免每次保存都因时间戳不同而重复写盘
+  function contentOf(d) {
+    return JSON.stringify({version:SAVE_VERSION,sizeIdx:d.sizeIdx,cells:d.cells,stock:d.stock,pity:d.pity,run:d.run,soundEnabled:d.soundEnabled,guideEnabled:d.guideEnabled});
+  }
+  function saveBody() {
+    return {version:SAVE_VERSION,sizeIdx,cells:[...cells],stock,pity,run,soundEnabled,guideEnabled};
+  }
+  const stampOf=ms=>{if(!ms)return '';const t=new Date(ms);const p=n=>String(n).padStart(2,'0');return (t.getMonth()+1)+'/'+t.getDate()+' '+p(t.getHours())+':'+p(t.getMinutes());};
   function readSave() {
     try {
       const raw=localStorage.getItem(SAVE_KEY);
@@ -1595,28 +2353,64 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
       if(raw.length>100000)throw new Error('oversized save');
       const d=migrateSave(JSON.parse(raw));
       if(!validSave(d))throw new Error('invalid save');
-      savedGame=d;lastSaved=raw;
+      savedGame=d;lastSaved=contentOf(d);
+      // 旧版存档读入后立刻落盘，避免每次启动都重新迁移
+      if(JSON.parse(raw).version!==SAVE_VERSION) {
+        try { localStorage.setItem(SAVE_KEY,JSON.stringify({...d,savedAt:d.savedAt||Date.now()})); } catch {}
+      }
     } catch {saveMessage='存档不可读取，原数据保留；可开始新局';}
   }
   function saveProgress() {
     if(!run||!['build','result'].includes(run.phase))return;
-    const d={version:1,sizeIdx,cells:[...cells],stock,pity,run,soundEnabled,guideEnabled};
-    const raw=JSON.stringify(d);
+    // 补给/事件停靠是内存里的暂停：此刻的 result 快照没有战报字段，写进去下次读档会被判非法。
+    // 等 nextDay() 回到整备阶段再落盘；中途刷新最多重挑一次，不会重复领取。
+    if(run.result&&(run.result.kind==='supply'||run.result.kind==='event'))return;
+    const body=saveBody(), raw=contentOf(body);
     if(raw===lastSaved)return;
+    // 写盘前先自己过一遍校验：宁可这一秒不保存，也不要把读不回来的档写进 localStorage
+    if(!validSave(body)) { saveMessage='进度暂时无法保存'; return; }
     try {
-      localStorage.setItem(SAVE_KEY,raw);lastSaved=raw;savedGame=JSON.parse(raw);saveMessage='已自动保存';
+      localStorage.setItem(SAVE_KEY,JSON.stringify({...body,savedAt:Date.now()}));
+      lastSaved=raw;savedGame=body;saveMessage='已存 '+stampOf(Date.now()).slice(-5);
     } catch {saveMessage='无法保存，请勿关闭本页';}
   }
-  function resumeGame() {
-    if(!savedGame||!validSave(savedGame))return;
-    const d=JSON.parse(JSON.stringify(savedGame));
-    saveMessage='已恢复存档';
+  // 多窗口：另一个标签页写了不同进度时只提示，不静默覆盖当前这一局
+  window.addEventListener('storage',ev=>{
+    if(ev.key!==SAVE_KEY||!ev.newValue)return;
+    let d;
+    try { d=migrateSave(JSON.parse(ev.newValue)); } catch { return; }
+    if(!validSave(d))return;
+    const incoming=contentOf(d);
+    if(run&&incoming===contentOf(saveBody())) { lastSaved=incoming; return; }
+    if(!run) {
+      savedGame=d;lastSaved=incoming;
+      saveMessage='已同步另一窗口'+(d.savedAt?' · '+stampOf(d.savedAt):'');
+      announce('另一窗口的进度已同步到此页。');
+      paint();
+      if($('#journey').open&&$('#journeyBody').dataset.view==='welcome')welcome();
+      return;
+    }
+    conflictSave=d;
+    saveMessage='另一窗口有不同进度';
+    paint();
+    announce('另一个窗口保存了不同进度，本页不会被静默覆盖。点“怎么玩”可选择载入那一份。');
+    if($('#journey').open&&$('#journeyBody').dataset.view==='welcome')welcome();
+  });
+  function resumeGame(source) {
+    const base=source&&validSave(source)?source:savedGame;
+    if(!base||!validSave(base))return;
+    const d=JSON.parse(JSON.stringify(base));
+    saveMessage='已恢复存档'+(d.savedAt?' · 整备于 '+stampOf(d.savedAt):'');
     sizeIdx=d.sizeIdx;N=SIZES[sizeIdx].n;stock=d.stock;pity=d.pity;run=d.run;
+    if(!Number.isInteger(run.chapter)) run.chapter=meta.chapter;
+    if(Number.isSafeInteger(d.run.seed)) seedState=d.run.seed;
     soundEnabled=d.soundEnabled;guideEnabled=d.guideEnabled;
     cells.clear();for(const [k,id] of d.cells)cells.set(k,id);
-    selected=null;hover=null;preview=null;noGhostKey=null;setRemoving(false);
+    selected=null;hover=null;preview=null;noGhostKey=null;held=null;
+    setMoving(false);setRemoving(false);clearUndo();conflictSave=null;
     $('#growBtn').disabled=sizeIdx===2;
     $('#soundBtn').textContent='音效：'+(soundEnabled?'开':'关');$('#soundBtn').setAttribute('aria-pressed',String(soundEnabled));
+    SFX.setEnabled(soundEnabled);
     buildTools();buildGrid();paint();
     if(run.phase==='result')presentResult(forecast(run.result.elite),run.result.before);
     else announce('已恢复第 '+run.day+' 天的木筏、仓库和保底进度。');
@@ -1630,12 +2424,16 @@ dialog{margin:auto;width:min(540px,calc(100vw - 28px));max-height:85vh;overflow:
   // 数值核对出口：自动化测试与平衡调试用，不影响正常游玩
   window.__ff={ simulate, forecast, encounter, fleet, MONSTERS, monsterArt, RELICS, rewardOptions, applyReward, relicBonus, paint,
     MAP_NODES, NODE_MAP, KIND_NAME, reachableNodes, hereNode, routeNodes, validSave, migrateSave,
+    undoLast, moveBuilding, get undoDepth(){return undoStack.length;}, SAVE_VERSION,
+    get seed(){return seedState;}, setSeed(v){seedState=v>>>0; if(run)run.seed=seedState;},
     get stock(){return stock;},
-    get run(){return run;}, set run(v){run=v;} };
+    get meta(){return meta;}, resetMeta(){meta={level:1,xp:0,chapter:1,highest:1};saveMeta();}, setLevel(v){meta.level=v;saveMeta();paintTools();}, setChapter(v){meta.chapter=v;saveMeta();}, setHighest(v){meta.highest=v;saveMeta();},
+    get run(){return run;}, set run(v){run=v;}, SFX };
   readSave();
   buildTools();
   buildGrid();
-  applyPreset('beacon');
+  applyPreset('beacon',true);
+  clearUndo();
   welcome();
 })();
 </script>

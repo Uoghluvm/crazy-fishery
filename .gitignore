@@ -9,3 +9,5 @@ debug-*.png
 .env.*
 !.env.example
 prototype/.godot/
+_inspect/
+build/

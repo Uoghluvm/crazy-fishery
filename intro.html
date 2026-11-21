@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>疯狂水世界 · 作品介绍</title>
+<style>
+:root{--ink:#fff2d4;--dim:#a8cfc6;--gold:#ffdc89;--cyan:#86eadb;--teal:#0f3b44;--deep:#082c34;--red:#ff8a6b;--line:rgba(134,234,219,.16)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--deep);line-height:1.75;-webkit-font-smoothing:antialiased}
+/* 海面背景：柔和渐变 + 光斑 */
+.bg{position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(120% 90% at 70% -10%,#1b5a63 0%,transparent 55%),
+  radial-gradient(90% 70% at 10% 10%,#15505a 0%,transparent 50%),
+  linear-gradient(180deg,#0a3943 0%,#082c34 55%,#06242b 100%)}
+.bg:after{content:"";position:fixed;inset:0;z-index:-1;background:
+  radial-gradient(2px 1px at 20% 30%,rgba(255,220,137,.18),transparent 40%),
+  radial-gradient(2px 1px at 70% 60%,rgba(134,234,219,.12),transparent 40%),
+  radial-gradient(3px 1px at 45% 80%,rgba(255,220,137,.10),transparent 40%)}
+.wrap{max-width:920px;margin:0 auto;padding:0 24px}
+/* 头部 */
+header{display:flex;justify-content:space-between;align-items:center;padding:26px 0}
+.logo{font-size:22px;font-weight:800;letter-spacing:2px;color:var(--gold)}
+.logo small{display:block;font-size:11px;letter-spacing:4px;color:var(--dim);font-weight:400}
+.badge{border:1px solid var(--line);border-radius:20px;padding:5px 14px;font-size:12px;color:var(--dim)}
+/* Hero */
+.hero{padding:56px 0 40px;text-align:center}
+.hero h1{font-size:clamp(34px,7vw,64px);font-weight:900;letter-spacing:4px;line-height:1.15;margin-bottom:18px}
+.hero h1 .accent{color:var(--gold)}
+.hero .hook{font-size:clamp(15px,2.4vw,20px);color:var(--dim);max-width:640px;margin:0 auto 30px}
+.hero .hook b{color:var(--cyan);font-weight:700}
+.cta{display:inline-block;padding:15px 34px;border-radius:34px;background:linear-gradient(135deg,var(--gold),#ffb45c);color:#082c34;font-weight:800;font-size:17px;letter-spacing:1px;text-decoration:none;box-shadow:0 10px 30px rgba(255,220,137,.25);transition:transform .15s ease}
+.cta:hover{transform:translateY(-2px)}
+.hero .meta{margin-top:22px;font-size:13px;color:var(--dim)}
+/* 通用区块 */
+section{padding:34px 0}
+h2{font-size:clamp(22px,3.4vw,30px);font-weight:800;letter-spacing:2px;margin-bottom:6px}
+h2 .no{color:var(--gold);margin-right:10px}
+.lead{color:var(--dim);margin-bottom:22px}
+/* 卡片网格 */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:22px}
+.card h3{font-size:17px;color:var(--gold);margin-bottom:8px}
+.card p{font-size:14px;color:var(--dim)}
+.card .tag{display:inline-block;font-size:11px;border:1px solid var(--line);border-radius:4px;padding:1px 8px;margin-right:6px;color:var(--cyan)}
+/* 玩法亮点列表 */
+.hl{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.hl div{background:rgba(134,234,219,.05);border-left:3px solid var(--cyan);border-radius:0 10px 10px 0;padding:14px 16px}
+.hl b{color:var(--ink)}
+.hl p{font-size:13px;color:var(--dim);margin-top:2px}
+/* 时间轴 */
+.timeline{list-style:none;border-left:2px solid var(--line);margin-left:8px;padding-left:22px}
+.timeline li{position:relative;margin-bottom:16px}
+.timeline li:before{content:"";position:absolute;left:-28px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--gold)}
+.timeline b{color:var(--gold)}
+.timeline p{font-size:14px;color:var(--dim)}
+/* 评价维度表 */
+.rubric{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px}
+.rubric td{padding:10px 12px;border-bottom:1px solid var(--line);color:var(--dim);vertical-align:top}
+.rubric td .dim{display:block;color:var(--cyan);font-weight:700;white-space:nowrap}
+.rubric td b{color:var(--ink);font-weight:600}
+.rubric .st{text-align:right;white-space:nowrap;font-size:13px}
+.rubric .st.strong{color:var(--gold)}
+.rubric .st.weak{color:#8b9aa6}
+/* 页脚 */
+footer{margin-top:40px;padding:26px 0 40px;border-top:1px solid var(--line);text-align:center;color:var(--dim);font-size:13px}
+footer a{color:var(--cyan);text-decoration:none}
+@media(max-width:600px){.hero{padding:36px 0 28px}header{flex-direction:column;gap:10px}}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="wrap">
+  <header>
+    <div class="logo">疯狂水世界<small>一方木筏 · 无尽之海</small></div>
+    <div class="badge">5 分钟闪电路演 · 2026-11-21</div>
+  </header>
+
+  <div class="hero">
+    <h1>疯狂<span class="accent">水世界</span></h1>
+    <p class="hook">不是氪金抽卡变强，而是<b>摆对位置</b>变强——<br>在一方木筏上，用建筑的位置，扛过五天，击败深海巨兽。</p>
+    <a class="cta" href="./index.html">▶ 开始游戏</a>
+    <div class="meta">纯前端单文件 · 无构建 · 可直接分享链接试玩</div>
+  </div>
+
+  <section id="idea">
+    <h2><span class="no">01</span>创意</h2>
+    <p class="lead">一句话：<b>把「摆位置」做成游戏的核心乐趣</b>——每座建筑的强弱取决于它摆在哪儿。</p>
+    <div class="grid">
+      <div class="card">
+        <h3>摆位即策略</h3>
+        <p>弩炮靠弹药架加成，鼠炮台要挤在一起才强，护盾塔站对格子挡更多伤害。没有「最强建筑」，只有「最对的摆法」。</p>
+      </div>
+      <div class="card">
+        <h3>抉择每条航线</h3>
+        <p>五天航程，每天两张「船票」：安稳与冒险、事件与补给。选稳妥还是搏一把，都由你决定。</p>
+      </div>
+      <div class="card">
+        <h3>会「预告」的敌人</h3>
+        <p>海怪会蓄力、结壳、群袭，下一轮做什么会提前告诉你——像下棋一样，看懂意图再布阵。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="play">
+    <h2><span class="no">02</span>玩法亮点</h2>
+    <div class="hl">
+      <div><b>摆位构筑</b><p>15+ 种建筑，位置效果：相邻 / 范围 / 行列 / 全船。</p></div>
+      <div><b>规则型奇妙建筑</b><p>护盾变成「整池」，改变结算规则而不只是加数值。</p></div>
+      <div><b>章节 × 等级</b><p>三章递进，通关升级，解锁更猛的武器。</p></div>
+      <div><b>进度不丢</b><p>版本化存档、撤销、战斗中刷新可回滚。</p></div>
+    </div>
+  </section>
+
+  <section id="impl">
+    <h2><span class="no">03</span>实现过程</h2>
+    <div class="grid">
+      <div class="card"><h3>纯前端单文件</h3><p>约 2200 行 HTML/CSS/JS，零依赖零构建，直接静态托管，任何浏览器即点即玩。</p></div>
+      <div class="card"><h3>单一结算源</h3><p>所有战斗进同一个 <code>simulate()</code>：预测、逐轮动画、最终扣血读同一份日志，绝不「看到的伤害≠实际伤害」。</p></div>
+      <div class="card"><h3>手绘 SVG 美术</h3><p>建筑立绘、海怪、图标全部手写 SVG，无外部素材、无版权风险。</p></div>
+      <div class="card"><h3>自动化测试兜底</h3><p>11 套 52 组 Playwright 用例：通关、事件、规则、意图、种子复现、连点等对抗性场景。</p></div>
+    </div>
+  </section>
+
+  <section id="roadmap">
+    <h2><span class="no">04</span>后续迭代</h2>
+    <ul class="timeline">
+      <li><b>更多内容</b><p>更多章节、海怪与事件，让敌人行为更丰富。</p></li>
+      <li><b>云存档与分享</b><p>进度上云、跨设备续玩，支持生成战报分享。</p></li>
+      <li><b>视听打磨</b><p>加入音乐、音效与逐类建筑动画。</p></li>
+      <li><b>平衡与手感</b><p>基于真人试玩数据，调优难度曲线与移动端体验。</p></li>
+    </ul>
+  </section>
+
+  <section id="rubric">
+    <h2><span class="no">05</span>评价维度自查</h2>
+    <p class="lead">按评审十个维度如实标注强弱项——权重最高的四项（★☆）恰好是投入最多的。</p>
+    <table class="rubric">
+      <tr><td><span class="dim">★10</span><b>创意</b></td><td>不是抽卡变强，是摆对位置变强</td><td class="st strong">核心卖点</td></tr>
+      <tr><td><span class="dim">☆05</span><b>玩法核心循环</b></td><td>建造 → 航线 → 战斗 → 奖励 → 升级 → Boss</td><td class="st strong">完整闭环</td></tr>
+      <tr><td><span class="dim">☆06</span><b>玩法深度与关卡</b></td><td>15+ 位置效果、航线分叉、敌人意图、章节解锁</td><td class="st strong">有纵深</td></tr>
+      <tr><td><span class="dim">☆09</span><b>完成度与打磨</b></td><td>存档 / 撤销 / 回滚 / 52 组自动化测试</td><td class="st strong">工程扎实</td></tr>
+      <tr><td><span class="dim">02</span><b>角色与美术</b></td><td>9 种海怪 + 15 种建筑，手绘 SVG</td><td class="st">完整统一</td></tr>
+      <tr><td><span class="dim">03</span><b>场景与画面表现</b></td><td>等距木筏、航线海图、逐轮战斗动画</td><td class="st">到位</td></tr>
+      <tr><td><span class="dim">08</span><b>世界观与设定</b></td><td>三章主题：浅海 / 暗礁 / 深渊</td><td class="st">有框架</td></tr>
+      <tr><td><span class="dim">01</span><b>建模与3D资产</b></td><td>纯 2D，无 3D（主动选择，换取更快玩法迭代）</td><td class="st weak">如实说明</td></tr>
+      <tr><td><span class="dim">04</span><b>音效与音乐</b></td><td>仅音效开关，音乐未做</td><td class="st weak">弱项</td></tr>
+      <tr><td><span class="dim">07</span><b>剧情</b></td><td>无叙事线，只有生存框架</td><td class="st weak">弱项</td></tr>
+    </table>
+  </section>
+
+  <footer>
+    <p>疯狂水世界 · <a href="./index.html">在线试玩</a> · 今晚 8:00 分享会 5 分钟闪电路演</p>
+  </footer>
+</div>
+</body>
+</html>
