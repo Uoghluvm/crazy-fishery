@@ -1,0 +1,46 @@
+# 把 mvp.html 发布为 GitHub Pages 首页：https://uoghluvm.github.io/crazy-fishery/
+# 游戏是单个 HTML 文件，没有构建步骤，也不依赖外部资源，所以只需要把它复制成 index.html。
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - mvp.html
+      - .github/workflows/pages.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同一时间只部署一次；新的部署排队，不打断正在进行的那次。
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Assemble site
+        run: |
+          mkdir _site
+          cp mvp.html _site/index.html
+          touch _site/.nojekyll
+          # 防止把空文件或错误文件发布出去
+          test "$(wc -c < _site/index.html)" -gt 100000
+          grep -q '疯狂水世界' _site/index.html
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v5
